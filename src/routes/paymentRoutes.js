@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   mockAuthMiddleware,
   mockEducatorAuthMiddleware,
+  validateToken,
   requireRole,
 } = require("../middleware/auth");
 const { validate } = require("../middleware/validators");
@@ -58,28 +59,28 @@ router.get(
 // Post create stripe account for educator
 router.post(
   "/create-account",
-  mockEducatorAuthMiddleware,
+  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
   paymentController.createEducatorAccount
 );
 
 // Delete stripe account for educator
 router.delete(
   "/delete-account",
-  mockEducatorAuthMiddleware,
+  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
   paymentController.deleteEducatorAccount
 );
 
 // Get total earnings for educator
 router.get(
   "/total-earnings",
-  mockEducatorAuthMiddleware,
+  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
   paymentController.getTotalEarningsForEducator
 );
 
 // Get educator current balance
 router.get(
   "/current-balance",
-  mockEducatorAuthMiddleware,
+  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
   paymentController.getEducatorCurrentBalance
 );
 

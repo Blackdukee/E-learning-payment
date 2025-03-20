@@ -1,13 +1,13 @@
 const express = require('express');
 const configController = require('../controllers/configController');
-const { mockAuthMiddleware, requireRole } = require('../middleware/auth');
+const { mockAuthMiddleware,validateToken, requireRole } = require('../middleware/auth');
 
 const router = express.Router();
 
 // Get all configurations (admin only)
 router.get(
   '/',
-  mockAuthMiddleware(),
+  process.env.NODE_ENV === 'development' ? mockAuthMiddleware() : validateToken(),
   requireRole('ADMIN'),
   configController.getAllConfig
 );
@@ -15,7 +15,7 @@ router.get(
 // Get a specific configuration
 router.get(
   '/:key',
-  mockAuthMiddleware(),
+  process.env.NODE_ENV === 'development' ? mockAuthMiddleware() : validateToken(),
   requireRole('ADMIN'),
   configController.getConfig
 );
@@ -23,7 +23,7 @@ router.get(
 // Update a configuration (admin only)
 router.put(
   '/:key',
-  mockAuthMiddleware(),
+  process.env.NODE_ENV === 'development' ? mockAuthMiddleware() : validateToken(),
   requireRole('ADMIN'),
   configController.updateConfig
 );
@@ -31,7 +31,7 @@ router.put(
 // Reload all configurations (admin only)
 router.post(
   '/reload',
-  mockAuthMiddleware(),
+  process.env.NODE_ENV === 'development' ? mockAuthMiddleware() : validateToken(),
   requireRole('ADMIN'),
   configController.reloadConfig
 );

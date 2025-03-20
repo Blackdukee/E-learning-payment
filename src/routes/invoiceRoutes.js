@@ -43,18 +43,5 @@ router.get(
   invoiceController.downloadInvoicePdf
 );
 
-// Admin routes
-// router.get(
-//   '/admin/all',
-//   [
-//     query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
-//     query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit must be between 1 and 50'),
-//     query('status').optional().isString().withMessage('Status must be a string'),
-//   ],
-//   process.env.NODE_ENV === "development"
-//     // ? mockAuthMiddleware() : validateToken,
-//   requireRole('ADMIN'),
-//   invoiceController.getAllInvoices
-// );
 
 module.exports = router;

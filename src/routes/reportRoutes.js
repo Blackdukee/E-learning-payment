@@ -1,8 +1,12 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const router = express.Router();
-const reportController = require('../controllers/reportController');
-const { validateToken, requireRole,mockEducatorAuthMiddleware } = require('../middleware/auth');
+const reportController = require("../controllers/reportController");
+const {
+  validateToken,
+  requireRole,
+  mockEducatorAuthMiddleware,
+} = require("../middleware/auth");
 
 /**
  * @route   GET /api/reports/financial
@@ -10,9 +14,11 @@ const { validateToken, requireRole,mockEducatorAuthMiddleware } = require('../mi
  * @access  Admin and Educators (with restrictions)
  */
 router.get(
-  '/financial',
-  mockEducatorAuthMiddleware,
-  requireRole('ADMIN', 'EDUCATOR'),
+  "/financial",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN", "EDUCATOR"),
   reportController.generateFinancialReport
 );
 
@@ -22,10 +28,11 @@ router.get(
  * @access  Admin and Educators (with restrictions)
  */
 router.get(
-  '/financial/pdf',
+  "/financial/pdf",
   process.env.NODE_ENV === "development"
-    ? mockEducatorAuthMiddleware : validateToken,
-  requireRole('ADMIN', 'EDUCATOR'),
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN", "EDUCATOR"),
   reportController.downloadFinancialReportPDF
 );
 
@@ -35,9 +42,10 @@ router.get(
  * @access  Admin and the specific Educator
  */
 router.get(
-  '/educators/:educatorId/earnings',
+  "/educators/:educatorId/earnings",
   process.env.NODE_ENV === "development"
-  ? mockEducatorAuthMiddleware : validateToken,
+    ? mockEducatorAuthMiddleware
+    : validateToken,
   reportController.getEducatorEarningsReport
 );
 
@@ -47,9 +55,10 @@ router.get(
  * @access  Admin can view all, Educators can view their own
  */
 router.get(
-  '/commission-analysis',
+  "/commission-analysis",
   process.env.NODE_ENV === "development"
-  ? mockEducatorAuthMiddleware : validateToken,
+    ? mockEducatorAuthMiddleware
+    : validateToken,
   reportController.getCommissionAnalysisReport
 );
 

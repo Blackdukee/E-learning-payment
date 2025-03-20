@@ -1,7 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const statisticsController = require('../controllers/statisticsController');
-const { validateToken, requireRole } = require('../middleware/auth');
+const statisticsController = require("../controllers/statisticsController");
+const {
+  validateToken,
+  mockEducatorAuthMiddleware,
+  requireRole,
+} = require("../middleware/auth");
 
 /**
  * @route   GET /api/statistics/transaction-volumes
@@ -9,9 +13,11 @@ const { validateToken, requireRole } = require('../middleware/auth');
  * @access  Admin only
  */
 router.get(
-  '/transaction-volumes', 
-  validateToken, 
-  requireRole('ADMIN'),
+  "/transaction-volumes",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN"),
   statisticsController.getTransactionVolumes
 );
 
@@ -21,9 +27,11 @@ router.get(
  * @access  Admin only
  */
 router.get(
-  '/performance-metrics', 
-  validateToken, 
-  requireRole('ADMIN'),
+  "/performance-metrics",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN"),
   statisticsController.getPerformanceMetrics
 );
 
@@ -33,9 +41,11 @@ router.get(
  * @access  Admin only
  */
 router.get(
-  '/financial-analysis', 
-  validateToken, 
-  requireRole('ADMIN'),
+  "/financial-analysis",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN"),
   statisticsController.getFinancialAnalysis
 );
 
@@ -45,9 +55,11 @@ router.get(
  * @access  Admin only
  */
 router.get(
-  '/payment-operations', 
-  validateToken, 
-  requireRole('ADMIN'),
+  "/payment-operations",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN"),
   statisticsController.getPaymentOperations
 );
 
@@ -57,9 +69,11 @@ router.get(
  * @access  Admin only
  */
 router.get(
-  '/dashboard', 
-  validateToken, 
-  requireRole('ADMIN'),
+  "/dashboard",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
+  requireRole("ADMIN"),
   statisticsController.getDashboardStatistics
 );
 
@@ -69,8 +83,10 @@ router.get(
  * @access  Educator (own analytics) or Admin
  */
 router.get(
-  '/educators/:educatorId/payment-analytics',
-  validateToken,
+  "/educators/:educatorId/payment-analytics",
+  process.env.NODE_ENV === "development"
+    ? mockEducatorAuthMiddleware
+    : validateToken,
   statisticsController.getEducatorPaymentAnalytics
 );
 

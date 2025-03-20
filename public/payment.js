@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Your Stripe publishable key
-    const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY');
+    const stripe = Stripe('pk_test_51R0nWXBLtTuFPq2ghYUwqXJZQ2bqcWcxKnqqMEAxVdQ2eGviVk1nQXxG6SECgP7I0N4WNvXqRLgmdaasFpn3IoQX00CjkXPYhs');
     const elements = stripe.elements();
   
     // Course data (would typically come from your database)
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Step 2: Send the payment information to your server
-        const response = await fetch('http://localhost:3002/api/payments', {
+        const response = await fetch('http://localhost:3003/api/payments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
