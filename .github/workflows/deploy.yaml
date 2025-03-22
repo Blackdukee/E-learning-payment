@@ -23,8 +23,8 @@ jobs:
 
       - name: Build and push with timestamp
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DB_URL }}" .
-          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DB_URL }}" .
+          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -33,10 +33,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
             sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning") || true
             sudo docker container prune --force
             sudo docker image prune --force
-            sudo docker run -d -p 3001:3000 --name E-Learning ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
+            sudo docker run -d -p 3001:3000 --name E-Learning ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
             sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
             exit
