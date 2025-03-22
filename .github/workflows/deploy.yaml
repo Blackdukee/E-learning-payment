@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and push with timestamp
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DB_URL }}" .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DATABASE_URL }}" .
           docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
