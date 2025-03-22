@@ -1,15 +1,25 @@
-const { PrismaClient } = require('@prisma/client');
-const { logger } = require('../utils/logger');
-const dotenv = require('dotenv');
-const fs = require('fs');
-const path = require('path');
+const { PrismaClient } = require("@prisma/client");
+const { logger } = require("../utils/logger");
+const dotenv = require("dotenv");
+const fs = require("fs");
+const path = require("path");
 
 const prisma = new PrismaClient();
 
 // Initialize with environment variables
-let configCache = {
-  ...process.env
-};
+// Load .env file
+dotenv.config();
+
+// Initialize config cache with just .env file contents
+let configCache = {};
+const envPath = path.resolve(process.cwd(), ".env");
+if (fs.existsSync(envPath)) {
+  const envConfig = dotenv.parse(fs.readFileSync(envPath));
+  configCache = { ...envConfig };
+  logger.info("Configuration loaded from .env file");
+} else {
+  logger.warn(".env file not found, initializing with empty config");
+}
 
 /**
  * Configuration service for managing runtime configuration
@@ -26,12 +36,12 @@ class ConfigService {
     if (configCache[key] !== undefined) {
       return configCache[key];
     }
-    
+
     // Then check process.env
     if (process.env[key] !== undefined) {
       return process.env[key];
     }
-    
+
     // Return default if not found
     return defaultValue;
   }
@@ -74,14 +84,14 @@ class ConfigService {
    */
   isProtectedKey(key) {
     const protectedKeys = [
-      'NODE_ENV',
-      'DATABASE_URL',
-      'PORT',
-      'JWT_SECRET',
-      'STRIPE_SECRET_KEY',
-      'STRIPE_WEBHOOK_SECRET'
+      "NODE_ENV",
+      "DATABASE_URL",
+      "PORT",
+      "JWT_SECRET",
+      "STRIPE_SECRET_KEY",
+      "STRIPE_WEBHOOK_SECRET",
     ];
-    
+
     return protectedKeys.includes(key);
   }
 
@@ -95,17 +105,17 @@ class ConfigService {
     try {
       // Check if config already exists
       const existingConfig = await prisma.configSetting.findUnique({
-        where: { key }
+        where: { key },
       });
 
       if (existingConfig) {
         // Update existing config
         await prisma.configSetting.update({
           where: { key },
-          data: { 
+          data: {
             value: String(value),
-            updatedAt: new Date()
-          }
+            updatedAt: new Date(),
+          },
         });
       } else {
         // Create new config
@@ -113,8 +123,8 @@ class ConfigService {
           data: {
             key,
             value: String(value),
-            description: `Runtime configuration set on ${new Date().toISOString()}`
-          }
+            description: `Runtime configuration set on ${new Date().toISOString()}`,
+          },
         });
       }
     } catch (error) {
@@ -130,15 +140,17 @@ class ConfigService {
   async loadFromDatabase() {
     try {
       const dbConfigs = await prisma.configSetting.findMany();
-      
+
       // Update cache with database values
-      dbConfigs.forEach(config => {
+      dbConfigs.forEach((config) => {
         configCache[config.key] = config.value;
       });
-      
+
       logger.info(`Loaded ${dbConfigs.length} configurations from database`);
     } catch (error) {
-      logger.error(`Failed to load configurations from database: ${error.message}`);
+      logger.error(
+        `Failed to load configurations from database: ${error.message}`
+      );
     }
   }
 
@@ -151,29 +163,31 @@ class ConfigService {
    */
   async updateEnvFile(key, value) {
     // Only allow in development mode
-    if (process.env.NODE_ENV !== 'development') {
-      logger.warn('Attempted to update .env file in non-development environment');
-      throw new Error('Updating .env file is only allowed in development mode');
+    if (process.env.NODE_ENV !== "development") {
+      logger.warn(
+        "Attempted to update .env file in non-development environment"
+      );
+      throw new Error("Updating .env file is only allowed in development mode");
     }
 
     try {
-      const envPath = path.resolve(process.cwd(), '.env');
-      
+      const envPath = path.resolve(process.cwd(), ".env");
+
       // Read the current .env file
-      let envContent = '';
+      let envContent = "";
       try {
-        envContent = fs.readFileSync(envPath, 'utf8');
+        envContent = fs.readFileSync(envPath, "utf8");
       } catch (err) {
         // Create file if it doesn't exist
-        envContent = '';
+        envContent = "";
       }
 
       // Parse the content to find the variable
-      const envLines = envContent.split('\n');
+      const envLines = envContent.split("\n");
       const keyRegex = new RegExp(`^${key}=.*`);
-      
+
       let keyExists = false;
-      const updatedLines = envLines.map(line => {
+      const updatedLines = envLines.map((line) => {
         if (keyRegex.test(line)) {
           keyExists = true;
           return `${key}=${value}`;
@@ -187,11 +201,11 @@ class ConfigService {
       }
 
       // Write the updated content back to .env
-      fs.writeFileSync(envPath, updatedLines.join('\n'));
-      
+      fs.writeFileSync(envPath, updatedLines.join("\n"));
+
       // Also update process.env
       process.env[key] = value;
-      
+
       logger.info(`Updated .env file with new value for ${key}`);
       return true;
     } catch (error) {
@@ -208,14 +222,20 @@ class ConfigService {
     try {
       // Reload .env file
       dotenv.config({ override: true });
-      
+
       // Reset cache with process.env
-      configCache = { ...process.env };
-      
+      const envPath = path.resolve(process.cwd(), ".env");
+      if (fs.existsSync(envPath)) {
+        const envConfig = dotenv.parse(fs.readFileSync(envPath));
+        configCache = { ...envConfig };
+        logger.info("Configuration loaded from .env file");
+      } else {
+        logger.warn(".env file not found, initializing with empty config");
+      }
       // Load from database
       await this.loadFromDatabase();
-      
-      logger.info('All configurations reloaded');
+
+      logger.info("All configurations reloaded");
     } catch (error) {
       logger.error(`Failed to reload configurations: ${error.message}`);
       throw error;
@@ -229,29 +249,33 @@ class ConfigService {
    */
   getAll(includeSensitive = false) {
     const allConfig = { ...configCache };
-    
+
     if (!includeSensitive) {
       // List of sensitive keys to mask
       const sensitiveKeys = [
-        'JWT_SECRET', 
-        'STRIPE_SECRET_KEY',
-        'DATABASE_URL',
-        'PASSWORD',
-        'SECRET',
-        'KEY'
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY",
+        "DATABASE_URL",
+        "PASSWORD",
+        "SECRET",
+        "KEY",
       ];
-      
+
       // Mask sensitive values
-      Object.keys(allConfig).forEach(key => {
-        if (sensitiveKeys.some(sensitiveKey => 
-          key.includes(sensitiveKey) || 
-          key.toLowerCase().includes('password') || 
-          key.toLowerCase().includes('secret'))) {
-          allConfig[key] = '********';
+      Object.keys(allConfig).forEach((key) => {
+        if (
+          sensitiveKeys.some(
+            (sensitiveKey) =>
+              key.includes(sensitiveKey) ||
+              key.toLowerCase().includes("password") ||
+              key.toLowerCase().includes("secret")
+          )
+        ) {
+          allConfig[key] = "********";
         }
       });
     }
-    
+
     return allConfig;
   }
 }
@@ -263,9 +287,11 @@ const configService = new ConfigService();
 (async () => {
   try {
     await configService.loadFromDatabase();
-    logger.info('Configuration service initialized');
+    logger.info("Configuration service initialized");
   } catch (error) {
-    logger.error(`Failed to initialize configuration service: ${error.message}`);
+    logger.error(
+      `Failed to initialize configuration service: ${error.message}`
+    );
   }
 })();
 

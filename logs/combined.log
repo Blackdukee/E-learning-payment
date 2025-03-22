@@ -1959,3 +1959,505 @@
 {"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 99.99 USD processed for course course_1","metadata":{"stripeChargeId":"pi_3R3wt4BLtTuFPq2g1BpceuFB"},"service":"payment-service","timestamp":"2025-03-18 11:56:47","transactionId":"53d03692-22c3-44b8-85b3-c4424cb0edf2"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [18/Mar/2025:09:56:47 +0000] \"POST /api/payments HTTP/1.1\" 200 1173 \"http://127.0.0.1:5500/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0\"","service":"payment-service","timestamp":"2025-03-18 11:56:47"}
 {"level":"info","message":"Database connection closed","service":"payment-service","timestamp":"2025-03-18 14:46:41"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:00:58"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:00:58"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:00:58"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:00:58"}
+{"level":"info","message":"GET /api/config/payment","service":"payment-service","timestamp":"2025-03-20 14:11:44"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:12:11:44 +0000] \"GET /api/config/payment HTTP/1.1\" 403 1536 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 14:11:44"}
+{"level":"info","message":"GET /api/config/payment","service":"payment-service","timestamp":"2025-03-20 14:17:13"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:12:17:13 +0000] \"GET /api/config/payment HTTP/1.1\" 403 1536 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 14:17:13"}
+{"level":"info","message":"GET /api/config/payment","service":"payment-service","timestamp":"2025-03-20 14:18:19"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:12:18:19 +0000] \"GET /api/config/payment HTTP/1.1\" 403 1536 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 14:18:19"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-20 14:22:02"}
+{"level":"info","message":"::1 - - [20/Mar/2025:12:22:02 +0000] \"GET /api/config HTTP/1.1\" 403 1554 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 14:22:02"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-20 14:24:25"}
+{"level":"info","message":"::1 - - [20/Mar/2025:12:24:25 +0000] \"GET /api/config HTTP/1.1\" 403 1554 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 14:24:25"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:25:58"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:25:58"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:25:58"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:25:58"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-20 14:26:17"}
+{"level":"info","message":"::1 - - [20/Mar/2025:12:26:17 +0000] \"GET /api/config HTTP/1.1\" 403 1554 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 14:26:17"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-20 14:28:47"}
+{"level":"info","message":"::1 - - [20/Mar/2025:12:28:47 +0000] \"GET /api/config HTTP/1.1\" 403 1554 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 14:28:47"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:32:04"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:32:04"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:32:04"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:32:04"}
+{"level":"info","message":"Database connection closed","service":"payment-service","timestamp":"2025-03-20 14:32:41"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:34:15"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:34:15"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:34:15"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:34:15"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:35:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:35:48"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:35:48"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:35:48"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-20 14:36:02"}
+{"level":"info","message":"::1 - - [20/Mar/2025:12:36:02 +0000] \"GET /api/config HTTP/1.1\" 200 5712 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 14:36:02"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:39:46"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:39:47"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:39:47"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:39:47"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:40:35"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:40:35"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:40:36"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:40:36"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:40:36"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-20 14:41:11"}
+{"level":"info","message":"::1 - - [20/Mar/2025:12:41:11 +0000] \"GET /api/config HTTP/1.1\" 200 722 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 14:41:11"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:52:51"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:52:51"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:52:51"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:52:51"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:52:51"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:53:01"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:53:01"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:53:01"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:53:01"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:53:01"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:53:15"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:53:15"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:53:19"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:53:19"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:53:19"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:53:19"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:53:19"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:54:36"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:54:36"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:54:36"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:54:36"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:54:36"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:54:45"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:54:45"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:54:46"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:54:46"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:54:46"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:54:56"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:54:56"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:54:56"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:54:56"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:54:56"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 14:55:00"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 14:55:01"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 14:55:01"}
+{"level":"info","message":"Loaded 0 configurations from database","service":"payment-service","timestamp":"2025-03-20 14:55:01"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 14:55:01"}
+{"level":"info","message":"PUT /api/config/INTERNAL_API_KEY","service":"payment-service","timestamp":"2025-03-20 15:03:15"}
+{"level":"info","message":"Configuration updated: INTERNAL_API_KEY","service":"payment-service","timestamp":"2025-03-20 15:03:16"}
+{"level":"info","message":"Updated .env file with new value for INTERNAL_API_KEY","service":"payment-service","timestamp":"2025-03-20 15:03:16"}
+{"level":"info","message":"::1 - - [20/Mar/2025:13:03:16 +0000] \"PUT /api/config/INTERNAL_API_KEY HTTP/1.1\" 200 132 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-20 15:03:16"}
+{"level":"info","message":"GET /api/payouts/educators/edu_123/pending","service":"payment-service","timestamp":"2025-03-20 15:11:32"}
+{"level":"info","message":"::1 - - [20/Mar/2025:13:11:32 +0000] \"GET /api/payouts/educators/edu_123/pending HTTP/1.1\" 404 176 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:11:32"}
+{"level":"info","message":"GET /api/payouts/educators/edu_123/pending","service":"payment-service","timestamp":"2025-03-20 15:12:10"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:12:10 +0000] \"GET /api/payouts/educators/edu_123/pending HTTP/1.1\" 404 176 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:12:10"}
+{"level":"info","message":"GET /api/payments/total-earnings","service":"payment-service","timestamp":"2025-03-20 15:13:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:13:11 +0000] \"GET /api/payments/total-earnings HTTP/1.1\" 200 26 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:13:11"}
+{"level":"info","message":"GET /api/payments/current-balance","service":"payment-service","timestamp":"2025-03-20 15:13:40"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:13:41 +0000] \"GET /api/payments/current-balance HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:13:41"}
+{"level":"info","message":"GET /api/payments/current-balance","service":"payment-service","timestamp":"2025-03-20 15:14:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:14:12 +0000] \"GET /api/payments/current-balance HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:14:12"}
+{"level":"info","message":"GET /api/payments/current-balance","service":"payment-service","timestamp":"2025-03-20 15:14:19"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:14:19 +0000] \"GET /api/payments/current-balance HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:14:19"}
+{"level":"info","message":"GET /api/payments/current-balance","service":"payment-service","timestamp":"2025-03-20 15:14:21"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:14:21 +0000] \"GET /api/payments/current-balance HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:14:21"}
+{"level":"info","message":"GET /api/payments/current-balance","service":"payment-service","timestamp":"2025-03-20 15:14:23"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:14:23 +0000] \"GET /api/payments/current-balance HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:14:23"}
+{"level":"info","message":"GET /api/payments/14b4ec76-7c78-4833-a608-6ade135734df","service":"payment-service","timestamp":"2025-03-20 15:15:05"}
+{"level":"error","message":"Error fetching transaction: Transaction not found","service":"payment-service","timestamp":"2025-03-20 15:15:05"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:15:05 +0000] \"GET /api/payments/14b4ec76-7c78-4833-a608-6ade135734df HTTP/1.1\" 404 51 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:15:05"}
+{"level":"info","message":"GET /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:15:14"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:15:14 +0000] \"GET /api/payments/ HTTP/1.1\" 404 152 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:15:14"}
+{"level":"info","message":"GET /api/payments/4bd46fd7-d432-4125-825f-43b3f65b7c95","service":"payment-service","timestamp":"2025-03-20 15:15:57"}
+{"level":"error","message":"Error fetching transaction: Transaction not found","service":"payment-service","timestamp":"2025-03-20 15:15:57"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:15:57 +0000] \"GET /api/payments/4bd46fd7-d432-4125-825f-43b3f65b7c95 HTTP/1.1\" 404 51 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:15:57"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:16:21"}
+{"level":"info","message":"Payment split: Amount: $100, Platform: $19, Educator: $78","service":"payment-service","timestamp":"2025-03-20 15:16:21"}
+{"data":{"action":"ENROLL_USER","courseId":"6","transactionId":"0e678950-cdea-4f1d-9c58-682429da7d91","userId":"mock-user-id"},"error":{"code":"ECONNREFUSED","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"userId\":\"mock-user-id\",\"action\":\"ENROLL_USER\",\"courseId\":\"6\",\"transactionId\":\"0e678950-cdea-4f1d-9c58-682429da7d91\"}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Accept-Encoding":"gzip, compress, deflate, br","Content-Length":"118","Content-Type":"application/json","User-Agent":"axios/1.8.1","X-Service-Auth":"TESTO"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:3001/api/api/notifications","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"connect ECONNREFUSED ::1:3001","name":"Error","stack":"Error: connect ECONNREFUSED ::1:3001\n    at AxiosError.from (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:857:14)\n    at RedirectableRequest.handleRequestError (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:3169:25)\n    at RedirectableRequest.emit (node:events:524:28)\n    at eventHandlers.<computed> (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\follow-redirects\\index.js:49:24)\n    at ClientRequest.emit (node:events:524:28)\n    at emitErrorEvent (node:_http_client:104:11)\n    at Socket.socketErrorListener (node:_http_client:512:5)\n    at Socket.emit (node:events:524:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:4258:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async notifyUserService (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\utils\\serviceNotifier.js:14:5)\n    at async Object.processPayment (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\services\\paymentService.js:121:5)\n    at async processPayment (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\controllers\\paymentController.js:10:20)"},"level":"error","message":"Failed to notify user service: connect ECONNREFUSED ::1:3001","service":"payment-service","timestamp":"2025-03-20 15:16:24"}
+{"data":{"action":"RECORD_PURCHASE","amount":100,"courseId":"6","educatorEarnings":78,"userId":"mock-user-id"},"error":{"code":"ECONNREFUSED","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"courseId\":\"6\",\"action\":\"RECORD_PURCHASE\",\"userId\":\"mock-user-id\",\"amount\":100,\"educatorEarnings\":78}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Accept-Encoding":"gzip, compress, deflate, br","Content-Length":"102","Content-Type":"application/json","User-Agent":"axios/1.8.1","X-Service-Auth":"TESTO"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:3002/api/api/notifications","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"connect ECONNREFUSED ::1:3002","name":"Error","stack":"Error: connect ECONNREFUSED ::1:3002\n    at AxiosError.from (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:857:14)\n    at RedirectableRequest.handleRequestError (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:3169:25)\n    at RedirectableRequest.emit (node:events:524:28)\n    at eventHandlers.<computed> (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\follow-redirects\\index.js:49:24)\n    at ClientRequest.emit (node:events:524:28)\n    at emitErrorEvent (node:_http_client:104:11)\n    at Socket.socketErrorListener (node:_http_client:512:5)\n    at Socket.emit (node:events:524:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:4258:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async notifyCourseService (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\utils\\serviceNotifier.js:41:5)\n    at async Object.processPayment (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\services\\paymentService.js:129:5)\n    at async processPayment (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\controllers\\paymentController.js:10:20)"},"level":"error","message":"Failed to notify course service: connect ECONNREFUSED ::1:3002","service":"payment-service","timestamp":"2025-03-20 15:16:24"}
+{"data":{"action":"NEW_EARNINGS","data":{"amount":78,"courseId":"6","totalPendingEarnings":{},"transactionId":"0e678950-cdea-4f1d-9c58-682429da7d91"},"userId":"edu_123"},"error":{"code":"ECONNREFUSED","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"userId\":\"edu_123\",\"action\":\"NEW_EARNINGS\",\"data\":{\"courseId\":\"6\",\"transactionId\":\"0e678950-cdea-4f1d-9c58-682429da7d91\",\"amount\":78,\"totalPendingEarnings\":{}}}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Accept-Encoding":"gzip, compress, deflate, br","Content-Length":"161","Content-Type":"application/json","User-Agent":"axios/1.8.1","X-Service-Auth":"TESTO"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:3001/api/api/notifications","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"connect ECONNREFUSED ::1:3001","name":"Error","stack":"Error: connect ECONNREFUSED ::1:3001\n    at AxiosError.from (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:857:14)\n    at RedirectableRequest.handleRequestError (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:3169:25)\n    at RedirectableRequest.emit (node:events:524:28)\n    at eventHandlers.<computed> (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\follow-redirects\\index.js:49:24)\n    at ClientRequest.emit (node:events:524:28)\n    at emitErrorEvent (node:_http_client:104:11)\n    at Socket.socketErrorListener (node:_http_client:512:5)\n    at Socket.emit (node:events:524:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\node_modules\\axios\\dist\\node\\axios.cjs:4258:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async notifyUserService (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\utils\\serviceNotifier.js:14:5)\n    at async Object.processPayment (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\services\\paymentService.js:138:5)\n    at async processPayment (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\controllers\\paymentController.js:10:20)"},"level":"error","message":"Failed to notify user service: connect ECONNREFUSED ::1:3001","service":"payment-service","timestamp":"2025-03-20 15:16:24"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 6","metadata":{"stripeChargeId":"pi_3R4ixNBLtTuFPq2g0wADIH6x"},"service":"payment-service","timestamp":"2025-03-20 15:16:24","transactionId":"0e678950-cdea-4f1d-9c58-682429da7d91"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:16:24 +0000] \"POST /api/payments/ HTTP/1.1\" 200 1124 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:16:24"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:19:13"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:19:13"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:19:13"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:19:13"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:19:13"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:19:20"}
+{"error":{"isOperational":true,"status":"fail","statusCode":400},"level":"error","message":"Payment processing error: User already enrolled in this course","service":"payment-service","timestamp":"2025-03-20 15:19:20"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 6","metadata":{"error":"User already enrolled in this course"},"service":"payment-service","timestamp":"2025-03-20 15:19:20","transactionId":null}
+{"level":"error","message":"Error processing payment: Payment processing failed: User already enrolled in this course","service":"payment-service","timestamp":"2025-03-20 15:19:20"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:19:20 +0000] \"POST /api/payments/ HTTP/1.1\" 400 93 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:19:20"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:19:32"}
+{"level":"info","message":"Payment split: Amount: $100, Platform: $19, Educator: $78","service":"payment-service","timestamp":"2025-03-20 15:19:32"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 7","metadata":{"stripeChargeId":"pi_3R4j0SBLtTuFPq2g1Qv8o5Ni"},"service":"payment-service","timestamp":"2025-03-20 15:19:34","transactionId":"b0afb5ec-5b6f-4018-a0b5-e914e93f9288"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:19:34 +0000] \"POST /api/payments/ HTTP/1.1\" 200 1124 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:19:34"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:21:53"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:21:53"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:21:53"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:21:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:21:53"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:22:08"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:22:08"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:22:09"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:22:09"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:22:09"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:27:43"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:27:43"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:27:43"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:27:43"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:27:43"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:28:12"}
+{"error":{"clientVersion":"6.4.1","name":"PrismaClientValidationError"},"level":"error","message":"Payment processing error: \nInvalid `tx.invoice.create()` invocation in\nC:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\services\\paymentService.js:267:46\n\n  264 });\n  265 \n  266 // Create invoice\n→ 267 const invoiceRecord = await tx.invoice.create({\n        data: {\n          transactionId: \"8b99898b-6b53-46cf-a1b9-97cd86dd8d59\",\n          invoiceNumber: \"INV-77295403\",\n          subtotal: 100,\n          total: 100,\n          status: \"PAID\",\n          paidAt: new Date(\"2025-03-20T13:28:15.403Z\"),\n          issuedAt: new Date(\"2025-03-20T13:28:15.403Z\"),\n          ~~~~~~~~\n          billingInfo: \"{\\\"name\\\":\\\"Mock User\\\",\\\"email\\\":\\\"mock@example.com\\\"}\",\n          notes: \"Payment for course: Payment for course\",\n      ?   id?: String,\n      ?   discount?: Float,\n      ?   tax?: Float,\n      ?   issueDate?: DateTime,\n      ?   dueDate?: DateTime | Null,\n      ?   createdAt?: DateTime,\n      ?   updatedAt?: DateTime\n        }\n      })\n\nUnknown argument `issuedAt`. Did you mean `issueDate`? Available options are marked with ?.","service":"payment-service","timestamp":"2025-03-20 15:28:15"}
+{"level":"error","message":"Error processing payment: Payment processing failed: \nInvalid `tx.invoice.create()` invocation in\nC:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\services\\paymentService.js:267:46\n\n  264 });\n  265 \n  266 // Create invoice\n→ 267 const invoiceRecord = await tx.invoice.create({\n        data: {\n          transactionId: \"8b99898b-6b53-46cf-a1b9-97cd86dd8d59\",\n          invoiceNumber: \"INV-77295403\",\n          subtotal: 100,\n          total: 100,\n          status: \"PAID\",\n          paidAt: new Date(\"2025-03-20T13:28:15.403Z\"),\n          issuedAt: new Date(\"2025-03-20T13:28:15.403Z\"),\n          ~~~~~~~~\n          billingInfo: \"{\\\"name\\\":\\\"Mock User\\\",\\\"email\\\":\\\"mock@example.com\\\"}\",\n          notes: \"Payment for course: Payment for course\",\n      ?   id?: String,\n      ?   discount?: Float,\n      ?   tax?: Float,\n      ?   issueDate?: DateTime,\n      ?   dueDate?: DateTime | Null,\n      ?   createdAt?: DateTime,\n      ?   updatedAt?: DateTime\n        }\n      })\n\nUnknown argument `issuedAt`. Did you mean `issueDate`? Available options are marked with ?.","service":"payment-service","timestamp":"2025-03-20 15:28:15"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:28:15 +0000] \"POST /api/payments/ HTTP/1.1\" 400 1155 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:28:15"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 8","metadata":{"error":"\nInvalid `tx.invoice.create()` invocation in\nC:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\payment-service\\src\\services\\paymentService.js:267:46\n\n  264 });\n  265 \n  266 // Create invoice\n→ 267 const invoiceRecord = await tx.invoice.create({\n        data: {\n          transactionId: \"8b99898b-6b53-46cf-a1b9-97cd86dd8d59\",\n          invoiceNumber: \"INV-77295403\",\n          subtotal: 100,\n          total: 100,\n          status: \"PAID\",\n          paidAt: new Date(\"2025-03-20T13:28:15.403Z\"),\n          issuedAt: new Date(\"2025-03-20T13:28:15.403Z\"),\n          ~~~~~~~~\n          billingInfo: \"{\\\"name\\\":\\\"Mock User\\\",\\\"email\\\":\\\"mock@example.com\\\"}\",\n          notes: \"Payment for course: Payment for course\",\n      ?   id?: String,\n      ?   discount?: Float,\n      ?   tax?: Float,\n      ?   issueDate?: DateTime,\n      ?   dueDate?: DateTime | Null,\n      ?   createdAt?: DateTime,\n      ?   updatedAt?: DateTime\n        }\n      })\n\nUnknown argument `issuedAt`. Did you mean `issueDate`? Available options are marked with ?."},"service":"payment-service","timestamp":"2025-03-20 15:28:15","transactionId":null}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:28:48"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:28:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:28:49"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:28:49"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:28:49"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:29:57"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:30:00 +0000] \"POST /api/payments/ HTTP/1.1\" 200 1118 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:30:00"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 8","metadata":{"stripeChargeId":"pi_3R4jAYBLtTuFPq2g1GWDudC6"},"service":"payment-service","timestamp":"2025-03-20 15:30:00","transactionId":"54681e50-bd69-4822-b84d-7f7b649be036"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:30:53"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:30:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:30:53"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:30:53"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:30:53"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:32:15"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:32:15"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:32:15"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:32:15"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:32:15"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:32:40"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:32:43 +0000] \"POST /api/payments/ HTTP/1.1\" 200 105 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:32:43"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 9","metadata":{"stripeChargeId":"pi_3R4jDBBLtTuFPq2g4Kk285US"},"service":"payment-service","timestamp":"2025-03-20 15:32:43","transactionId":"bc9b3517-f8ca-4e76-808a-9c49b77c304d"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:35:20"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:35:20"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:35:20"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:35:20"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:35:20"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:35:31"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:35:31"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:35:32"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:35:32"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:35:32"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:36:48"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:36:48"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:36:48"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:36:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:36:48"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:36:55"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:36:55"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:36:55"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:36:55"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:36:55"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:37:12"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:37:12"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:37:12"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:37:12"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:37:12"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:37:31"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:37:31"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:37:31"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:37:32"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:37:32"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:37:56"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:37:56"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:37:56"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:37:56"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:37:56"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:38:08"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:38:08"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:38:08"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:38:08"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:38:08"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:38:58"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:38:58"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:38:58"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:38:58"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:38:58"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:39:15"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:39:15"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:39:16"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:39:16"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:39:16"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:42:53"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:42:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:42:53"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:42:53"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:42:53"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:43:39"}
+{"error":{},"level":"error","message":"Payment processing error: duplicateCheck is not defined","service":"payment-service","timestamp":"2025-03-20 15:43:39"}
+{"level":"error","message":"Error processing payment: Payment processing failed: duplicateCheck is not defined","service":"payment-service","timestamp":"2025-03-20 15:43:39"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:43:39 +0000] \"POST /api/payments/ HTTP/1.1\" 400 86 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:43:39"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 10","metadata":{"error":"duplicateCheck is not defined"},"service":"payment-service","timestamp":"2025-03-20 15:43:40","transactionId":null}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:44:17"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:44:17"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:44:17"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:44:17"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:44:17"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:44:18"}
+{"error":{"headers":{"access-control-allow-credentials":"true","access-control-allow-methods":"GET, HEAD, PUT, PATCH, POST, DELETE","access-control-allow-origin":"*","access-control-expose-headers":"Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required","access-control-max-age":"300","cache-control":"no-cache, no-store","connection":"keep-alive","content-length":"311","content-security-policy":"base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=rrqccb9hxgABTdKuDVDZKeqMQYRgs8p0p-ycAiRa0UDT3RpkHeGPrgn6KYdgagEtiAMGvx7eL3VhEk8A","content-type":"application/json","cross-origin-opener-policy-report-only":"same-origin; report-to=\"coop\"","date":"Thu, 20 Mar 2025 13:44:19 GMT","idempotency-key":"payment_10_mock-user-id_1742478258759","original-request":"req_gLqrrKSWwtFU1x","report-to":"{\"group\":\"coop\",\"max_age\":8640,\"endpoints\":[{\"url\":\"https://q.stripe.com/coop-report\"}],\"include_subdomains\":true}","reporting-endpoints":"coop=\"https://q.stripe.com/coop-report\"","request-id":"req_gLqrrKSWwtFU1x","server":"nginx","strict-transport-security":"max-age=63072000; includeSubDomains; preload","stripe-account":"acct_1R2XOmBSQj761K0C","stripe-version":"2023-10-16","vary":"Origin","x-stripe-priority-routing-enabled":"true","x-stripe-routing-context-priority-tier":"api-testmode","x-wc":"AB"},"param":"transfer_data[destination]","raw":{"headers":{"access-control-allow-credentials":"true","access-control-allow-methods":"GET, HEAD, PUT, PATCH, POST, DELETE","access-control-allow-origin":"*","access-control-expose-headers":"Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required","access-control-max-age":"300","cache-control":"no-cache, no-store","connection":"keep-alive","content-length":"311","content-security-policy":"base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=rrqccb9hxgABTdKuDVDZKeqMQYRgs8p0p-ycAiRa0UDT3RpkHeGPrgn6KYdgagEtiAMGvx7eL3VhEk8A","content-type":"application/json","cross-origin-opener-policy-report-only":"same-origin; report-to=\"coop\"","date":"Thu, 20 Mar 2025 13:44:19 GMT","idempotency-key":"payment_10_mock-user-id_1742478258759","original-request":"req_gLqrrKSWwtFU1x","report-to":"{\"group\":\"coop\",\"max_age\":8640,\"endpoints\":[{\"url\":\"https://q.stripe.com/coop-report\"}],\"include_subdomains\":true}","reporting-endpoints":"coop=\"https://q.stripe.com/coop-report\"","request-id":"req_gLqrrKSWwtFU1x","server":"nginx","strict-transport-security":"max-age=63072000; includeSubDomains; preload","stripe-account":"acct_1R2XOmBSQj761K0C","stripe-version":"2023-10-16","vary":"Origin","x-stripe-priority-routing-enabled":"true","x-stripe-routing-context-priority-tier":"api-testmode","x-wc":"AB"},"message":"The 'transfer_data[destination]' param cannot be set to your own account.","param":"transfer_data[destination]","requestId":"req_gLqrrKSWwtFU1x","request_log_url":"https://dashboard.stripe.com/acct_1R2XOmBSQj761K0C/test/logs/req_gLqrrKSWwtFU1x?t=1742478259","statusCode":400,"type":"invalid_request_error"},"rawType":"invalid_request_error","requestId":"req_gLqrrKSWwtFU1x","statusCode":400,"type":"StripeInvalidRequestError"},"level":"error","message":"Payment processing error: The 'transfer_data[destination]' param cannot be set to your own account.","service":"payment-service","timestamp":"2025-03-20 15:44:19"}
+{"level":"error","message":"Error processing payment: Payment processing failed: The 'transfer_data[destination]' param cannot be set to your own account.","service":"payment-service","timestamp":"2025-03-20 15:44:19"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:44:19 +0000] \"POST /api/payments/ HTTP/1.1\" 400 130 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:44:19"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 10","metadata":{"error":"The 'transfer_data[destination]' param cannot be set to your own account."},"service":"payment-service","timestamp":"2025-03-20 15:44:19","transactionId":null}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:45:24"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:45:24"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:45:25"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:45:25"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:45:25"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:46:39"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:46:39"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:46:40"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:46:40"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:46:40"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:47:59"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:48:01 +0000] \"POST /api/payments/ HTTP/1.1\" 200 105 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:48:01"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 10","metadata":{"stripeChargeId":"pi_3R4jS0BLtTuFPq2g32MVT3SK"},"service":"payment-service","timestamp":"2025-03-20 15:48:01","transactionId":"d1646352-3e5c-45e9-9da5-75cabe5e5f6b"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:53:59"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:53:59"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:53:59"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:53:59"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:53:59"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:54:22"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:54:24 +0000] \"POST /api/payments/ HTTP/1.1\" 200 151 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:54:24"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 10","metadata":{"stripeChargeId":"pi_3R4jYBBLtTuFPq2g2KOlKnbo"},"service":"payment-service","timestamp":"2025-03-20 15:54:24","transactionId":"82d086cc-baa6-416e-b3ca-91840cf03c6b"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:55:14"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:55:16 +0000] \"POST /api/payments/ HTTP/1.1\" 200 151 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:55:16"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 10","metadata":{"stripeChargeId":"pi_3R4jZ0BLtTuFPq2g0NRXuFRU"},"service":"payment-service","timestamp":"2025-03-20 15:55:16","transactionId":"b9ed7e29-2230-419a-8df1-f01c949bdeb1"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:55:24"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:55:26 +0000] \"POST /api/payments/ HTTP/1.1\" 200 151 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:55:26"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 10","metadata":{"stripeChargeId":"pi_3R4jZABLtTuFPq2g4SjxoDLX"},"service":"payment-service","timestamp":"2025-03-20 15:55:26","transactionId":"e186d9cc-7dbe-4ded-82ea-993b35718819"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:55:28"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:55:29 +0000] \"POST /api/payments/ HTTP/1.1\" 200 150 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:55:29"}
+{"action":"PAYMENT_PROCESSED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_PROCESSED by mock-user-id - Payment of 100 USD processed for course 10","metadata":{"stripeChargeId":"pi_3R4jZEBLtTuFPq2g4YYNTODQ"},"service":"payment-service","timestamp":"2025-03-20 15:55:29","transactionId":"1ebfd550-45e3-4d54-bc93-2a6d3f499e80"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:56:24"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:56:24"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:56:25"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:56:25"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:56:25"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:58:04"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:58:04"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:58:05"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:58:05"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:58:05"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:58:19"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:58:19"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:58:19"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:58:19"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:58:19"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 15:58:38"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 15:58:38"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 15:58:38"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 15:58:38"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 15:58:38"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 15:58:42"}
+{"error":{},"level":"error","message":"Payment processing error: object is not iterable (cannot read property Symbol(Symbol.iterator))","service":"payment-service","timestamp":"2025-03-20 15:58:42"}
+{"level":"error","message":"Error processing payment: Payment processing failed: object is not iterable (cannot read property Symbol(Symbol.iterator))","service":"payment-service","timestamp":"2025-03-20 15:58:42"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:13:58:42 +0000] \"POST /api/payments/ HTTP/1.1\" 400 126 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 15:58:42"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 10","metadata":{"error":"object is not iterable (cannot read property Symbol(Symbol.iterator))"},"service":"payment-service","timestamp":"2025-03-20 15:58:42","transactionId":null}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 16:00:11"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 16:00:11"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 16:00:11"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 16:00:11"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 16:00:11"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 16:00:18"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 16:00:18"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 16:00:18"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 16:00:18"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 16:00:18"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 16:01:02"}
+{"error":{},"level":"error","message":"Payment processing error: educatorAccount is not defined","service":"payment-service","timestamp":"2025-03-20 16:01:02"}
+{"level":"error","message":"Error processing payment: Payment processing failed: educatorAccount is not defined","service":"payment-service","timestamp":"2025-03-20 16:01:02"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:14:01:02 +0000] \"POST /api/payments/ HTTP/1.1\" 400 87 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 16:01:02"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 10","metadata":{"error":"educatorAccount is not defined"},"service":"payment-service","timestamp":"2025-03-20 16:01:02","transactionId":null}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 16:01:38"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 16:01:38"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 16:01:38"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 16:01:38"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 16:01:38"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 16:01:52"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 16:01:52"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 16:01:55"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 16:01:55"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 16:01:55"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 16:01:55"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 16:01:55"}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 16:02:36"}
+{"error":{"isOperational":true,"status":"fail","statusCode":400},"level":"error","message":"Payment processing error: User already enrolled in this course","service":"payment-service","timestamp":"2025-03-20 16:02:37"}
+{"level":"error","message":"Error processing payment: Payment processing failed: User already enrolled in this course","service":"payment-service","timestamp":"2025-03-20 16:02:37"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:14:02:37 +0000] \"POST /api/payments/ HTTP/1.1\" 400 93 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 16:02:37"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 10","metadata":{"error":"User already enrolled in this course"},"service":"payment-service","timestamp":"2025-03-20 16:02:37","transactionId":null}
+{"level":"info","message":"POST /api/payments/","service":"payment-service","timestamp":"2025-03-20 16:02:46"}
+{"error":{"isOperational":true,"status":"fail","statusCode":400},"level":"error","message":"Payment processing error: User already enrolled in this course","service":"payment-service","timestamp":"2025-03-20 16:02:46"}
+{"level":"error","message":"Error processing payment: Payment processing failed: User already enrolled in this course","service":"payment-service","timestamp":"2025-03-20 16:02:46"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [20/Mar/2025:14:02:46 +0000] \"POST /api/payments/ HTTP/1.1\" 400 93 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-20 16:02:46"}
+{"action":"PAYMENT_FAILED","actor":"mock-user-id","level":"info","message":"AUDIT: PAYMENT_FAILED by mock-user-id - Payment of 100 USD failed for course 10","metadata":{"error":"User already enrolled in this course"},"service":"payment-service","timestamp":"2025-03-20 16:02:46","transactionId":null}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-20 16:32:37"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-20 16:32:37"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-20 16:32:38"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-20 16:32:38"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-20 16:32:38"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 13:59:53"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 13:59:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 13:59:53"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 13:59:53"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 13:59:53"}
+{"level":"info","message":"GET /api/config","service":"payment-service","timestamp":"2025-03-22 14:00:53"}
+{"level":"info","message":"::1 - - [22/Mar/2025:12:00:53 +0000] \"GET /api/config HTTP/1.1\" 200 706 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-22 14:00:53"}
+{"level":"info","message":"PUT /api/config/STRIPE_WEBHOOK_SECRET","service":"payment-service","timestamp":"2025-03-22 14:02:20"}
+{"level":"warn","message":"Attempted to modify protected config key: STRIPE_WEBHOOK_SECRET","service":"payment-service","timestamp":"2025-03-22 14:02:21"}
+{"level":"error","message":"Failed to update configuration: Cannot modify protected configuration key: STRIPE_WEBHOOK_SECRET","service":"payment-service","timestamp":"2025-03-22 14:02:21"}
+{"level":"error","message":"Error updating configuration: Cannot modify protected configuration key: STRIPE_WEBHOOK_SECRET","service":"payment-service","timestamp":"2025-03-22 14:02:21"}
+{"level":"info","message":"::1 - - [22/Mar/2025:12:02:21 +0000] \"PUT /api/config/STRIPE_WEBHOOK_SECRET HTTP/1.1\" 500 1582 \"-\" \"axios/1.8.3\"","service":"payment-service","timestamp":"2025-03-22 14:02:21"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:06:14"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:06:14"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:06:14"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:06:14"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:06:14"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:18:40"}
+{"error":{},"level":"error","message":"Error fetching financial analysis: prisma.raw is not a function","service":"payment-service","timestamp":"2025-03-22 14:18:40"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:18:40 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 500 1579 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:18:40"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:20:20"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:20:20"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:20:21"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:20:21"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:20:21"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:20:27"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:20:27"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:20:27"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:20:27"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:20:27"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:23:10"}
+{"error":{},"level":"error","message":"Error fetching financial analysis: prisma.sql is not a function","service":"payment-service","timestamp":"2025-03-22 14:23:10"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:23:10 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 500 1579 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:23:10"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:23:29"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:23:29"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:23:29"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:23:30"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:23:30"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:23:48"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:23:48"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:23:48"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:23:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:23:48"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:24:08"}
+{"error":{},"level":"error","message":"Error fetching financial analysis: $queryRaw is not defined","service":"payment-service","timestamp":"2025-03-22 14:24:08"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:24:08 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 500 1579 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:24:08"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:25:43"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:25:43"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:25:44"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:25:44"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:25:44"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:25:57"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:25:57"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:25:57"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:25:57"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:25:57"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:26:25"}
+{"error":{},"level":"error","message":"Error fetching financial analysis: $queryRaw is not defined","service":"payment-service","timestamp":"2025-03-22 14:26:25"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:26:25 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 500 1579 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:26:25"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:29:25"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:29:25"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:29:25"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:29:25"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:29:25"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:30:19"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:30:19"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:30:19"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:30:19"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:30:19"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:30:32"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:30:32"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:30:32"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:30:32"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:30:32"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:30:42"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:30:42"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:30:42"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:30:42"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:30:42"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:31:48"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:31:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:31:48"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:31:48"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:31:48"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:31:56"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:31:56"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:31:56"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:31:56"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:31:56"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:32:00"}
+{"error":{"clientVersion":"6.4.1","code":"P2010","meta":{"code":"42804","message":"ERROR: argument of WHERE must be type boolean, not type jsonb"},"name":"PrismaClientKnownRequestError"},"level":"error","message":"Error fetching financial analysis: \nInvalid `prisma.$queryRaw()` invocation:\n\n\nRaw query failed. Code: `42804`. Message: `ERROR: argument of WHERE must be type boolean, not type jsonb`","service":"payment-service","timestamp":"2025-03-22 14:32:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:32:00 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 500 439 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:32:00"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:33:47"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:33:47"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:33:47"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:33:47"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:33:47"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:34:34"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:34:34"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:34:35"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:34:35"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:34:35"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:34:39"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:34:39"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:34:40"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:34:40"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:34:40"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:35:07"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:35:07"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:35:07"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:35:07"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:35:07"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:35:37"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:35:37"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:35:38"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:35:38"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:35:38"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:37:01"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:37:01"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:37:01"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:37:01"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:37:01"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:37:40"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:37:40"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:37:41"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:37:41"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:37:41"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:39:46"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:39:46"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:39:47"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:39:47"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:39:47"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:45:56"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:45:56"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:45:56"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:45:56"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:45:56"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:51:29"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:51:29"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:51:29"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:51:29"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:51:29"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-03-22 14:52:18"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:52:19 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 200 258 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:52:19"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:55:22"}
+{"error":{"clientVersion":"6.4.1","code":"P2010","meta":{"code":"42803","message":"ERROR: column \"Transaction.createdAt\" must appear in the GROUP BY clause or be used in an aggregate function"},"name":"PrismaClientKnownRequestError"},"level":"error","message":"Error fetching financial analysis: \nInvalid `prisma.$queryRaw()` invocation:\n\n\nRaw query failed. Code: `42803`. Message: `ERROR: column \"Transaction.createdAt\" must appear in the GROUP BY clause or be used in an aggregate function`","service":"payment-service","timestamp":"2025-03-22 14:55:22"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:55:22 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 500 439 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:55:22"}
+{"level":"info","message":"Configuration loaded from .env file","service":"payment-service","timestamp":"2025-03-22 14:58:16"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-22 14:58:16"}
+{"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 14:58:16"}
+{"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 14:58:16"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 14:58:16"}
+{"level":"info","message":"GET /api/statistics/financial-analysis","service":"payment-service","timestamp":"2025-03-22 14:58:38"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:12:58:38 +0000] \"GET /api/statistics/financial-analysis HTTP/1.1\" 200 417 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 14:58:38"}
+{"level":"info","message":"GET /api/statistics/performance-metrics","service":"payment-service","timestamp":"2025-03-22 15:01:45"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:13:01:45 +0000] \"GET /api/statistics/performance-metrics HTTP/1.1\" 200 439 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 15:01:45"}
+{"level":"info","message":"GET /api/statistics/payment-operations","service":"payment-service","timestamp":"2025-03-22 15:02:56"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:13:02:56 +0000] \"GET /api/statistics/payment-operations HTTP/1.1\" 200 198 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 15:02:56"}
+{"level":"info","message":"GET /api/statistics/dashboard","service":"payment-service","timestamp":"2025-03-22 15:04:13"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [22/Mar/2025:13:04:13 +0000] \"GET /api/statistics/dashboard HTTP/1.1\" 200 1368 \"-\" \"PostmanRuntime/7.43.2\"","service":"payment-service","timestamp":"2025-03-22 15:04:13"}

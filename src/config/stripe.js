@@ -2,6 +2,9 @@
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16", // Use the latest API version or specify the one you need
+  maxNetworkRetries: 2, // Auto retry on network errors
+  timeout: 10000, // Limit timeout to 10s
+  telemetry: false,
 });
 
 // Add configuration getter for Connect functionality
@@ -13,8 +16,7 @@ stripe.getConfig = () => {
 
   // Check if Connect-specific variables are configured
   const connect_enabled = Boolean(
-      process.env.STRIPE_PLATFORM_ACCOUNT &&
-      process.env.STRIPE_WEBHOOK_SECRET
+    process.env.STRIPE_PLATFORM_ACCOUNT && process.env.STRIPE_WEBHOOK_SECRET
   );
 
   return {

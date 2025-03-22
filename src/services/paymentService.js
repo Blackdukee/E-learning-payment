@@ -16,6 +16,184 @@ const PLATFORM_COMMISSION_PERCENTAGE =
 /**
  * Process a payment for a course purchase
  */
+// const processPayment = async (paymentData, user) => {
+//   const startTime = Date.now();
+//   const {
+//     courseId,
+//     amount,
+//     currency = "USD",
+//     source,
+//     description,
+//     educatorId,
+//   } = paymentData;
+
+//   try {
+//     const dublucationCheck = await prisma.transaction.findFirst({
+//       where: {
+//         courseId,
+//         userId: user.id,
+//         status: "COMPLETED",
+//       },
+//     });
+
+//     const educatorAccount = await prisma.stripeAccount.findFirst({
+//       where: {
+//         educatorId: educatorId,
+//       },
+//     });
+
+//     if (!educatorAccount) {
+//       throw new AppError("Error happened", 400);
+//     }
+
+//     if (dublucationCheck) {
+//       throw new AppError("User already enrolled in this course", 400);
+//     }
+//     // 1. Calculate revenue split between platform and educator
+//     const { platformCommission, educatorEarnings } =
+//       await calculatePlatformCommission(amount, educatorId);
+
+//     logger.info(
+//       `Payment split: Amount: $${amount}, Platform: $${platformCommission}, Educator: $${educatorEarnings}`
+//     );
+
+//     // 2. Create Stripe charge
+//     const stripeCharge = await stripe.paymentIntents.create({
+//       amount: Math.round(amount * 100), // Stripe requires cents
+//       currency: currency || "USD",
+//       payment_method: source,
+//       description: description || `Payment for course: ${courseId}`,
+//       metadata: {
+//         courseId,
+//         userId: user.id,
+//         educatorId,
+//       },
+//       application_fee_amount: platformCommission * 100,
+//       transfer_data: {
+//         destination: educatorAccount.stripeAccountId,
+//       },
+//       automatic_payment_methods: {
+//         enabled: true,
+//         allow_redirects: "never", // Disable redirect-based payment methods
+//       },
+//     });
+
+//     await stripe.paymentIntents.confirm(stripeCharge.id);
+
+//     // 3. Record the transaction with revenue split details
+//     const transaction = await prisma.transaction.create({
+//       data: {
+//         stripeChargeId: stripeCharge.id,
+//         amount,
+//         currency,
+//         status: "COMPLETED",
+//         type: "PAYMENT",
+//         platformCommission,
+//         educatorEarnings,
+//         userId: user.id,
+//         courseId,
+//         educatorId,
+//         description,
+//         metadata: {
+//           stripePaymentId: stripeCharge.id,
+//           paymentMethod: stripeCharge.payment_method_details?.type || "card",
+//           last4: stripeCharge.payment_method_details?.card?.last4 || null,
+//           processingTime: Date.now() - startTime,
+//         },
+//       },
+//     });
+
+//     // 4. Create an invoice
+//     const invoice = await invoiceService.createInvoice({
+//       transactionId: transaction.id,
+//       subtotal: amount,
+//       total: amount,
+//       status: "PAID",
+//       paidAt: new Date(),
+//       billingInfo: {
+//         name: user.name,
+//         email: user.email,
+//       },
+//       notes: `Payment for course: ${description}`,
+//     });
+
+//     // // 5. Update user enrollment status
+//     // await notifyUserService({
+//     //   userId: user.id,
+//     //   action: "ENROLL_USER",
+//     //   courseId,
+//     //   transactionId: transaction.id,
+//     // });
+
+//     // // 6. Update course purchase stats
+//     // await notifyCourseService({
+//     //   courseId,
+//     //   action: "RECORD_PURCHASE",
+//     //   userId: user.id,
+//     //   amount,
+//     //   educatorEarnings,
+//     // });
+
+//     // // Add a notification about new earnings available for payout
+//     // await notifyUserService({
+//     //   userId: educatorId,
+//     //   action: "NEW_EARNINGS",
+//     //   data: {
+//     //     courseId,
+//     //     transactionId: transaction.id,
+//     //     amount: educatorEarnings,
+//     //     totalPendingEarnings: getTotalEarningsForEducator(educatorId),
+//     //   },
+//     // });
+
+//     // 7. Log the audit
+//     auditLogger.log(
+//       "PAYMENT_PROCESSED",
+//       user.id,
+//       `Payment of ${amount} ${currency} processed for course ${courseId}`,
+//       transaction.id,
+//       { stripeChargeId: stripeCharge.id }
+//     );
+
+//     return {
+//       transaction,
+//       invoice,
+//       success: true,
+//     };
+//   } catch (error) {
+//     logger.error(`Payment processing error: ${error.message}`, { error });
+
+//     // Record failed transaction if we have enough information
+//     if (courseId && amount && user?.id) {
+//       await prisma.transaction.create({
+//         data: {
+//           amount,
+//           currency,
+//           status: "FAILED",
+//           type: "PAYMENT",
+//           platformCommission: 0,
+//           educatorEarnings: 0,
+//           userId: user.id,
+//           courseId,
+//           educatorId: paymentData.educatorId,
+//           description: description || "Failed payment",
+//           metadata: { error: error.message },
+//         },
+//       });
+
+//       auditLogger.log(
+//         "PAYMENT_FAILED",
+//         user.id,
+//         `Payment of ${amount} ${currency} failed for course ${courseId}`,
+//         null,
+//         { error: error.message }
+//       );
+//     }
+
+//     throw new AppError("Payment processing failed: " + error.message, 400);
+//   }
+// };
+
 const processPayment = async (paymentData, user) => {
   const startTime = Date.now();
   const {
@@ -28,172 +206,155 @@ const processPayment = async (paymentData, user) => {
   } = paymentData;
 
   try {
-    const dublucationCheck = await prisma.transaction.findFirst({
-      where: {
-        courseId,
-        userId: user.id,
-        status: "COMPLETED",
-      },
-    });
+    // Parallel database queries
+    const t1 = Date.now();
+    const [duplicateCheck, educatorAccount] = await Promise.all([
+      prisma.transaction.findFirst({
+        where: { courseId, userId: user.id, status: "COMPLETED" },
+        select: { id: true }, // Only select what we need
+      }),
 
-    const educatorAccount = await prisma.stripeAccount.findFirst({
-      where: {
-        educatorId: educatorId,
-      },
-    });
+      prisma.stripeAccount.findFirst({
+        where: { educatorId },
+        select: { stripeAccountId: true },
+      }),
+    ]);
 
     if (!educatorAccount) {
-      throw new AppError("Error happened", 400);
+      throw new AppError("Educator account not found", 400);
     }
-
-    if (dublucationCheck) {
+    if (duplicateCheck) {
       throw new AppError("User already enrolled in this course", 400);
     }
-    // 1. Calculate revenue split between platform and educator
+    const m1 = Date.now() - t1;
+
+    // Calculate revenue split
+    const t2 = Date.now();
     const { platformCommission, educatorEarnings } =
-      await calculatePlatformCommission(amount, educatorId);
+      calculatePlatformCommission(amount, educatorId);
+    const m2 = Date.now() - t2;
+    const idempotencyKey = `payment_${courseId}_${user.id}_${Date.now()}`;
 
-    logger.info(
-      `Payment split: Amount: $${amount}, Platform: $${platformCommission}, Educator: $${educatorEarnings}`
-    );
-
-    // 2. Create Stripe charge
+    const t3 = Date.now();
+    // Create and confirm payment in one step
     const stripeCharge = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 100), // Stripe requires cents
+      amount: Math.round(amount * 100),
       currency: currency || "USD",
       payment_method: source,
+      confirm: true, // Confirm immediately
       description: description || `Payment for course: ${courseId}`,
-      metadata: {
-        courseId,
-        userId: user.id,
-        educatorId,
-      },
-      application_fee_amount: platformCommission * 100,
-      transfer_data: {
-        destination: educatorAccount.stripeAccountId,
-      },
-      automatic_payment_methods: {
-        enabled: true,
-        allow_redirects: "never", // Disable redirect-based payment methods
-      },
+      metadata: { courseId, userId: user.id, educatorId },
+      application_fee_amount: Math.round(platformCommission * 100),
+      transfer_data: { destination: educatorAccount.stripeAccountId },
+      automatic_payment_methods: { enabled: true, allow_redirects: "never" },
     });
+    const m3 = Date.now() - t3;
 
-    await stripe.paymentIntents.confirm(stripeCharge.id);
-
-    // 3. Record the transaction with revenue split details
-    const transaction = await prisma.transaction.create({
-      data: {
-        stripeChargeId: stripeCharge.id,
-        amount,
-        currency,
-        status: "COMPLETED",
-        type: "PAYMENT",
-        platformCommission,
-        educatorEarnings,
-        userId: user.id,
-        courseId,
-        educatorId,
-        description,
-        metadata: {
-          stripePaymentId: stripeCharge.id,
-          paymentMethod: stripeCharge.payment_method_details?.type || "card",
-          last4: stripeCharge.payment_method_details?.card?.last4 || null,
-          processingTime: Date.now() - startTime,
+    const t4 = Date.now();
+    // Use database transaction for multiple operations
+    const [transaction, invoice] = await prisma.$transaction(async (tx) => {
+      // Create transaction record
+      const transactionRecord = await tx.transaction.create({
+        data: {
+          stripeChargeId: stripeCharge.id,
+          amount,
+          currency,
+          status: stripeCharge.status === "succeeded" ? "COMPLETED" : "PENDING",
+          type: "PAYMENT",
+          platformCommission,
+          educatorEarnings,
+          userId: user.id,
+          courseId,
+          educatorId,
+          description,
+          metadata: {
+            stripePaymentId: stripeCharge.id,
+            paymentMethod: "card", // Simplified for now
+            processingTime: Date.now() - startTime,
+          },
         },
-      },
-    });
+      });
 
-    // 4. Create an invoice
-    const invoice = await invoiceService.createInvoice({
-      transactionId: transaction.id,
-      subtotal: amount,
-      total: amount,
-      status: "PAID",
-      paidAt: new Date(),
-      billingInfo: {
-        name: user.name,
-        email: user.email,
-      },
-      notes: `Payment for course: ${description}`,
-    });
+      // Create invoice
+      const invoiceRecord = await tx.invoice.create({
+        data: {
+          transactionId: transactionRecord.id,
+          invoiceNumber: `INV-${Date.now().toString().substring(5)}`,
+          subtotal: amount,
+          total: amount,
+          status: "PAID",
+          paidAt: new Date(),
+          issueDate: new Date(),
+          billingInfo: JSON.stringify({
+            name: user.name || "Customer",
+            email: user.email || "customer@example.com",
+          }),
+          notes: `Payment for course: ${description || courseId}`,
+        },
+      });
 
-    // 5. Update user enrollment status
-    await notifyUserService({
-      userId: user.id,
-      action: "ENROLL_USER",
-      courseId,
-      transactionId: transaction.id,
+      return [transactionRecord, invoiceRecord];
     });
+    const m4 = Date.now() - t4;
+    // Fire and forget audit logging (don't await)
+    setTimeout(() => {
+      auditLogger.log(
+        "PAYMENT_PROCESSED",
+        user.id,
+        `Payment of ${amount} ${currency} processed for course ${courseId}`,
+        transaction.id,
+        { stripeChargeId: stripeCharge.id }
+      );
+    }, 0);
 
-    // 6. Update course purchase stats
-    await notifyCourseService({
-      courseId,
-      action: "RECORD_PURCHASE",
-      userId: user.id,
-      amount,
-      educatorEarnings,
-    });
-
-    // Add a notification about new earnings available for payout
-    await notifyUserService({
-      userId: educatorId,
-      action: "NEW_EARNINGS",
-      data: {
-        courseId,
-        transactionId: transaction.id,
-        amount: educatorEarnings,
-        totalPendingEarnings: getTotalEarningsForEducator(educatorId),
-      },
-    });
-
-    // 7. Log the audit
-    auditLogger.log(
-      "PAYMENT_PROCESSED",
-      user.id,
-      `Payment of ${amount} ${currency} processed for course ${courseId}`,
-      transaction.id,
-      { stripeChargeId: stripeCharge.id }
-    );
+    const processingTime = Date.now() - startTime;
+    console.log(`Payment processing completed in ${processingTime}ms`);
 
     return {
-      transaction,
-      invoice,
       success: true,
+      processingTime,
+      matrices: { m1, m2, m3, m4 },
     };
   } catch (error) {
     logger.error(`Payment processing error: ${error.message}`, { error });
 
     // Record failed transaction if we have enough information
     if (courseId && amount && user?.id) {
-      await prisma.transaction.create({
-        data: {
-          amount,
-          currency,
-          status: "FAILED",
-          type: "PAYMENT",
-          platformCommission: 0,
-          educatorEarnings: 0,
-          userId: user.id,
-          courseId,
-          educatorId: paymentData.educatorId,
-          description: description || "Failed payment",
-          metadata: { error: error.message },
-        },
-      });
+      // Fire and forget transaction failure recording
+      setTimeout(async () => {
+        try {
+          await prisma.transaction.create({
+            data: {
+              amount,
+              currency,
+              status: "FAILED",
+              type: "PAYMENT",
+              platformCommission: 0,
+              educatorEarnings: 0,
+              userId: user.id,
+              courseId,
+              educatorId: paymentData.educatorId,
+              description: description || "Failed payment",
+              metadata: { error: error.message },
+            },
+          });
 
-      auditLogger.log(
-        "PAYMENT_FAILED",
-        user.id,
-        `Payment of ${amount} ${currency} failed for course ${courseId}`,
-        null,
-        { error: error.message }
-      );
+          auditLogger.log(
+            "PAYMENT_FAILED",
+            user.id,
+            `Payment of ${amount} ${currency} failed for course ${courseId}`,
+            null,
+            { error: error.message }
+          );
+        } catch (logError) {
+          console.error("Failed to log transaction failure:", logError);
+        }
+      }, 0);
     }
 
     throw new AppError("Payment processing failed: " + error.message, 400);
   }
 };
-
 /**
  * Get total pending earnings for an educator
  * @param {string} educatorId - Educator ID
@@ -235,7 +396,7 @@ const getCurrentBalanceForEducator = async (educatorId) => {
       stripeAccount: stripeAccount.stripeAccountId,
     });
 
-    return earnings.pending[0] ;
+    return earnings.pending[0];
   } catch (error) {
     throw AppError(`Error fetching total earnings: ${error.message}`, 500);
   }
@@ -247,48 +408,27 @@ const getCurrentBalanceForEducator = async (educatorId) => {
  * @param {string} educatorId - Educator ID to check for special rates
  * @returns {number} Platform commission amount
  */
-const calculatePlatformCommission = async (amount, educatorId) => {
-  try {
-    // Get educator details to check if they have a custom commission rate
-    // This would require a call to a user/educator service or database
-    let commissionPercentage = PLATFORM_COMMISSION_PERCENTAGE; // Default percentage
+const calculatePlatformCommission = (amount, educatorId) => {
+  // Default percentage
+  let commissionPercentage = PLATFORM_COMMISSION_PERCENTAGE;
 
-    // Optional: Check if educator has special rate
-    // const educator = await getEducatorDetails(educatorId);
-    // if (educator && educator.customCommissionRate) {
-    //   commissionPercentage = educator.customCommissionRate;
-    // }
-
-    // Apply tiered commission structure (optional)
-    if (amount >= 500) {
-      // Lower commission for high-value courses
-      commissionPercentage = PLATFORM_COMMISSION_PERCENTAGE - 5;
-    } else if (amount >= 200) {
-      // Slightly lower commission for medium-value courses
-      commissionPercentage = PLATFORM_COMMISSION_PERCENTAGE - 2;
-    }
-
-    // Calculate commission amount
-
-    const stripeFee = 0.3 + 0.029 * amount; // Stripe fee for payment
-    const netAmount = amount - stripeFee; // Amount after Stripe fee
-    let platformCommission = Math.round(
-      (netAmount * commissionPercentage) / 100
-    ); // Commission based on net amount
-    const educatorEarnings = Math.round(netAmount - platformCommission);
-    // Ensure commission is within reasonable bounds
-    platformCommission = Math.min(
-      Math.max(platformCommission, 1),
-      amount * 0.5
-    );
-    return { platformCommission, educatorEarnings }; // Min $1, max 50% of payment
-  } catch (error) {
-    logger.error(`Error calculating commission: ${error.message}`);
-    // Fall back to default commission calculation
-    return { platformCommission, educatorEarnings };
+  // Apply tiered commission structure
+  if (amount >= 500) {
+    commissionPercentage = PLATFORM_COMMISSION_PERCENTAGE - 5;
+  } else if (amount >= 200) {
+    commissionPercentage = PLATFORM_COMMISSION_PERCENTAGE - 2;
   }
-};
 
+  const stripeFee = 0.3 + 0.029 * amount;
+  const netAmount = amount - stripeFee;
+  const platformCommission = Math.min(
+    Math.max(Math.round((netAmount * commissionPercentage) / 100), 1),
+    amount * 0.5
+  );
+  const educatorEarnings = Math.round(netAmount - platformCommission);
+
+  return { platformCommission, educatorEarnings };
+};
 /**
  * Process a refund
  */

@@ -83,7 +83,7 @@ const requireRole = (roles) => {
 /**
  * Create middleware for testing without actual authentication
  */
-const mockAuthMiddleware = (role = 'USER') => {
+const mockAuthMiddleware = (role = 'ADMIN') => {
   return (req, res, next) => {
     req.user = {
       id: 'mock-user-id',

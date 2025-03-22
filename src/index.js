@@ -39,7 +39,7 @@ app.use(helmet({
 
 // Configure CORS for e-learning platform
 app.use(cors({
-  origin: process.env.NODE_ENV ? "*" : 'http://localhost:3000',
+  origin: process.env.NODE_ENV === "development" ? "*" : 'http://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true,
