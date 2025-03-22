@@ -39,26 +39,27 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: |
-            set -e  # Exit on first error
-            
-            echo "🔹 Transferring .env file..."
+          script: 
+            echo "Creating /app/ directory if it doesn't exist..."
+            sudo mkdir -p /app
+            sudo chown ubuntu:ubuntu /app
+
+            echo "Transferring .env file..."
             echo "${{ secrets.ENV_FILE }}" | sudo tee /home/ubuntu/.env > /dev/null
             sudo mv /home/ubuntu/.env /app/.env
             sudo chmod 600 /app/.env
 
-            echo "🔹 Pulling latest Docker image..."
+            echo "Pulling latest Docker image..."
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
-            
-            echo "🔹 Stopping any running container..."
-            sudo docker stop E-Learning || true
-            
-            echo "🔹 Removing old containers and images..."
+
+            echo "Stopping old container..."
+            sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning") || true
             sudo docker container prune --force
             sudo docker image prune --force
-            
-            echo "🔹 Starting new container..."
-            sudo docker run -d -p 3001:3000 --env-file /app/.env --name E-Learning ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
-            
-            echo "🔹 Checking container logs..."
-            sudo docker logs -n 50 --tail 50 E-Learning
+
+            echo "Running new container..."
+            sudo docker run -d -p 3001:3000 --name E-Learning --env-file /app/.env ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
+
+            echo "Checking logs..."
+            sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
+            exit
