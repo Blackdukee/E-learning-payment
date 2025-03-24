@@ -35,19 +35,29 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            echo "Pulling latest Docker image..."
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+        
+                echo "Creating /app/ directory if it doesn't exist..."
+                sudo mkdir -p /app
+                sudo chown ubuntu:ubuntu /app
 
-            echo "Stopping old container..."
-            sudo docker stop elearning_backend || true
-            sudo docker rm elearning_backend || true
+                echo "Transferring .env file..."
+                echo "${{ secrets.ENV_FILE }}" | sudo tee /home/ubuntu/.env > /dev/null
+                sudo mv /home/ubuntu/.env /app/.env
+                sudo chmod 600 /app/.env
 
-            echo "Pruning unused containers and images..."
-            sudo docker container prune --force
-            sudo docker image prune --force
+                echo "Pulling latest Docker image..."
+                sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
 
-            echo "Running new container..."
-            sudo docker run -d -p 3001:3000 --name elearning_backend ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+                echo "Stopping old container..."
+                sudo docker stop elearning_backend || true
+                sudo docker rm elearning_backend || true
 
-            echo "Checking logs..."
-            sudo docker logs elearning_backend
+                echo "Pruning unused containers and images..."
+                sudo docker container prune --force
+                sudo docker image prune --force
+
+                echo "Running new container..."
+                sudo docker run -d -p 3001:3000 --name elearning_backend --env-file /app/.env ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+                echo "Checking logs..."
+                sudo docker logs elearning_backend
