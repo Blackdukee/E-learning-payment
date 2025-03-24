@@ -17,13 +17,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
-      - 
 
-      - name: Build and push with timestamp
+      - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:${{ env.TIMESTAMP }} --build-arg DB_URL="${{ secrets.DATABASE_URI }}" .
-          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest --build-arg DB_URL="${{ secrets.DATABASE_URI }}" .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -32,10 +35,19 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            echo "Pulling latest Docker image..."
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
-            sudo docker stop $(sudo docker container ls -q --filter "name=elearning_backend") || true
+
+            echo "Stopping old container..."
+            sudo docker stop elearning_backend || true
+            sudo docker rm elearning_backend || true
+
+            echo "Pruning unused containers and images..."
             sudo docker container prune --force
             sudo docker image prune --force
-            sudo docker run -d -p 3001:3000 --name E-Learning-backend ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
-            sudo docker logs $(sudo docker container ls -q --filter "name=elearning_backend") || true
-            exit
+
+            echo "Running new container..."
+            sudo docker run -d -p 3001:3000 --name elearning_backend ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+            echo "Checking logs..."
+            sudo docker logs elearning_backend
