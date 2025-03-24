@@ -11,20 +11,22 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
-        
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
-      - name: Set up timestamp
-        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
-      - name: Build and push with timestamp
+      - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DB_URL }}" .
-          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest --build-arg DB_URL="${{ secrets.DATABASE_URI }}" .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -33,10 +35,29 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
-            sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning") || true
+
+            echo "Creating /app/ directory if it doesn't exist..."
+            sudo mkdir -p /app
+            sudo chown ubuntu:ubuntu /app
+
+            echo "Transferring .env file..."
+            echo "${{ secrets.ENV_FILE }}" | sudo tee /home/ubuntu/.env > /dev/null
+            sudo mv /home/ubuntu/.env /app/.env
+            sudo chmod 600 /app/.env
+
+            echo "Pulling latest Docker image..."
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+            echo "Stopping old container..."
+            sudo docker stop elearning_backend || true
+            sudo docker rm elearning_backend || true
+
+            echo "Pruning unused containers and images..."
             sudo docker container prune --force
             sudo docker image prune --force
-            sudo docker run -d -p 3001:3000 --name E-Learning ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
-            sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
-            exit
+
+            echo "Running new container..."
+            sudo docker run -d -p 3001:3000 --name elearning_backend --env-file /app/.env ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+            echo "Checking logs..."
+            sudo docker logs elearning_backend
