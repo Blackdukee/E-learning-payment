@@ -37,6 +37,6 @@ jobs:
             sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning-backend") || true
             sudo docker container prune --force
             sudo docker image prune --force
-            sudo docker run -d -p 3001:3000 --name phantasmagoria ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
+            sudo docker run -d -p 3001:3000 --name E-Learning-backend ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
             sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning-backend") || true
             exit
