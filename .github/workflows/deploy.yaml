@@ -17,21 +17,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+          
       - name: Set up timestamp
         run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
       - name: Build and push with timestamp
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest \
-                       -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:${{ env.TIMESTAMP }} \
-                       --build-arg DATABASE_URI="${{ secrets.DATABASE_URL }}" .
-          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DB_URL }}" .
+          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -39,28 +32,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: 
-            echo "Creating /app/ directory if it doesn't exist..."
-            sudo mkdir -p /app
-            sudo chown ubuntu:ubuntu /app
-
-            echo "Transferring .env file..."
-            echo "${{ secrets.ENV_FILE }}" | sudo tee /home/ubuntu/.env > /dev/null
-            sudo mv /home/ubuntu/.env /app/.env
-            sudo chmod 600 /app/.env
-
-            echo "Pulling latest Docker image..."
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
-
-            echo "Stopping old container..."
-            sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning") || true
+          script: |
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
+            sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning-backend") || true
             sudo docker container prune --force
             sudo docker image prune --force
-
-            echo "Running new container..."
-            sudo docker run -d -p 3001:3000 --name E-Learning --env-file /app/.env ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
-
-            echo "Checking logs..."
-            sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
-          
+            sudo docker run -d -p 3001:3000 --name phantasmagoria ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
+            sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning-backend") || true
             exit
