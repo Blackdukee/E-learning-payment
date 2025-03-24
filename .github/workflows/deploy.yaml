@@ -62,5 +62,5 @@ jobs:
 
             echo "Checking logs..."
             sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
-            echo "docker done"
+          
             exit
