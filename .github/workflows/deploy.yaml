@@ -5,11 +5,14 @@ on:
     branches:
       - main
 
+env:
+  DOCKER_IMAGE_NAME: e-learning-backend
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
+      - name: Check out repository
         uses: actions/checkout@v3
 
       - name: Login to Docker Hub
@@ -20,8 +23,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,22 +38,71 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            # Create app directory if not exists
+            # Create app directory
             sudo mkdir -p /app
+            
+            # Create .env file with proper permissions
             echo "${{ secrets.ENV_FILE }}" | sudo tee /app/.env > /dev/null
             sudo chmod 600 /app/.env
+            
+            # Create docker-compose.yml with literal content
+            cat << 'EOF' | sudo tee /app/docker-compose.yml > /dev/null
+            version: '3.8'
+
+            services:
+              backend:
+                image: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+                container_name: ${{ env.DOCKER_IMAGE_NAME }}
+                ports:
+                  - "5002:5002"
+                env_file:
+                  - /app/.env
+                depends_on:
+                  postgres:
+                    condition: service_healthy
+                healthcheck:
+                  test: ["CMD", "node", "healthcheck.js"]
+                  interval: 10s
+                  timeout: 5s
+                  retries: 5
+                restart: unless-stopped
+
+              postgres:
+                image: postgres:14-alpine
+                container_name: ${DB_NAME:-payment_db}-postgres
+                ports:
+                  - "5432:5432"
+                environment:
+                  POSTGRES_USER: ${DB_USER:-postgres}
+                  POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+                  POSTGRES_DB: ${DB_NAME:-payment_db}
+                volumes:
+                  - postgres-data:/var/lib/postgresql/data
+                healthcheck:
+                  test: ["CMD-SHELL", "pg_isready -U $${DB_USER:-postgres} -d $${DB_NAME:-payment_db}"]
+                  interval: 5s
+                  timeout: 5s
+                  retries: 10
+                restart: unless-stopped
+
+            volumes:
+              postgres-data:
+            EOF
             
             # Stop and clean up old containers
             sudo docker-compose -f /app/docker-compose.yml down || true
             
             # Pull the latest image
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
             
-            # Start services using docker-compose
-            cd /app
-            echo "${{ secrets.DOCKER_COMPOSE_FILE }}" | sudo tee /app/docker-compose.yml > /dev/null
-            sudo docker-compose up -d
+            # Start services
+            cd /app && sudo docker-compose up -d
             
-            # Verify services are running
-            sudo docker ps
-            sudo docker logs e-learning-backend
+            # Verify deployment
+            sleep 15  # Wait for services to initialize
+            echo "=== Running containers ==="
+            sudo docker ps -a
+            echo "=== Backend logs ==="
+            sudo docker logs ${{ env.DOCKER_IMAGE_NAME }} --tail 50 || true
+            echo "=== Postgres logs ==="
+            sudo docker logs ${DB_NAME:-payment_db}-postgres --tail 20 || true
