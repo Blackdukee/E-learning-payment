@@ -35,14 +35,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            # Stop and remove any existing container
-            sudo docker stop elearning_backend || true
-            sudo docker rm elearning_backend || true
-
-            # Remove old images and prune unused data
-            sudo docker image prune --force
-            sudo docker container prune --force
-
             # Pull the latest image
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
 
