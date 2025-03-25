@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest --build-arg DB_URL="${{ secrets.DATABASE_URI }}" .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest --build-arg DATABASE_URL="${{ secrets.DATABASE_URL }}" .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
 
   deploy:
@@ -35,10 +35,22 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
-            sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning") || true
-            sudo docker container prune --force
+            # Stop and remove any existing container
+            sudo docker stop elearning_backend || true
+            sudo docker rm elearning_backend || true
+
+            # Remove old images and prune unused data
             sudo docker image prune --force
-            sudo docker run -d -p 5002:5002 --name E-Learning ${{ secrets.DOCKERHUB_USERNAME }}/E-Learning-backend:latest
-            sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
-            exit
+            sudo docker container prune --force
+
+            # Pull the latest image
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+            # Run the container
+            sudo docker run -d -p 5002:5002 --name elearning_backend \
+              --env-file .env \
+              --network app-network \
+              ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+
+            # Show logs to verify deployment
+            sudo docker logs elearning_backend
