@@ -1,4 +1,4 @@
-name: Deploy Payment Service to EC2
+name: Deploy to EC2
 
 on:
   push:
@@ -21,17 +21,10 @@ jobs:
       - name: Set up timestamp
         run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
-      - name: Build and push Docker image
+      - name: Build and push with timestamp
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:latest \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:${{ env.TIMESTAMP }} \
-            --build-arg DATABASE_URL="${{ secrets.DB_URL }}" .
-          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/payment-service
-          
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:${{ env.TIMESTAMP }} --build-arg DATABASE_URI="${{ secrets.DB_URL }}" .
+          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -40,18 +33,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:latest
-            sudo docker stop $(sudo docker container ls -q --filter "name=payment-service") || true
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:latest
+            sudo docker stop $(sudo docker container ls -q --filter "name=phantasmagoria") || true
             sudo docker container prune --force
             sudo docker image prune --force
-            sudo docker run -d -p 5002:5002 --name payment-service \
-              -e Db_URL="${{ secrets.DATABASE_URL}}" \
-              -e STRIPE_SECRET_KEY="${{ secrets.STRIPE_SECRET_KEY }}" \
-              -e STRIPE_WEBHOOK_SECRET="${{ secrets.STRIPE_WEBHOOK_SECRET }}" \
-              -e PLATFORM_COMMISSION_PERCENTAGE="20" \
-              -e USER_SERVICE_URL="${{ secrets.USER_SERVICE_URL }}" \
-              -e COURSE_SERVICE_URL="${{ secrets.COURSE_SERVICE_URL }}" \
-              -e INTERNAL_API_KEY="${{ secrets.INTERNAL_API_KEY }}" \
-              -e LOG_LEVEL="info" \
-              ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:latest
-            sudo docker logs $(sudo docker container ls -q --filter "name=payment-service") || true
+            sudo docker run -d -p 5001:5000 --name phantasmagoria ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:latest
+            sudo docker logs $(sudo docker container ls -q --filter "name=phantasmagoria") || true
+            exit
