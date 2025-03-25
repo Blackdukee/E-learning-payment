@@ -20,8 +20,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest --build-arg DATABASE_URL="${{ secrets.DATABASE_URL }}" .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,14 +35,22 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            echo "${{ secrets.ENV_FILE }}" | sudo tee /home/ubuntu/.env > /dev/null
-            sudo mv /home/ubuntu/.env /app/.env
+            # Create app directory if not exists
+            sudo mkdir -p /app
+            echo "${{ secrets.ENV_FILE }}" | sudo tee /app/.env > /dev/null
             sudo chmod 600 /app/.env
-
+            
+            # Stop and clean up old containers
+            sudo docker-compose -f /app/docker-compose.yml down || true
+            
+            # Pull the latest image
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
-            sudo docker stop $(sudo docker container ls -q --filter "name=E-Learning") || true
-            sudo docker container prune --force
-            sudo docker image prune --force
-            sudo docker run -d -p 5002:5002 --env-file /app/.env --name E-Learning ${{ secrets.DOCKERHUB_USERNAME }}/e-learning-backend:latest
-            sudo docker logs $(sudo docker container ls -q --filter "name=E-Learning") || true
-            exit
+            
+            # Start services using docker-compose
+            cd /app
+            echo "${{ secrets.DOCKER_COMPOSE_FILE }}" | sudo tee /app/docker-compose.yml > /dev/null
+            sudo docker-compose up -d
+            
+            # Verify services are running
+            sudo docker ps
+            sudo docker logs e-learning-backend
