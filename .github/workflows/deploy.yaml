@@ -1,31 +1,33 @@
-name: Deploy to EC2
+name: Deploy Payment Service to EC2
 
 on:
   push:
     branches:
       - main
 
-env:
-  DOCKER_IMAGE_NAME: e-learning-backend
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out the repository
         uses: actions/checkout@v3
-
+        
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Set up timestamp
+        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:latest \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:${{ env.TIMESTAMP }} \
+            --build-arg DATABASE_URL="${{ secrets.DB_URL }}" .
+          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/payment-service
+          
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -38,109 +40,18 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            #!/bin/bash
-            set -ex  # Enable debugging and exit on error
-            
-            # 1. Setup directory
-            sudo mkdir -p /app
-            cd /app
-            
-            # 2. Create environment files
-            echo "${{ secrets.ENV_FILE }}" | sudo tee .env > /dev/null
-            sudo chmod 600 .env
-            
-            # 3. Create docker-compose.yml with enhanced health checks
-            cat << 'EOF' | sudo tee docker-compose.yml > /dev/null
-            version: '3.8'
-            
-            services:
-              backend:
-                image: ${DOCKERHUB_USERNAME}/e-learning-backend:latest
-                container_name: e-learning-backend
-                ports:
-                  - "5002:5002"
-                env_file:
-                  - .env
-                environment:
-                  - WAIT_HOSTS=postgres:5432
-                  - WAIT_TIMEOUT=60
-                  - WAIT_SLEEP_INTERVAL=5
-                volumes:
-                  - ./logs:/app/logs
-                healthcheck:
-                  test: ["CMD-SHELL", "curl -f http://localhost:5002/health || exit 1"]
-                  interval: 10s
-                  timeout: 5s
-                  retries: 10
-                depends_on:
-                  postgres:
-                    condition: service_healthy
-                restart: unless-stopped
-                entrypoint: /wait-for.sh
-                command: ["postgres:5432", "--", "node", "src/index.js"]
-            
-              postgres:
-                image: postgres:14-alpine
-                container_name: payment_db-postgres
-                env_file:
-                  - .env
-                environment:
-                  POSTGRES_USER: ${DB_USER}
-                  POSTGRES_PASSWORD: ${DB_PASSWORD}
-                  POSTGRES_DB: ${DB_NAME}
-                volumes:
-                  - postgres-data:/var/lib/postgresql/data
-                healthcheck:
-                  test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-                  interval: 5s
-                  timeout: 5s
-                  retries: 10
-                restart: unless-stopped
-            
-            volumes:
-              postgres-data:
-            EOF
-            
-            # 4. Download wait-for utility
-            sudo curl -o /app/wait-for.sh https://raw.githubusercontent.com/eficode/wait-for/v2.2.3/wait-for
-            sudo chmod +x /app/wait-for.sh
-            
-            # 5. Clean previous deployment
-            sudo docker-compose down -v --remove-orphans || true
-            sudo docker system prune -af
-            
-            # 6. Pull fresh images
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-            sudo docker pull postgres:14-alpine
-            
-            # 7. Start services with debug output
-            sudo docker-compose up -d
-            
-            # 8. Wait and verify
-            echo "Waiting for services to stabilize..."
-            sleep 30
-            
-            # 9. Debug output
-            echo "=== Container Status ==="
-            sudo docker ps -a
-            
-            echo "=== Backend Logs ==="
-            sudo docker logs e-learning-backend --tail 100 || true
-            
-            echo "=== Postgres Logs ==="
-            sudo docker logs payment_db-postgres --tail 50 || true
-            
-            echo "=== Health Check ==="
-            sudo docker inspect --format='{{json .State.Health}}' e-learning-backend || true
-            
-            echo "=== Network Inspection ==="
-            sudo docker network inspect app_default || true
-            
-            # 10. Final verification
-            if sudo docker ps | grep -q "e-learning-backend"; then
-              echo "✅ Deployment successful"
-              exit 0
-            else
-              echo "❌ Deployment failed - backend container not running"
-              exit 1
-            fi
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:latest
+            sudo docker stop $(sudo docker container ls -q --filter "name=payment-service") || true
+            sudo docker container prune --force
+            sudo docker image prune --force
+            sudo docker run -d -p 5002:5002 --name payment-service \
+              -e Db_URL="${{ secrets.DATABASE_URL}}" \
+              -e STRIPE_SECRET_KEY="${{ secrets.STRIPE_SECRET_KEY }}" \
+              -e STRIPE_WEBHOOK_SECRET="${{ secrets.STRIPE_WEBHOOK_SECRET }}" \
+              -e PLATFORM_COMMISSION_PERCENTAGE="20" \
+              -e USER_SERVICE_URL="${{ secrets.USER_SERVICE_URL }}" \
+              -e COURSE_SERVICE_URL="${{ secrets.COURSE_SERVICE_URL }}" \
+              -e INTERNAL_API_KEY="${{ secrets.INTERNAL_API_KEY }}" \
+              -e LOG_LEVEL="info" \
+              ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:latest
+            sudo docker logs $(sudo docker container ls -q --filter "name=payment-service") || true
