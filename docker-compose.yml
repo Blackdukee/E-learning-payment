@@ -7,17 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5002:5002"
-    environment:
-      - NODE_ENV=production
-      - PORT=5002
-      - DATABASE_URL=${DATABASE_URL}
-      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
-      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
-      - PLATFORM_COMMISSION_PERCENTAGE=20
-      - USER_SERVICE_URL=${USER_SERVICE_URL}
-      - COURSE_SERVICE_URL=${COURSE_SERVICE_URL}
-      - INTERNAL_API_KEY=${INTERNAL_API_KEY}
-      - LOG_LEVEL=info
+    env_file:
+      - .env  # ✅ This ensures all variables are loaded
     depends_on:
       - postgres
     restart: unless-stopped
