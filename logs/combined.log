@@ -2471,3 +2471,6 @@
 {"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-22 15:18:23"}
 {"level":"info","message":"Loaded 1 configurations from database","service":"payment-service","timestamp":"2025-03-22 15:18:23"}
 {"level":"info","message":"Configuration service initialized","service":"payment-service","timestamp":"2025-03-22 15:18:23"}
+{"level":"info","message":"Payment service running on port 3003","service":"payment-service","timestamp":"2025-03-27 14:39:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-03-27 14:39:50"}
+{"level":"info","message":"Database connection closed","service":"payment-service","timestamp":"2025-03-27 14:39:58"}

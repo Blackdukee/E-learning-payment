@@ -2,9 +2,9 @@
   "name": "payment-service",
   "version": "1.0.0",
   "description": "Payment processing service for the e-learning platform",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "jest --runInBand --detectOpenHandles",
     "debug": "node --inspect-brk src/server.js",
@@ -44,5 +44,4 @@
       "/node_modules/"
     ]
   }
- 
 }
