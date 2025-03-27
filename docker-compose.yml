@@ -2,35 +2,26 @@ version: '3.8'
 
 services:
   payment-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "5002:5002"
     env_file:
-      - .env  # ✅ This ensures all variables are loaded
+      - .env 
+    environment:
+      DATABASE_URL: "postgresql://postgres:Rot@2112002@db:5432/payment_db?schema=public"
     depends_on:
-      - postgres
-    restart: unless-stopped
-    networks:
-      - app-network
+      - db
 
-  postgres:
-    image: postgres:14-alpine
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Rot@2112002
+      POSTGRES_DB: payment_db
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Rot@2112002
-      - POSTGRES_DB=payment_db
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres-data:
+  postgres_data:
