@@ -7,8 +7,6 @@ services:
       - "5002:5002"
     env_file:
       - .env 
-    environment:
-      DATABASE_URL: "postgresql://postgres:Rot@2112002@db:5432/payment_db?schema=public"
     depends_on:
       - db
 
