@@ -1,5 +1,4 @@
-version: '3.8'
-
+# Removed obsolete 'version' attribute
 services:
   payment-service:
     build: .
@@ -15,7 +14,7 @@ services:
     restart: unless-stopped         # Added restart policy for reliability
 
   db:
-    image: postgres:13
+    image: postgres:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Rot@2112002
