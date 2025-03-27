@@ -8,25 +8,38 @@ services:
     ports:
       - "5002:5002"
     env_file:
-      - .env  # ✅ This ensures all variables are loaded
+      - .env
+    environment:
+      DATABASE_URL: "postgresql://postgres:Rot%402112002@postgres:5432/payment_db?schema=public" # URL-encode special chars
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   postgres:
     image: postgres:14-alpine
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Rot@2112002
-      - POSTGRES_DB=payment_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Rot@2112002
+      POSTGRES_DB: payment_db
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 networks:
   app-network:
