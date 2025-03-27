@@ -8,7 +8,11 @@ services:
     env_file:
       - .env 
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Ensure payment-service waits for db to be healthy
+    networks:
+      - payment-network             # Added network for container communication
+    restart: unless-stopped         # Added restart policy for reliability
 
   db:
     image: postgres:13
@@ -20,6 +24,18 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - payment-network             # Added network for container communication
+    healthcheck:                    # Added healthcheck to ensure db readiness
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped         # Added restart policy for reliability
 
 volumes:
   postgres_data:
+
+networks:
+  payment-network:
+    driver: bridge
