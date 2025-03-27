@@ -27,4 +27,4 @@ ENV PORT=5002
 EXPOSE 5002
 
 # Start the application
-CMD ["npm","run", "src/server.js"]
+CMD ["npm","run", "start"]
