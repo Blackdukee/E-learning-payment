@@ -3,6 +3,9 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
+# Copy .env to ensure DATABASE_URL is available during build
+COPY .env ./
+
 # Install dependencies first (for better caching)
 COPY package.json package-lock.json* ./
 RUN npm ci --only=production

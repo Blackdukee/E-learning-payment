@@ -1,11 +1,11 @@
-# Removed obsolete 'version' attribute
 services:
   payment-service:
     build: .
     ports:
-      - "5002:5002"
+      - "3003:3003"
     env_file:
       - .env 
+    command: sh -c "npx prisma migrate deploy && npm run start"  # run migrations at startup
     depends_on:
       db:
         condition: service_healthy  # Ensure payment-service waits for db to be healthy
