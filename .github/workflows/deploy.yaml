@@ -23,9 +23,8 @@ jobs:
 
       - name: Build and push with timestamp
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:${{ env.TIMESTAMP }} --build-arg DB_URL="${{ secrets.DATABASE_URI}}" .
-          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend
-
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:${{ env.TIMESTAMP }} --build-arg DB_URL="${{ secrets.DATABASE_URI}}" .
+          docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -34,8 +33,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/phantasmagoria-backend:latest
-            sudo docker-compose down --volumes
-            sudo docker-compose up --build -d
-            sudo docker logs $(sudo docker container ls -q --filter "name=phantasmagoria") || true
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+            sudo docker stop $(sudo docker container ls -q --filter "name=elearning_backend") || true
+            sudo docker container prune --force
+            sudo docker image prune --force
+            sudo docker run -d -p 5001:5000 --name elearning_backend ${{ secrets.DOCKERHUB_USERNAME }}/elearning_backend:latest
+            sudo docker logs $(sudo docker container ls -q --filter "name=elearning_backend") || true
             exit
