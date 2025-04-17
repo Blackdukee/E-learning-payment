@@ -1,19 +1,21 @@
 services:
   payment-service:
+    container_name: e-learning_backend-payment-service
     build: .
     ports:
-      - "3003:3003"
+      - "5002:5002"
     env_file:
       - .env 
-    command: sh -c "npx prisma migrate deploy && npm run start"  # run migrations at startup
+    command: sh -c "npx prisma migrate deploy && npm run start"
     depends_on:
       db:
-        condition: service_healthy  # Ensure payment-service waits for db to be healthy
+        condition: service_healthy
     networks:
-      - payment-network             # Added network for container communication
-    restart: unless-stopped         # Added restart policy for reliability
+      - payment-network
+    restart: unless-stopped
 
   db:
+    container_name: e-learning_backend-payment-db
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
@@ -24,13 +26,13 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - payment-network             # Added network for container communication
-    healthcheck:                    # Added healthcheck to ensure db readiness
+      - payment-network
+    healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
-    restart: unless-stopped         # Added restart policy for reliability
+    restart: unless-stopped
 
 volumes:
   postgres_data:
