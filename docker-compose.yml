@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   payment-service:
     container_name: e-learning_backend-payment-service
@@ -5,7 +7,7 @@ services:
     ports:
       - "5002:5002"
     env_file:
-      - .env 
+      - .env
     command: sh -c "npx prisma migrate deploy && npm run start"
     depends_on:
       db:
