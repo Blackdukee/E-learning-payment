@@ -72,8 +72,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-              cd /home/ubuntu/elearning-backend/E-learning-payment
-              chmod +x deploy.sh
-              ./deploy.sh
+              cd /home/ubuntu/elearning-backend/E-learning-payment/deploy.sh
+              
 
           
