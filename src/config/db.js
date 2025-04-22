@@ -18,7 +18,11 @@ prisma.$connect()
   })
   .catch((error) => {
     baseLogger.error('Database connection error:', error);
-    process.exit(1);
+    baseLogger.error(error.stack);
+    // Only exit on DB error in non-test environments
+    if (process.env.NODE_ENV !== 'test') {
+      process.exit(1);
+    }
   });
 
 // Handle graceful shutdown
@@ -26,10 +30,10 @@ process.on('SIGINT', async () => {
   try {
     await prisma.$disconnect();
     baseLogger.info('Database connection closed');
-    process.exit(0);
+    if (process.env.NODE_ENV !== 'test') process.exit(0);
   } catch (error) {
     baseLogger.error('Error during database disconnection:', error);
-    process.exit(1);
+    if (process.env.NODE_ENV !== 'test') process.exit(1);
   }
 });
 

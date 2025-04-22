@@ -3,8 +3,41 @@ const { AppError } = require('../middleware/errorHandler');
 const { logger } = require('../utils/logger');
 
 /**
- * Generate financial report with optional filters
- * Accessible by ADMIN for all data, and EDUCATOR for their own data
+ * @swagger
+ * tags:
+ *   - name: Reports
+ *     description: Generate and retrieve various financial reports
+ */
+
+/**
+ * @swagger
+ * /reports/financial:
+ *   get:
+ *     summary: Generate financial report with optional filters
+ *     tags: [Reports]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Start date for report
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: End date for report
+ *       - in: query
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         description: Educator ID to filter (admin only)
+ *     responses:
+ *       '200':
+ *         description: Financial report data
  */
 const generateFinancialReport = async (req, res, next) => {
   try {
@@ -47,8 +80,31 @@ const generateFinancialReport = async (req, res, next) => {
 };
 
 /**
- * Download financial report as PDF with optional filters
- * Accessible by ADMIN for all data, and EDUCATOR for their own data
+ * @swagger
+ * /reports/financial/pdf:
+ *   get:
+ *     summary: Download financial report as PDF
+ *     tags: [Reports]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: PDF file downloaded
  */
 const downloadFinancialReportPDF = async (req, res, next) => {
   try {
@@ -96,8 +152,25 @@ const downloadFinancialReportPDF = async (req, res, next) => {
 };
 
 /**
- * Get earnings report for a specific educator
- * Accessible by ADMIN for all educators, and EDUCATOR for their own data
+ * @swagger
+ * /reports/educators/{educatorId}/earnings:
+ *   get:
+ *     summary: Get earnings report for a specific educator
+ *     tags: [Reports]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Educator ID
+ *     responses:
+ *       '200':
+ *         description: Educator earnings report
+ *       '403':
+ *         description: Forbidden
  */
 const getEducatorEarningsReport = async (req, res, next) => {
   try {
@@ -126,7 +199,32 @@ const getEducatorEarningsReport = async (req, res, next) => {
 };
 
 /**
- * Generate commission analysis report
+ * @swagger
+ * /reports/commission-analysis:
+ *   get:
+ *     summary: Generate commission analysis report
+ *     tags: [Reports]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         description: Educator ID to filter
+ *     responses:
+ *       '200':
+ *         description: Commission analysis data
  */
 const getCommissionAnalysisReport = async (req, res, next) => {
   try {

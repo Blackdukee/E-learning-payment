@@ -9,7 +9,7 @@ const {
 } = require("../middleware/auth");
 const { validate } = require("../middleware/validators");
 const paymentController = require("../controllers/paymentController");
-const app = require("..");
+const catchAsync = require("../utils/catchAsync");
 
 // Schema validation for payment requests
 const paymentSchema = {

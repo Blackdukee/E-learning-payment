@@ -207,7 +207,6 @@ const getFinancialAnalysis = async (filters = {}) => {
       })),
     };
   } catch (error) {
-    console.log(error.stack);
     logger.error(`Error fetching financial analysis: ${error.message}`, {
       error,
     });

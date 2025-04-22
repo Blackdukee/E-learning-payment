@@ -154,7 +154,7 @@ const validate = (schema) => {
           } else {
             // Successfully parsed, store the Date object
             req.body[field] = dateObj;
-            console.log(1);
+            logger.debug(`Parsed date field ${field}: ${dateObj.toISOString()}`);
           }
         } catch (e) {
           errors.push(`${field} must be a valid date`);

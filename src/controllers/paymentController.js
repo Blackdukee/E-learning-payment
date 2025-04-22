@@ -3,10 +3,38 @@ const { AppError } = require("../middleware/errorHandler");
 const paymentService = require("../services/paymentService");
 const { logger } = require("../utils/logger");
 
-// Process payment
-const processPayment = async (req, res) => {
+/**
+ * @swagger
+ * tags:
+ *   - name: Payments
+ *     description: Payment processing and management
+ */
+
+/**
+ * @swagger
+ * /payments:
+ *   post:
+ *     summary: Process a payment
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/PaymentRequest'
+ *     responses:
+ *       '200':
+ *         description: Payment processed successfully
+ *       '400':
+ *         description: Bad request
+ *       '500':
+ *         description: Internal server error
+ */
+const processPayment = async (req, res, next) => {
   try {
-    console.log(req.body);
+    logger.debug(`Request body: ${JSON.stringify(req.body)}`);
     const result = await paymentService.processPayment(req.body, req.user);
     return res.status(200).json({
       success: true,
@@ -22,7 +50,28 @@ const processPayment = async (req, res) => {
   }
 };
 
-// Process refund
+/**
+ * @swagger
+ * /payments/refund:
+ *   post:
+ *     summary: Process a refund
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/RefundRequest'
+ *     responses:
+ *       '200':
+ *         description: Refund processed successfully
+ *       '400':
+ *         description: Bad request
+ *       '500':
+ *         description: Internal server error
+ */
 const processRefund = async (req, res) => {
   try {
     const result = await paymentService.processRefund(req.body, req.user);
@@ -41,7 +90,29 @@ const processRefund = async (req, res) => {
   }
 };
 
-// Get user transactions
+/**
+ * @swagger
+ * /payments/user:
+ *   get:
+ *     summary: Get user's transactions
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Items per page
+ *     responses:
+ *       '200':
+ *         description: List of transactions
+ */
 const getUserTransactions = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -68,7 +139,27 @@ const getUserTransactions = async (req, res) => {
   }
 };
 
-// Get transaction by ID
+/**
+ * @swagger
+ * /payments/{transactionId}:
+ *   get:
+ *     summary: Get transaction by ID
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: transactionId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Transaction ID
+ *     responses:
+ *       '200':
+ *         description: Transaction details
+ *       '403':
+ *         description: Unauthorized
+ */
 const getTransactionById = async (req, res) => {
   try {
     const { transactionId } = req.params;
@@ -96,7 +187,41 @@ const getTransactionById = async (req, res) => {
   }
 };
 
-// Generate transaction report
+/**
+ * @swagger
+ * /payments/report/transactions:
+ *   get:
+ *     summary: Generate transaction report (admin only)
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: type
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Report generated
+ */
 const generateTransactionReport = async (req, res) => {
   try {
     // Only admins can access this endpoint
@@ -140,48 +265,72 @@ const generateTransactionReport = async (req, res) => {
   }
 };
 
-const getTotalEarningsForEducator = async (req, res) => {
+/**
+ * @swagger
+ * /payments/total-earnings:
+ *   get:
+ *     summary: Get total earnings for educator
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Total earnings retrieved
+ */
+const getTotalEarningsForEducator = async (req, res, next) => {
   try {
     const result = await paymentService.getTotalEarningsForEducator(
       req.user.id
     );
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: result,
     });
   } catch (error) {
-    res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to fetch total earnings",
-    });
-    throw new AppError(error.message, 500);
+    logger.error(`Error fetching total earnings: ${error.message}`);
+    return next(error);
   }
 };
 
 /**
- *
- * @param {object} req
- * @param {object} res
- * @returns {object} response object with educator current balance
+ * @swagger
+ * /payments/current-balance:
+ *   get:
+ *     summary: Get current balance for educator
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Current balance retrieved
  */
-const getEducatorCurrentBalance = async (req, res) => {
+const getEducatorCurrentBalance = async (req, res, next) => {
   try {
     const earnings = await paymentService.getCurrentBalanceForEducator(
       req.user.id
     );
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      data: { amount: Math.round(earnings.amount / 100 ) , currency: earnings.currency },
+      data: { amount: Math.round(earnings.amount / 100), currency: earnings.currency },
     });
   } catch (error) {
-    res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to fetch current balance",
-    });
-    throw new AppError(error.message, 500);
+    logger.error(`Error fetching current balance: ${error.message}`);
+    return next(error);
   }
 };
 
+/**
+ * @swagger
+ * /payments/create-account:
+ *   post:
+ *     summary: Create Stripe account for educator
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '201':
+ *         description: Account created
+ */
 const createEducatorAccount = async (req, res) => {
   try {
     const { account } = await paymentService.createEducatorStripeAccount(req);
@@ -197,6 +346,18 @@ const createEducatorAccount = async (req, res) => {
   }
 };
 
+/**
+ * @swagger
+ * /payments/delete-account:
+ *   delete:
+ *     summary: Delete Stripe account for educator
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Account deleted
+ */
 const deleteEducatorAccount = async (req, res) => {
   try {
     const { account } = await prisma.stripeAccount.findFirst({

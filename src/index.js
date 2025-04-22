@@ -11,6 +11,58 @@ const { logger } = require('./utils/logger');
 const { errorHandler } = require('./middleware/errorHandler');
 const router = require('./routes/index');
 
+// Swagger setup
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+// Swagger definition
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Payment Service API',
+      version: '1.0.0',
+      description: 'API documentation for the Payment Service',
+    },
+    servers: [
+      { url: `http://localhost:${process.env.PORT || 5002}/api` }
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      },
+      schemas: {
+        PaymentRequest: {
+          type: 'object',
+          required: ['courseId','amount','currency','source','educatorId'],
+          properties: {
+            courseId: { type: 'string' },
+            amount: { type: 'number', minimum: 0.01 },
+            currency: { type: 'string', enum: ['USD','EUR','GBP'] },
+            source: { type: 'string' },
+            educatorId: { type: 'string' },
+            description: { type: 'string' }
+          }
+        },
+        RefundRequest: {
+          type: 'object',
+          required: ['transactionId'],
+          properties: {
+            transactionId: { type: 'string' },
+            reason: { type: 'string' }
+          }
+        }
+      }
+    },
+  },
+  apis: ['./src/routes/*.js', './src/controllers/*.js'],
+};
+const swaggerSpecs = swaggerJsDoc(swaggerOptions);
+
 const app = express();
 
 app.use(async (req, res, next) => {
@@ -75,6 +127,8 @@ if (!fs.existsSync(logsDir)) {
 // Routes
 app.use('/api', router);
 
+// Serve Swagger UI
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Health check endpoint
 app.get('/health', (req, res) => {

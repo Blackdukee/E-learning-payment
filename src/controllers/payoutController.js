@@ -3,7 +3,32 @@ const { AppError } = require("../middleware/errorHandler");
 const { logger } = require("../utils/logger");
 
 /**
- * Get pending earnings for an educator
+ * @swagger
+ * tags:
+ *   - name: Payouts
+ *     description: Educator payout management
+ */
+
+/**
+ * @swagger
+ * /payouts/{educatorId}/pending-earnings:
+ *   get:
+ *     summary: Get pending earnings for an educator
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Educator ID
+ *     responses:
+ *       '200':
+ *         description: Pending earnings retrieved
+ *       '403':
+ *         description: Forbidden
  */
 const getEducatorPendingEarnings = async (req, res, next) => {
   try {
@@ -25,14 +50,43 @@ const getEducatorPendingEarnings = async (req, res, next) => {
       data: pendingEarnings,
     });
   } catch (error) {
-    console.log(error);
+    logger.error(`Error fetching pending earnings: ${error.message}`, { error });
 
     next(error);
   }
 };
 
 /**
- * Request a payout
+ * @swagger
+ * /payouts/{educatorId}/request:
+ *   post:
+ *     summary: Submit a payout request for an educator
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Educator ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               amount:
+ *                 type: number
+ *               ipAddress:
+ *                 type: string
+ *     responses:
+ *       '201':
+ *         description: Payout request submitted
+ *       '403':
+ *         description: Forbidden
  */
 const requestPayout = async (req, res, next) => {
   try {
@@ -67,7 +121,25 @@ const requestPayout = async (req, res, next) => {
 };
 
 /**
- * Process a pending payout (admin only)
+ * @swagger
+ * /payouts/{payoutId}/process:
+ *   post:
+ *     summary: Process a pending payout (admin only)
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: payoutId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Payout ID
+ *     responses:
+ *       '200':
+ *         description: Payout processed
+ *       '403':
+ *         description: Forbidden
  */
 const processPayout = async (req, res, next) => {
   try {
@@ -91,7 +163,25 @@ const processPayout = async (req, res, next) => {
 };
 
 /**
- * Get payout by ID
+ * @swagger
+ * /payouts/{payoutId}:
+ *   get:
+ *     summary: Get payout by ID
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: payoutId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Payout ID
+ *     responses:
+ *       '200':
+ *         description: Payout details
+ *       '403':
+ *         description: Forbidden
  */
 const getPayoutById = async (req, res, next) => {
   try {
@@ -115,7 +205,33 @@ const getPayoutById = async (req, res, next) => {
 };
 
 /**
- * Get educator's payouts
+ * @swagger
+ * /payouts/{educatorId}:
+ *   get:
+ *     summary: Get educator's payouts
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Educator ID
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       '200':
+ *         description: List of payouts
+ *       '403':
+ *         description: Forbidden
  */
 const getEducatorPayouts = async (req, res, next) => {
   try {
@@ -147,7 +263,37 @@ const getEducatorPayouts = async (req, res, next) => {
 };
 
 /**
- * Get all payouts (admin only)
+ * @swagger
+ * /payouts:
+ *   get:
+ *     summary: Get all payouts (admin only)
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *     responses:
+ *       '200':
+ *         description: List of all payouts
+ *       '403':
+ *         description: Forbidden
  */
 const getAllPayouts = async (req, res, next) => {
   try {
@@ -181,7 +327,23 @@ const getAllPayouts = async (req, res, next) => {
 };
 
 /**
- * Cancel a pending payout
+ * @swagger
+ * /payouts/{payoutId}:
+ *   delete:
+ *     summary: Cancel a pending payout
+ *     tags: [Payouts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: payoutId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Payout ID
+ *     responses:
+ *       '200':
+ *         description: Payout cancelled
  */
 const cancelPayout = async (req, res, next) => {
   try {
@@ -205,7 +367,6 @@ const cancelPayout = async (req, res, next) => {
 };
 
 module.exports = {
-
   getEducatorPendingEarnings,
   requestPayout,
   processPayout,

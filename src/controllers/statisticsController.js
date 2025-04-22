@@ -1,8 +1,36 @@
 const statisticsService = require('../services/statisticsService');
 const { logger } = require('../utils/logger');
+const { AppError } = require('../middleware/errorHandler');
+const { catchAsync } = require('../utils/catchAsync');
+/**
+ * @swagger
+ * tags:
+ *   - name: Statistics
+ *     description: System statistics and metrics
+ */
 
 /**
- * Get transaction volumes
+ * @swagger
+ * /statistics/transaction-volumes:
+ *   get:
+ *     summary: Get transaction volume metrics
+ *     tags: [Statistics]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *     responses:
+ *       '200':
+ *         description: Transaction volumes retrieved
  */
 const getTransactionVolumes = async (req, res, next) => {
   try {
@@ -23,7 +51,27 @@ const getTransactionVolumes = async (req, res, next) => {
 };
 
 /**
- * Get performance metrics
+ * @swagger
+ * /statistics/performance-metrics:
+ *   get:
+ *     summary: Get performance metrics
+ *     tags: [Statistics]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *     responses:
+ *       '200':
+ *         description: Performance metrics retrieved
  */
 const getPerformanceMetrics = async (req, res, next) => {
   try {
@@ -44,7 +92,32 @@ const getPerformanceMetrics = async (req, res, next) => {
 };
 
 /**
- * Get financial analysis
+ * @swagger
+ * /statistics/financial-analysis:
+ *   get:
+ *     summary: Get financial analysis metrics
+ *     tags: [Statistics]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: groupBy
+ *         schema:
+ *           type: string
+ *           enum: [daily,weekly,monthly]
+ *     responses:
+ *       '200':
+ *         description: Financial analysis retrieved
  */
 const getFinancialAnalysis = async (req, res, next) => {
   try {
@@ -66,7 +139,27 @@ const getFinancialAnalysis = async (req, res, next) => {
 };
 
 /**
- * Get payment operations
+ * @swagger
+ * /statistics/payment-operations:
+ *   get:
+ *     summary: Get payment operations metrics
+ *     tags: [Statistics]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *     responses:
+ *       '200':
+ *         description: Payment operations metrics retrieved
  */
 const getPaymentOperations = async (req, res, next) => {
   try {
@@ -87,7 +180,32 @@ const getPaymentOperations = async (req, res, next) => {
 };
 
 /**
- * Get dashboard statistics 
+ * @swagger
+ * /statistics/dashboard:
+ *   get:
+ *     summary: Get comprehensive dashboard statistics
+ *     tags: [Statistics]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: groupBy
+ *         schema:
+ *           type: string
+ *           enum: [daily,weekly,monthly]
+ *     responses:
+ *       '200':
+ *         description: Dashboard statistics retrieved
  */
 const getDashboardStatistics = async (req, res, next) => {
   try {
@@ -109,7 +227,33 @@ const getDashboardStatistics = async (req, res, next) => {
 };
 
 /**
- * Get educator payment analytics
+ * @swagger
+ * /statistics/educators/{educatorId}/payment-analytics:
+ *   get:
+ *     summary: Get detailed payment analytics for an educator
+ *     tags: [Statistics]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: educatorId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Educator ID
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *     responses:
+ *       '200':
+ *         description: Educator payment analytics retrieved
  */
 const getEducatorPaymentAnalytics = async (req, res, next) => {
   try {

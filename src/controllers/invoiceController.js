@@ -2,6 +2,38 @@ const invoiceService = require('../services/invoiceService');
 const { AppError } = require('../middleware/errorHandler');
 
 /**
+ * @swagger
+ * tags:
+ *   - name: Invoices
+ *     description: Invoice management and retrieval
+ */
+
+/**
+ * @swagger
+ * /invoices/{invoiceId}:
+ *   get:
+ *     summary: Get a single invoice by ID
+ *     tags: [Invoices]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: invoiceId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Invoice ID
+ *     responses:
+ *       '200':
+ *         description: Invoice retrieved successfully
+ *       '403':
+ *         description: Forbidden
+ *       '404':
+ *         description: Not found
+ *       '500':
+ *         description: Server error
+ */
+/**
  * Get a single invoice by ID
  */
 const getInvoice = async (req, res, next) => {
