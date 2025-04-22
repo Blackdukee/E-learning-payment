@@ -1,7 +1,7 @@
 const statisticsService = require('../services/statisticsService');
 const { logger } = require('../utils/logger');
 const { AppError } = require('../middleware/errorHandler');
-const { catchAsync } = require('../utils/catchAsync');
+
 /**
  * @swagger
  * tags:
