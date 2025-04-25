@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
         id: 'course_2',
         name: 'Data Science Fundamentals',
         amount: 149.99,
-        educatorId: 'edu_456'
+        educatorId: 'edu_123'
       },
       course_3: {
         id: 'course_3',
         name: 'Machine Learning Masterclass',
         amount: 199.99,
-        educatorId: 'edu_789'
+        educatorId: 'edu_123'
       }
     };
   
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Step 2: Send the payment information to your server
-        const response = await fetch('http://localhost:3003/api/payments', {
+        const response = await fetch('http://localhost:5002/api/v1/payments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

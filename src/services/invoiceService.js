@@ -211,7 +211,6 @@ const generateInvoicePDF = async (invoiceId) => {
       doc.text('BILL TO:', { underline: true });
       doc.text(invoice.billingInfo.name || 'N/A');
       doc.text(invoice.billingInfo.email || 'N/A');
-      doc.text(invoice.billingInfo.address || 'N/A');
       doc.moveDown();
     }
     

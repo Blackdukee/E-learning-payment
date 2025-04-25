@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Educator Account</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Create an Educator Account</h1>
+    <button id="create-educator-btn">Get Started with Stripe</button>
+
+    <script>
+        // Replace with your Publishable Key
+        const stripe = Stripe("pk_test_YOUR_PUBLISHABLE_KEY");
+
+        document
+            .getElementById("create-educator-btn")
+            .addEventListener("click", async () => {
+                // Call your backend to create a Stripe Connect account link
+                const res = await fetch("http://localhost:5002/api/v1/payments/create-account", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" }
+                });
+                const { url } = await res.json();
+                // Redirect to Stripe onboarding
+                window.location.href = url;
+            });
+    </script>
+</body>
+</html>

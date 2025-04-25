@@ -23,17 +23,27 @@ const { AppError } = require('../middleware/errorHandler');
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *     responses:
  *       '200':
  *         description: Transaction volumes retrieved
  */
 const getTransactionVolumes = async (req, res, next) => {
   try {
+
+    // Check for date filters in the request
+    if (!req.query.startDate || !req.query.endDate) {
+      return next(new AppError('Please provide both startDate and endDate query parameters', 400));
+    }
+
     const filters = {
       startDate: req.query.startDate,
       endDate: req.query.endDate
@@ -64,11 +74,15 @@ const getTransactionVolumes = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *     responses:
  *       '200':
  *         description: Performance metrics retrieved
@@ -105,11 +119,15 @@ const getPerformanceMetrics = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: groupBy
  *         schema:
@@ -152,11 +170,15 @@ const getFinancialAnalysis = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *     responses:
  *       '200':
  *         description: Payment operations metrics retrieved
@@ -193,11 +215,15 @@ const getPaymentOperations = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: groupBy
  *         schema:
@@ -246,11 +272,15 @@ const getDashboardStatistics = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *     responses:
  *       '200':
  *         description: Educator payment analytics retrieved

@@ -71,7 +71,7 @@ const processPayment = async (paymentData, user) => {
         automatic_payment_methods: { enabled: true, allow_redirects: "never" },
       });
     } else {
-      // Tests mock stripe.charges.create
+      // Fallback to charges.create for older Stripe versions or tests
       stripeCharge = await stripe.charges.create({
         amount: Math.round(amount * 100),
         currency: currency || "USD",
@@ -567,7 +567,7 @@ const getTransactionsReport = async (filters = {}, page = 1, limit = 50) => {
   }
 };
 
-const createEducatorStripeAccount = async (req) => {
+const  createEducatorStripeAccount = async (req) => {
   try {
     // Validate required fields
     if (!req.body.email) {

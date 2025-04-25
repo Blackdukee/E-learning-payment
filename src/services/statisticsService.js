@@ -431,11 +431,15 @@ const getEducatorPaymentAnalytics = async (educatorId, filters = {}) => {
  */
 const buildDateFilter = (startDate, endDate) => {
   if (startDate && endDate) {
-    return Prisma.sql`"createdAt" BETWEEN ${new Date(startDate)} AND ${new Date(endDate)}`;
+    const from = new Date(startDate).toISOString();
+    const to = new Date(endDate).toISOString();
+    return Prisma.sql`"createdAt" BETWEEN ${from}::timestamp AND ${to}::timestamp`;
   } else if (startDate) {
-    return Prisma.sql`"createdAt" >= ${new Date(startDate)}`;
+    const from = new Date(startDate).toISOString();
+    return Prisma.sql`"createdAt" >= ${from}::timestamp`;
   } else if (endDate) {
-    return Prisma.sql`"createdAt" <= ${new Date(endDate)}`;
+    const to = new Date(endDate).toISOString();
+    return Prisma.sql`"createdAt" <= ${to}::timestamp`;
   }
   return null;
 };

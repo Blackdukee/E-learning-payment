@@ -201,11 +201,15 @@ const getTransactionById = async (req, res) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: type
  *         schema:

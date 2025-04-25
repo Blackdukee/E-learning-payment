@@ -23,12 +23,16 @@ const { logger } = require('../utils/logger');
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *         description: Start date for report
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *         description: End date for report
  *       - in: query
  *         name: educatorId
@@ -93,11 +97,15 @@ const generateFinancialReport = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: educatorId
  *         schema:
@@ -212,11 +220,15 @@ const getEducatorEarningsReport = async (req, res, next) => {
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: endDate
  *         schema:
  *           type: string
  *           format: date
+ *           pattern: "YYYY-MM-DD"
+ *           example: "2023-01-01"
  *       - in: query
  *         name: educatorId
  *         schema:

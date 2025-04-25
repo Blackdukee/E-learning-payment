@@ -6,8 +6,6 @@ const invoiceController = require('../controllers/invoiceController');
 
 const router = express.Router();
 
-// Middleware to protect all invoice routes
-router.use(validateToken);
 
 // Get user's invoices
 router.get(
@@ -34,7 +32,7 @@ router.get(
 
 // Download invoice PDF
 router.get(
-  '/:invoiceId/pdf',
+  '/:invoiceId/download',
   [
     param('invoiceId').notEmpty().withMessage('Invoice ID is required'),
   ],
