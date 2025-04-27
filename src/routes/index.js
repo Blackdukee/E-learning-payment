@@ -4,6 +4,7 @@ const paymentRoutes = require('./paymentRoutes');
 const invoiceRoutes = require('./invoiceRoutes');
 const reportRoutes = require('./reportRoutes');
 const statisticsRoutes = require('./statisticsRoutes');
+const accountRoutes = require('./accountRoute');
 // Health check endpoint
 router.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', service: 'payment-service' });
@@ -14,5 +15,7 @@ router.use('/payments', paymentRoutes);
 router.use('/invoices', invoiceRoutes);
 router.use('/reports', reportRoutes);
 router.use('/statistics', statisticsRoutes);
+router.use('/educators', accountRoutes);
+
 
 module.exports = router;

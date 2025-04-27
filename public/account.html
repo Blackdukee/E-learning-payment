@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Educator Account</title>
     <script src="https://js.stripe.com/v3/"></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Create an Educator Account</h1>
     <button id="create-educator-btn">Get Started with Stripe</button>
-
+    <!-- create dashboard button-->
+    <button id="goto-dashboard-btn">Open Dashboard</button>
     <script>
-        // Replace with your Publishable Key
-        const stripe = Stripe("pk_test_YOUR_PUBLISHABLE_KEY");
+      // Replace with your Publishable Key
+      const stripe = Stripe(
+        "pk_test_51R0nWXBLtTuFPq2ghYUwqXJZQ2bqcWcxKnqqMEAxVdQ2eGviVk1nQXxG6SECgP7I0N4WNvXqRLgmdaasFpn3IoQX00CjkXPYhs"
+      );
+      document
+        .getElementById("goto-dashboard-btn")
+        .addEventListener("click", async () => {
+          // Call your backend to create a Stripe Connect account link
+          const res = await fetch(
+            "http://localhost:5002/api/v1/educators/stripe-account",
+            {
+              method: "GET",
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          if (!res.status === 201) {
+            console.error("Error creating account link:", res.statusText);
+            return;
+          }
+          const data = await res.json();
+          console.log(data);
+          const { url } = data;
 
-        document
-            .getElementById("create-educator-btn")
-            .addEventListener("click", async () => {
-                // Call your backend to create a Stripe Connect account link
-                const res = await fetch("http://localhost:5002/api/v1/payments/create-account", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" }
-                });
-                const { url } = await res.json();
-                // Redirect to Stripe onboarding
-                window.location.href = url;
-            });
+          // Redirect to Stripe onboarding
+          // window.location.href = url;
+
+        });
+      document
+        .getElementById("create-educator-btn")
+        .addEventListener("click", async () => {
+          // Call your backend to create a Stripe Connect account link
+          const res = await fetch(
+            "http://localhost:5002/api/v1/educators/create-account",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          if (!res.status === 201) {
+            console.error("Error creating account link:", res.statusText);
+            return;
+          }
+          const date = await res.json();
+          console.log(date);
+          // const { url } =;
+
+          // Redirect to Stripe onboarding
+          // window.location.href = url;
+        });
     </script>
-</body>
+  </body>
 </html>

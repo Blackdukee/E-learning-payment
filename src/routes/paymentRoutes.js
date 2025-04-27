@@ -55,19 +55,6 @@ router.get(
   paymentController.getUserTransactions
 );
 
-// Post create stripe account for educator
-router.post(
-  "/create-account",
-  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
-  paymentController.createEducatorAccount
-);
-
-// Delete stripe account for educator
-router.delete(
-  "/delete-account",
-  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
-  paymentController.deleteEducatorAccount
-);
 
 // Get total earnings for educator
 router.get(

@@ -13,7 +13,6 @@ const app = require("..");
 const PLATFORM_COMMISSION_PERCENTAGE =
   parseFloat(process.env.PLATFORM_COMMISSION_PERCENTAGE) || 20;
 
-
 const processPayment = async (paymentData, user) => {
   const startTime = Date.now();
   const {
@@ -58,7 +57,10 @@ const processPayment = async (paymentData, user) => {
     const t3 = Date.now();
     // Create and confirm payment in one step (fallback to charges.create in tests)
     let stripeCharge;
-    if (stripe.paymentIntents && typeof stripe.paymentIntents.create === 'function') {
+    if (
+      stripe.paymentIntents &&
+      typeof stripe.paymentIntents.create === "function"
+    ) {
       stripeCharge = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100),
         currency: currency || "USD",
@@ -77,7 +79,7 @@ const processPayment = async (paymentData, user) => {
         currency: currency || "USD",
         source,
         description: description || `Payment for course: ${courseId}`,
-        metadata: { courseId, userId: user.id }
+        metadata: { courseId, userId: user.id },
       });
     }
     const m3 = Date.now() - t3;
@@ -208,7 +210,10 @@ const processPayment = async (paymentData, user) => {
             { error: error.message }
           );
         } catch (logError) {
-          logger.error(`Failed to log transaction failure: ${logError.message}`, { error: logError });
+          logger.error(
+            `Failed to log transaction failure: ${logError.message}`,
+            { error: logError }
+          );
         }
       }, 0);
     }
@@ -316,7 +321,10 @@ const processRefund = async (refundData, user) => {
 
     // Retrieve original charge ID (fallback in tests)
     let paymentIntent;
-    if (stripe.paymentIntents && typeof stripe.paymentIntents.retrieve === 'function') {
+    if (
+      stripe.paymentIntents &&
+      typeof stripe.paymentIntents.retrieve === "function"
+    ) {
       paymentIntent = await stripe.paymentIntents.retrieve(
         originalTransaction.stripeChargeId
       );
@@ -325,7 +333,7 @@ const processRefund = async (refundData, user) => {
     }
     // Retrieve charge object (fallback)
     let charge;
-    if (stripe.charges && typeof stripe.charges.retrieve === 'function') {
+    if (stripe.charges && typeof stripe.charges.retrieve === "function") {
       charge = await stripe.charges.retrieve(paymentIntent.latest_charge);
     } else {
       charge = { transfer: null };
@@ -339,7 +347,11 @@ const processRefund = async (refundData, user) => {
 
     // Create reversal if supported
     let reversal;
-    if (stripe.transfers && typeof stripe.transfers.createReversal === 'function' && charge.transfer) {
+    if (
+      stripe.transfers &&
+      typeof stripe.transfers.createReversal === "function" &&
+      charge.transfer
+    ) {
       reversal = await stripe.transfers.createReversal(charge.transfer, {
         amount: originalTransaction.educatorEarnings * 100,
       });
@@ -567,143 +579,8 @@ const getTransactionsReport = async (filters = {}, page = 1, limit = 50) => {
   }
 };
 
-const  createEducatorStripeAccount = async (req) => {
-  try {
-    // Validate required fields
-    if (!req.body.email) {
-      throw new AppError("Email is required for Stripe account creation", 400);
-    }
-
-    // Create the Stripe Connect Express account
-    const account = await stripe.accounts.create({
-      type: "custom",
-      country: "US",
-      email: req.body.email,
-      capabilities: {
-        card_payments: { requested: true },
-        transfers: { requested: true },
-      },
-      business_type: "individual",
-      individual: {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: "test@example.com",
-        phone: "+18885551234",
-        address: {
-          line1: "123 Test St",
-          city: "San Francisco",
-          state: "CA",
-          postal_code: "94103",
-          country: "US",
-        },
-        dob: {
-          day: 15,
-          month: 6,
-          year: 1985,
-        },
-        ssn_last_4: "0000",
-      },
-      business_profile: {
-        mcc: "8299", // Education services
-        product_description: "Online education",
-      },
-      company: {
-        name: `${req.body.first_name} ${req.body.last_name}`,
-        tax_id: "000000000", // Use "000000000" for test purposes
-      },
-      tos_acceptance: {
-        service_agreement: "full",
-        date: Math.floor(Date.now() / 1000),
-        ip: req.ip,
-      },
-    });
-
-    const bank_account = await stripe.accounts.createExternalAccount(
-      account.id,
-      {
-        external_account: {
-          object: "bank_account",
-          country: "US",
-          currency: "usd",
-          routing_number: "110000000",
-          account_number: "000123456789",
-        },
-      }
-    );
-
-    const educatorStripeAccount = await prisma.stripeAccount.create({
-      data: {
-        educatorId: req.user.id,
-        email: req.body.email,
-        stripeAccountId: account.id,
-        stripeBankAccount: bank_account.id,
-      },
-    });
-
-    auditLogger.log(
-      "STRIPE_ACCOUNT_CREATED",
-      req.user.id,
-      `Stripe Connect account created for educator ${req.user.id}`,
-      null,
-      { accountId: account.id }
-    );
-
-    return { account };
-  } catch (error) {
-    logger.error(`Error creating Stripe account: ${error.message}`, { error });
-    if (
-      error.type === "StripePermissionError" ||
-      error.message.includes("Connect")
-    ) {
-      throw new AppError(
-        "To create Stripe Connect accounts, you need to sign up for Stripe Connect first. Learn more: https://stripe.com/docs/connect",
-        400
-      );
-    }
-    throw new AppError(`Error creating Stripe account: ${error.message}`, 400);
-  }
-};
-
-const deleteEducatorStripeAccount = async (req, account) => {
-  try {
-    const educatorId = req.user.id;
-    const educatorStripeAccount = await prisma.stripeAccount.findFirst({
-      where: { educatorId },
-    });
-
-    if (!educatorStripeAccount) {
-      throw new AppError("Educator Stripe account not found", 404);
-    }
-
-    // Delete the Stripe account
-    await stripe.accounts.del(account);
-
-    // Delete the local Stripe account record
-    await prisma.stripeAccount.delete({
-      where: { educatorId },
-    });
-
-    auditLogger.log(
-      "STRIPE_ACCOUNT_DELETED",
-      educatorId,
-      `Stripe Connect account deleted for educator ${educatorId}`,
-      null,
-      { accountId: account }
-    );
-  } catch (error) {
-    logger.error(`Error deleting educator account: ${error.message}`, {
-      error,
-    });
-    throw new AppError(
-      `Error deleting educator account: ${error.message}`,
-      400
-    );
-  }
-};
-
 module.exports = {
-  deleteEducatorStripeAccount,
-  createEducatorStripeAccount,
+
   getCurrentBalanceForEducator,
   processPayment,
   processRefund,

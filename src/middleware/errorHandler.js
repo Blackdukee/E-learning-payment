@@ -36,7 +36,7 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.code === 'P2002') {
     statusCode = 400;
     message = 'A record with that value already exists.';
-  }
+  } 
 
   // Return error response
   res.status(statusCode).json({

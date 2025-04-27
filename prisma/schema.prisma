@@ -69,7 +69,6 @@ model stripeAccount {
   educatorId String
   email String
   stripeAccountId String
-  stripeBankAccount String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   @@index([educatorId], name: "stripeAccount_educatorId_index")

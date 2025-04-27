@@ -323,69 +323,8 @@ const getEducatorCurrentBalance = async (req, res, next) => {
   }
 };
 
-/**
- * @swagger
- * /payments/create-account:
- *   post:
- *     summary: Create Stripe account for educator
- *     tags: [Payments]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       '201':
- *         description: Account created
- */
-const createEducatorAccount = async (req, res) => {
-  try {
-    const { account } = await paymentService.createEducatorStripeAccount(req);
-    res.status(201).json({
-      success: true,
-      message: "Stripe account created successfully",
-      data: {
-        accountId: account.id,
-      },
-    });
-  } catch (error) {
-    throw new AppError(error.message, 500);
-  }
-};
-
-/**
- * @swagger
- * /payments/delete-account:
- *   delete:
- *     summary: Delete Stripe account for educator
- *     tags: [Payments]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       '200':
- *         description: Account deleted
- */
-const deleteEducatorAccount = async (req, res) => {
-  try {
-    const { account } = await prisma.stripeAccount.findFirst({
-      where: {
-        educatorId: req.user.id,
-      },
-    });
-    const result = await paymentService.deleteEducatorStripeAccount(
-      req,
-      account
-    );
-    res.status(200).json({
-      success: true,
-      message: "Stripe account deleted successfully",
-      data: result,
-    });
-  } catch (error) {
-    throw new AppError(error.message, 500);
-  }
-};
-
 module.exports = {
-  deleteEducatorAccount,
-  createEducatorAccount,
+
   getEducatorCurrentBalance,
   processPayment,
   processRefund,
