@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const { body } = require("express-validator");
-const { validateToken } = require("../middleware/auth");
+const { validateToken, mockAuthMiddleware } = require("../middleware/auth");
 const paymentController = require("../controllers/paymentController");
 
 const router = express.Router();

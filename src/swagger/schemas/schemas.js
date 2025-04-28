@@ -4,13 +4,13 @@ const swagger_schemas = {
         required: ["courseId", "amount", "currency", "source", "educatorId"],
         properties: {
             courseId: { type: "string" },
-            amount: { type: "number", minimum: 0.01 },
+            amount: { type: "number", minimum: 0.01 , default: 100.01},
             currency: { type: "string", enum: ["USD", "EUR", "GBP"] },
-            source: { type: "string" },
-            educatorId: { type: "string" },
-            description: { type: "string" },
+            source: { type: "string" ,default: "pm_card_visa"},
+            educatorId: { type: "string", default:"edu_123" },
+            description: { type: "string",  default: "enrolling in this course" },
         },
-    },
+    }, 
     RefundRequest: {
         type: "object",
         required: ["transactionId"],
@@ -55,6 +55,14 @@ const swagger_schemas = {
             billingInfo: { type: "object" },
             notes: { type: "string" },
             dueDate: { type: "string", format: "date-time" },
+        },
+    },
+    ErrorResponse: {
+        type: "object",
+        properties: {
+            error: { type: "string" },
+            message: { type: "string" },
+            statusCode: { type: "integer" },
         },
     },
 };

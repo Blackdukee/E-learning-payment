@@ -12,6 +12,85 @@ const { logger } = require("../utils/logger");
 
 /**
  * @swagger
+ * /payments/enrollment/{courseId}:
+ *   get:
+ *     summary: Check if a student is enrolled in a course
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: courseId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the course to check enrollment for
+ *     responses:
+ *       '200':
+ *         description: User is enrolled in this course
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "User is enrolled in this course"
+ *       '403':
+ *         description: User is not enrolled in this course
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "User is not enrolled in this course"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+const checkStudentEnrollment = async (req, res, next) => {
+  try {
+    const { courseId } = req.params;
+    const userId = req.user.id;
+
+    // Check if the user is enrolled in the course
+    const enrollment = await prisma.enrollment.findFirst({
+      where: {
+        userId,
+        courseId,
+      },
+    });
+
+    if (!enrollment) {
+      return res.status(403).json({
+        success: false,
+        message: "User is not enrolled in this course",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "User is enrolled in this course",
+    });
+  } catch (error) {
+    logger.error(`Error checking enrollment: ${error.message}`);
+    return next(new AppError("Failed to check enrollment", 500));
+  }
+};
+
+/**
+ * @swagger
  * /payments:
  *   post:
  *     summary: Process a payment
@@ -315,7 +394,10 @@ const getEducatorCurrentBalance = async (req, res, next) => {
     );
     return res.status(200).json({
       success: true,
-      data: { amount: Math.round(earnings.amount / 100), currency: earnings.currency },
+      data: {
+        amount: Math.round(earnings.amount / 100),
+        currency: earnings.currency,
+      },
     });
   } catch (error) {
     logger.error(`Error fetching current balance: ${error.message}`);
@@ -324,7 +406,6 @@ const getEducatorCurrentBalance = async (req, res, next) => {
 };
 
 module.exports = {
-
   getEducatorCurrentBalance,
   processPayment,
   processRefund,
@@ -332,4 +413,5 @@ module.exports = {
   getTransactionById,
   getTotalEarningsForEducator,
   generateTransactionReport,
+  checkStudentEnrollment,
 };

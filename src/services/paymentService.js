@@ -7,11 +7,34 @@ const {
   notifyCourseService,
 } = require("../utils/serviceNotifier");
 const invoiceService = require("./invoiceService");
-const { application } = require("express");
-const app = require("..");
+const { invalidateTransactionCaches } = require("./statisticsService");
 
 const PLATFORM_COMMISSION_PERCENTAGE =
   parseFloat(process.env.PLATFORM_COMMISSION_PERCENTAGE) || 20;
+
+const checkStudentEnrollment = async (courseId, userId) => {
+  try {
+    const enrollment = await prisma.transaction.findFirst({
+      where: {
+        courseId,
+        userId,
+        status: "COMPLETED",
+      },
+    });
+
+    logger.debug(
+      `Enrollment check for user ${userId} in course ${courseId}: ${
+        enrollment ? "Enrolled" : "Not Enrolled"
+      }`
+    );
+    return !!enrollment; // Return true if enrollment exists, false otherwise
+  } catch (error) {
+    logger.error(`Error checking student enrollment: ${error.message}`, {
+      error,
+    });
+    throw new AppError("Error checking student enrollment", 500);
+  }
+};
 
 const processPayment = async (paymentData, user) => {
   const startTime = Date.now();
@@ -138,6 +161,11 @@ const processPayment = async (paymentData, user) => {
         transaction.id,
         { stripeChargeId: stripeCharge.id }
       );
+    }, 0);
+
+    // Invalidate transaction-related caches (added)
+    setTimeout(() => {
+      invalidateTransactionCaches();
     }, 0);
 
     const processingTime = Date.now() - startTime;
@@ -299,8 +327,7 @@ const calculatePlatformCommission = (amount, educatorId) => {
  * Process a refund
  */
 const processRefund = async (refundData, user) => {
-  const startTime = Date.now();
-  const { transactionId, amount, reason } = refundData;
+  const { transactionId, reason } = refundData;
 
   try {
     // 1. Find the original transaction
@@ -381,7 +408,6 @@ const processRefund = async (refundData, user) => {
           originalTransactionId: originalTransaction.id,
           reason,
           refundedBy: user.id,
-          processingTime: Date.now() - startTime,
         },
       },
     });
@@ -438,6 +464,11 @@ const processRefund = async (refundData, user) => {
       refundTransaction.id,
       { originalTransactionId: originalTransaction.id, reason }
     );
+
+    // Invalidate transaction-related caches (added)
+    setTimeout(() => {
+      invalidateTransactionCaches();
+    }, 0);
 
     return {
       originalTransaction,
@@ -580,7 +611,6 @@ const getTransactionsReport = async (filters = {}, page = 1, limit = 50) => {
 };
 
 module.exports = {
-
   getCurrentBalanceForEducator,
   processPayment,
   processRefund,
@@ -588,4 +618,5 @@ module.exports = {
   getTransactionsByUser,
   getTransactionsReport,
   getTotalEarningsForEducator,
+  checkStudentEnrollment
 };

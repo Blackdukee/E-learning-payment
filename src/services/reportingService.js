@@ -6,114 +6,198 @@ const prisma = require("../config/db");
 const { Prisma } = require("@prisma/client");
 const { AppError } = require("../middleware/errorHandler");
 const { logger } = require("../utils/logger");
+const { cacheUtils } = require("../config/cache");
+
+// Cache TTLs in seconds
+const CACHE_TTLS = {
+  FINANCIAL_REPORT: 1800,    // 30 minutes
+  EARNINGS_REPORT: 1800,     // 30 minutes
+  COMMISSION_REPORT: 1800,   // 30 minutes
+};
+
+/**
+ * Generate cache key for a report function based on its parameters
+ */
+const generateReportCacheKey = (prefix, filters = {}) => {
+  const filterString = Object.entries(filters)
+    .filter(([_, value]) => value !== undefined)
+    .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+  
+  return `report:${prefix}:${filterString || 'default'}`;
+};
 
 /**
  * Generate financial report with optional filters
  */
 const generateFinancialReport = async (filters = {}) => {
   try {
+    const cacheKey = generateReportCacheKey('financial', filters);
+    
+    // Try to get from cache first
+    const cachedData = await cacheUtils.get(cacheKey);
+    if (cachedData) {
+      logger.debug(`Cache hit for financial report: ${cacheKey}`);
+      return cachedData;
+    }
+    
+    logger.debug(`Cache miss for financial report: ${cacheKey}`);
+    
     // Extract filters
     const { startDate, endDate, educatorId } = filters;
 
     // Build date filter condition for SQL queries
-
     let dateCondition = Prisma.empty;
     if (startDate && endDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" BETWEEN ${new Date(
-        startDate
-      )} AND ${new Date(endDate)}`;
+      const startDateObj = new Date(startDate);
+      const endDateObj = new Date(endDate);
+      
+      // Validate dates to prevent "Invalid time value" errors
+      if (isNaN(startDateObj.getTime())) {
+        throw new AppError(`Invalid startDate: ${startDate}`, 400);
+      }
+      if (isNaN(endDateObj.getTime())) {
+        throw new AppError(`Invalid endDate: ${endDate}`, 400);
+      }
+      
+      dateCondition = Prisma.sql`AND t."createdAt" BETWEEN ${startDateObj} AND ${endDateObj}`;
     } else if (startDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(startDate)}`;
+      const startDateObj = new Date(startDate);
+      if (isNaN(startDateObj.getTime())) {
+        throw new AppError(`Invalid startDate: ${startDate}`, 400);
+      }
+      dateCondition = Prisma.sql`AND t."createdAt" >= ${startDateObj}`;
     } else if (endDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(endDate)}`;
+      const endDateObj = new Date(endDate);
+      if (isNaN(endDateObj.getTime())) {
+        throw new AppError(`Invalid endDate: ${endDate}`, 400);
+      }
+      dateCondition = Prisma.sql`AND t."createdAt" <= ${endDateObj}`;
     }
 
-    // Build educator filter condition
-    let educatorCondition = Prisma.empty;
+    // Add educator filter if provided
+    let educatorFilter = Prisma.empty;
     if (educatorId) {
-      educatorCondition = Prisma.sql`AND t."educatorId" = ${educatorId}`;
+      educatorFilter = Prisma.sql`AND t."educatorId" = ${educatorId}`;
     }
 
-    // Query for summary statistics
+    // Generate the report SQL queries
+    const [summary, dailyStats, topCourses, paymentMethods] = await Promise.all([
+      // Summary statistics
+      prisma.$queryRaw`
+        SELECT 
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "totalRevenue",
+          COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "totalRefunds",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END) - 
+                   SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "netRevenue",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."platformCommission" ELSE 0 END), 0) AS "totalCommission",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END), 0) AS "totalEducatorEarnings",
+          COUNT(CASE WHEN t."type" = 'PAYMENT' THEN 1 END) AS "totalTransactions",
+          COUNT(CASE WHEN t."type" = 'REFUND' THEN 1 END) AS "totalRefundCount",
+          COUNT(DISTINCT t."userId") AS "uniqueCustomers"
+        FROM "Transaction" t
+        WHERE 1=1 ${dateCondition} ${educatorFilter}
+      `,
 
-    const summaryQuery = Prisma.sql`
-    SELECT
-      COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" END)::numeric, 0) as "totalPayments",
-      COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" END)::numeric, 0) as "totalRefunds",
-      COALESCE(SUM(CASE WHEN t."status" = 'COMPLETED' THEN t."platformCommission" END)::numeric, 0) as "totalCommission",
-      COALESCE(SUM(CASE WHEN t."status" = 'COMPLETED' THEN t."educatorEarnings" END)::numeric, 0) as "totalEducatorEarnings",
-      COUNT(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN 1 END)::integer as "successfulPayments",
-      COUNT(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN 1 END)::integer as "successfulRefunds"
-    FROM "Transaction" t
-    WHERE 1=1 ${dateCondition} ${educatorCondition}
-  `;
-    // Query for daily statistics
-    const dailyStatsQuery = Prisma.sql`
-      SELECT
-        DATE_TRUNC('day', t."createdAt") as "date",
-        COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END),0)::numeric as "dailyRevenue",
-        COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END),0)::numeric as "dailyRefunds",
-        COUNT(*)::integer as "dailyTransactions"
-      FROM "Transaction" t
-      WHERE 1=1 ${dateCondition} ${educatorCondition}
-      GROUP BY DATE_TRUNC('day', t."createdAt")
-      ORDER BY "date"
-    `;
+      // Daily statistics
+      prisma.$queryRaw`
+        SELECT 
+          TO_CHAR(t."createdAt", 'YYYY-MM-DD') AS "date",
+          COUNT(CASE WHEN t."type" = 'PAYMENT' THEN 1 END) AS "transactions",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "revenue",
+          COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "refunds",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."platformCommission" ELSE 0 END), 0) AS "platformCommission",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END), 0) AS "educatorEarnings"
+        FROM "Transaction" t
+        WHERE 1=1 ${dateCondition} ${educatorFilter}
+        GROUP BY TO_CHAR(t."createdAt", 'YYYY-MM-DD')
+        ORDER BY TO_CHAR(t."createdAt", 'YYYY-MM-DD') DESC
+        LIMIT 30
+      `,
 
-    // Query for top courses by revenue
-    const topCoursesQuery = Prisma.sql`
-      SELECT
-        t."courseId",
-        COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END)::numeric,0) as "totalRevenue",
-        COUNT(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN 1 END)::integer as "totalSales"
-      FROM "Transaction" t
-      WHERE 1=1 ${dateCondition} ${educatorCondition}
-      GROUP BY t."courseId"
-      ORDER BY "totalRevenue" DESC
-      LIMIT 10
-    `;
+      // Top courses by revenue
+      prisma.$queryRaw`
+        SELECT 
+          t."courseId",
+          COUNT(CASE WHEN t."type" = 'PAYMENT' THEN 1 END) AS "sales",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "revenue",
+          COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "refunds",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."platformCommission" ELSE 0 END), 0) AS "platformCommission",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END), 0) AS "educatorEarnings"
+        FROM "Transaction" t
+        WHERE 1=1 ${dateCondition} ${educatorFilter}
+        GROUP BY t."courseId"
+        ORDER BY "revenue" DESC
+        LIMIT 10
+      `,
 
-    // Execute all queries in parallel
-    const [summaryResults, dailyStats, topCourses] = await Promise.all([
-      prisma.$queryRaw(summaryQuery),
-      prisma.$queryRaw(dailyStatsQuery),
-      prisma.$queryRaw(topCoursesQuery),
+      // Payment methods
+      prisma.$queryRaw`
+        SELECT 
+          COALESCE(t.metadata->>'paymentMethod', 'unknown') AS "paymentMethod",
+          COUNT(*) AS "count",
+          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "volume"
+        FROM "Transaction" t
+        WHERE t."type" = 'PAYMENT' ${dateCondition} ${educatorFilter}
+        GROUP BY t.metadata->>'paymentMethod'
+        ORDER BY "count" DESC
+      `,
     ]);
 
-    // Get educator specific stats if educatorId is provided
-    let educatorStats = null;
-    if (educatorId) {
-      const educatorStatsQuery = Prisma.sql`
-        SELECT
-          t."educatorId",
-          COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END)::numeric,0) as "totalEarnings",
-          COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END)::numeric,0) as "totalRefundedEarnings"
-        FROM "Transaction" t
-        WHERE t."educatorId" = ${educatorId} ${dateCondition}
-        GROUP BY t."educatorId"
-      `;
-
-      const educatorStatsResults = await prisma.$queryRaw(educatorStatsQuery);
-      if (educatorStatsResults.length > 0) {
-        educatorStats = educatorStatsResults[0];
-      }
-    }
-
-    // Prepare and return the report
-    return {
-      summary: summaryResults[0],
-      dailyStats,
-      topCourses,
-      educatorStats,
-      reportGenerated: new Date(),
-      period: {
-        from: startDate ? new Date(startDate) : null,
-        to: endDate ? new Date(endDate) : null,
+    // Format and sanitize the report data
+    const report = {
+      metadata: {
+        generatedAt: new Date(),
+        filters: {
+          startDate: startDate || 'All time',
+          endDate: endDate || 'Current date',
+          educatorId: educatorId || 'All educators',
+        },
       },
+      summary: {
+        totalRevenue: Number(summary[0]?.totalRevenue) || 0,
+        totalRefunds: Number(summary[0]?.totalRefunds) || 0,
+        netRevenue: Number(summary[0]?.netRevenue) || 0,
+        totalCommission: Number(summary[0]?.totalCommission) || 0,
+        totalEducatorEarnings: Number(summary[0]?.totalEducatorEarnings) || 0,
+        totalTransactions: Number(summary[0]?.totalTransactions) || 0,
+        totalRefundCount: Number(summary[0]?.totalRefundCount) || 0,
+        uniqueCustomers: Number(summary[0]?.uniqueCustomers) || 0,
+      },
+      dailyStats: dailyStats.map(day => ({
+        date: day.date,
+        transactions: Number(day.transactions) || 0,
+        revenue: Number(day.revenue) || 0,
+        refunds: Number(day.refunds) || 0,
+        platformCommission: Number(day.platformCommission) || 0,
+        educatorEarnings: Number(day.educatorEarnings) || 0,
+      })),
+      topCourses: topCourses.map(course => ({
+        courseId: course.courseId,
+        sales: Number(course.sales) || 0,
+        revenue: Number(course.revenue) || 0,
+        refunds: Number(course.refunds) || 0,
+        platformCommission: Number(course.platformCommission) || 0,
+        educatorEarnings: Number(course.educatorEarnings) || 0,
+      })),
+      paymentMethods: paymentMethods.map(pm => ({
+        paymentMethod: pm.paymentMethod,
+        count: Number(pm.count) || 0,
+        volume: Number(pm.volume) || 0,
+        percentage: summary[0]?.totalTransactions > 0 
+          ? ((Number(pm.count) / Number(summary[0].totalTransactions)) * 100).toFixed(2)
+          : 0,
+      })),
     };
+
+    // Cache the results
+    await cacheUtils.set(cacheKey, report, CACHE_TTLS.FINANCIAL_REPORT);
+    
+    return report;
   } catch (error) {
-    logger.error(`Error generating financial report: ${error.message}`);
-    throw new AppError("Failed to generate financial report", 500);
+    logger.error(`Error generating financial report: ${error.message}`, { error });
+    throw new AppError(`Failed to generate financial report: ${error.message}`, error.statusCode || 500);
   }
 };
 
@@ -238,6 +322,7 @@ const generateFinancialPDFContent = (doc, reportData) => {
         (educatorStats.totalEarnings || 0) -
           (educatorStats.totalRefundedEarnings || 0)
       )}`
+
     );
 
     doc.moveDown();
@@ -343,145 +428,182 @@ const generateFinancialPDFContent = (doc, reportData) => {
 /**
  * Get educator earnings report
  */
-const getEducatorEarningsReport = async (educatorId) => {
+const getEducatorEarningsReport = async (educatorId, filters = {}) => {
   try {
-    const query = prisma.sql`
+    const cacheKey = generateReportCacheKey(`earnings:${educatorId}`, filters);
+    
+    // Try to get from cache first
+    const cachedData = await cacheUtils.get(cacheKey);
+    if (cachedData) {
+      logger.debug(`Cache hit for earnings report: ${cacheKey}`);
+      return cachedData;
+    }
+    
+    logger.debug(`Cache miss for earnings report: ${cacheKey}`);
+    
+    // Build date filter condition for SQL queries
+    let dateCondition = Prisma.empty;
+    if (filters.startDate && filters.endDate) {
+      dateCondition = Prisma.sql`AND t."createdAt" BETWEEN ${new Date(
+        filters.startDate
+      )} AND ${new Date(filters.endDate)}`;
+    } else if (filters.startDate) {
+      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(filters.startDate)}`;
+    } else if (filters.endDate) {
+      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(filters.endDate)}`;
+    }
+
+    // Query for educator's transactions
+    const transactionsQuery = Prisma.sql`
       SELECT
         t."educatorId",
-        SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END) as "totalEarnings",
-        SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END) as "totalRefundedEarnings",
-        COUNT(DISTINCT CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."courseId" END) as "totalActiveCourses",
-        COUNT(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN 1 END) as "totalSales"
+        COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END)::numeric,0) as "totalEarnings",
+        COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END)::numeric,0) as "totalRefundedEarnings",
+        COUNT(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN 1 END)::integer as "totalSales",
+        COUNT(DISTINCT t."courseId") as "totalActiveCourses"
       FROM "Transaction" t
-      WHERE t."educatorId" = ${educatorId}
+      WHERE t."educatorId" = ${educatorId} ${dateCondition}
       GROUP BY t."educatorId"
     `;
 
-    const results = await prisma.$queryRaw(query);
+    const transactionsResults = await prisma.$queryRaw(transactionsQuery);
 
-    if (results.length === 0) {
+    // If no results found, return default structure
+    if (transactionsResults.length === 0) {
       return {
         educatorId,
         totalEarnings: 0,
         totalRefundedEarnings: 0,
-        totalActiveCourses: 0,
         totalSales: 0,
+        totalActiveCourses: 0,
       };
     }
 
-    return results[0];
+    // Format the report data
+    const report = {
+      educatorId: transactionsResults[0].educatorId,
+      totalEarnings: Number(transactionsResults[0].totalEarnings),
+      totalRefundedEarnings: Number(transactionsResults[0].totalRefundedEarnings),
+      totalSales: Number(transactionsResults[0].totalSales),
+      totalActiveCourses: Number(transactionsResults[0].totalActiveCourses),
+      reportGenerated: new Date(),
+      period: {
+        from: filters.startDate ? new Date(filters.startDate) : null,
+        to: filters.endDate ? new Date(filters.endDate) : null,
+      },
+    };
+
+    // Cache the results
+    await cacheUtils.set(cacheKey, report, CACHE_TTLS.EARNINGS_REPORT);
+    
+    return report;
   } catch (error) {
-    logger.error(`Error getting educator earnings report: ${error.message}`);
+    logger.error(`Error getting educator earnings report: ${error.message}`, { error });
     throw new AppError("Failed to get educator earnings report", 500);
   }
 };
 
 /**
- * Generate commission analysis report
+ * Generate commission report
  */
 const generateCommissionReport = async (filters = {}) => {
   try {
-    const { startDate, endDate, educatorId } = filters;
-
-    // Build query conditions
-    const dateWhere = buildDateFilter(startDate, endDate);
-    const educatorWhere = educatorId
-      ? prisma.sql`AND "educatorId" = ${educatorId}`
-      : prisma.sql``;
-
-    // Get overall commission summary
-    const commissionSummary = await prisma.$queryRaw`
-      SELECT
-        SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" ELSE 0 END) as "totalCommission",
-        SUM(CASE WHEN "type" = 'REFUND' AND "status" = 'COMPLETED' THEN "platformCommission" ELSE 0 END) as "refundedCommission",
-        SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "educatorEarnings" ELSE 0 END) as "totalEducatorEarnings",
-        SUM(CASE WHEN "type" = 'REFUND' AND "status" = 'COMPLETED' THEN "educatorEarnings" ELSE 0 END) as "refundedEducatorEarnings",
-        SUM(CASE WHEN "status" = 'COMPLETED' THEN "amount" ELSE 0 END) as "totalTransactionAmount",
-        AVG(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" / "amount" * 100 ELSE NULL END) as "averageCommissionRate"
-      FROM "Transaction"
-      WHERE 1=1
-      ${dateWhere ? prisma.sql`AND ${dateWhere}` : prisma.sql``}
-      ${educatorWhere}
-    `;
-
-    // Get commission by educator (if not filtered to specific educator)
-    let commissionByEducator = [];
-    if (!educatorId) {
-      commissionByEducator = await prisma.$queryRaw`
-        SELECT
-          "educatorId",
-          COUNT(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN 1 END) as "totalTransactions",
-          SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "amount" ELSE 0 END) as "totalRevenue",
-          SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" ELSE 0 END) as "platformCommission",
-          SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "educatorEarnings" ELSE 0 END) as "educatorEarnings",
-          AVG(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" / "amount" * 100 ELSE NULL END) as "effectiveCommissionRate"
-        FROM "Transaction"
-        WHERE 1=1
-        ${dateWhere ? prisma.sql`AND ${dateWhere}` : prisma.sql``}
-        GROUP BY "educatorId"
-        ORDER BY "platformCommission" DESC
-      `;
+    const cacheKey = generateReportCacheKey('commission', filters);
+    
+    // Try to get from cache first
+    const cachedData = await cacheUtils.get(cacheKey);
+    if (cachedData) {
+      logger.debug(`Cache hit for commission report: ${cacheKey}`);
+      return cachedData;
+    }
+    
+    logger.debug(`Cache miss for commission report: ${cacheKey}`);
+    
+    // Build date filter condition for SQL queries
+    let dateCondition = Prisma.empty;
+    if (filters.startDate && filters.endDate) {
+      dateCondition = Prisma.sql`AND t."createdAt" BETWEEN ${new Date(
+        filters.startDate
+      )} AND ${new Date(filters.endDate)}`;
+    } else if (filters.startDate) {
+      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(filters.startDate)}`;
+    } else if (filters.endDate) {
+      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(filters.endDate)}`;
     }
 
-    // Get commission trend over time (monthly)
-    const commissionTrend = await prisma.$queryRaw`
+    // Query for commission statistics
+    const commissionQuery = Prisma.sql`
       SELECT
-        DATE_TRUNC('month', "createdAt") as "month",
-        SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" ELSE 0 END) as "platformCommission",
-        SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "educatorEarnings" ELSE 0 END) as "educatorEarnings",
-        SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "amount" ELSE 0 END) as "totalRevenue"
-      FROM "Transaction"
-      WHERE 1=1
-      ${dateWhere ? prisma.sql`AND ${dateWhere}` : prisma.sql``}
-      ${educatorWhere}
-      GROUP BY DATE_TRUNC('month', "createdAt")
-      ORDER BY DATE_TRUNC('month', "createdAt")
+        COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."platformCommission" ELSE 0 END)::numeric, 0) as "totalCommission",
+        COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."platformCommission" ELSE 0 END)::numeric, 0) as "refundedCommission",
+        COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END)::numeric, 0) as "totalEducatorEarnings",
+        COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END)::numeric, 0) as "refundedEducatorEarnings",
+        COALESCE(SUM(CASE WHEN t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END)::numeric, 0) as "totalTransactionAmount",
+        AVG(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."platformCommission" / NULLIF(t."amount", 0) * 100 ELSE NULL END) as "averageCommissionRate"
+      FROM "Transaction" t
+      WHERE 1=1 ${dateCondition}
     `;
 
-    return {
+    const commissionResults = await prisma.$queryRaw(commissionQuery);
+
+    // Format the report data
+    const report = {
       summary: {
-        totalCommission: Number(commissionSummary[0]?.totalCommission) || 0,
+        totalCommission: Number(commissionResults[0]?.totalCommission) || 0,
         refundedCommission: Math.abs(
-          Number(commissionSummary[0]?.refundedCommission) || 0
+          Number(commissionResults[0]?.refundedCommission) || 0
         ),
         netCommission:
-          Number(commissionSummary[0]?.totalCommission) -
-          Math.abs(Number(commissionSummary[0]?.refundedCommission) || 0),
+          Number(commissionResults[0]?.totalCommission) -
+          Math.abs(Number(commissionResults[0]?.refundedCommission) || 0),
         totalEducatorEarnings:
-          Number(commissionSummary[0]?.totalEducatorEarnings) || 0,
+          Number(commissionResults[0]?.totalEducatorEarnings) || 0,
         refundedEducatorEarnings: Math.abs(
-          Number(commissionSummary[0]?.refundedEducatorEarnings) || 0
+          Number(commissionResults[0]?.refundedEducatorEarnings) || 0
         ),
         netEducatorEarnings:
-          Number(commissionSummary[0]?.totalEducatorEarnings) -
-          Math.abs(Number(commissionSummary[0]?.refundedEducatorEarnings) || 0),
-        totalAmount: Number(commissionSummary[0]?.totalTransactionAmount) || 0,
+          Number(commissionResults[0]?.totalEducatorEarnings) -
+          Math.abs(Number(commissionResults[0]?.refundedEducatorEarnings) || 0),
+        totalAmount: Number(commissionResults[0]?.totalTransactionAmount) || 0,
         averageCommissionRate:
-          Number(commissionSummary[0]?.averageCommissionRate) || 0,
+          Number(commissionResults[0]?.averageCommissionRate) || 0,
       },
-      educatorAnalysis: commissionByEducator.map((item) => ({
-        educatorId: item.educatorId,
-        totalTransactions: Number(item.totalTransactions),
-        totalRevenue: Number(item.totalRevenue),
-        platformCommission: Number(item.platformCommission),
-        educatorEarnings: Number(item.educatorEarnings),
-        effectiveCommissionRate: Number(item.effectiveCommissionRate),
-      })),
-      monthlyTrend: commissionTrend.map((item) => ({
-        month: item.month,
-        platformCommission: Number(item.platformCommission),
-        educatorEarnings: Number(item.educatorEarnings),
-        totalRevenue: Number(item.totalRevenue),
-        platformShare:
-          (Number(item.platformCommission) / Number(item.totalRevenue)) * 100,
-        educatorShare:
-          (Number(item.educatorEarnings) / Number(item.totalRevenue)) * 100,
-      })),
+      monthlyTrend: [],
     };
+
+    // Monthly trend query
+    const trendQuery = Prisma.sql`
+      SELECT
+        DATE_TRUNC('month', t."createdAt") as "month",
+        SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."platformCommission" ELSE 0 END) as "platformCommission",
+        SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."educatorEarnings" ELSE 0 END) as "educatorEarnings",
+        SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END) as "totalRevenue"
+      FROM "Transaction" t
+      WHERE 1=1 ${dateCondition}
+      GROUP BY DATE_TRUNC('month', t."createdAt")
+      ORDER BY DATE_TRUNC('month', t."createdAt")
+    `;
+
+    const trendResults = await prisma.$queryRaw(trendQuery);
+
+    // Format monthly trend data
+    report.monthlyTrend = trendResults.map(item => ({
+      month: item.month,
+      platformCommission: Number(item.platformCommission),
+      educatorEarnings: Number(item.educatorEarnings),
+      totalRevenue: Number(item.totalRevenue),
+      platformShare:
+        (Number(item.platformCommission) / Number(item.totalRevenue)) * 100,
+      educatorShare:
+        (Number(item.educatorEarnings) / Number(item.totalRevenue)) * 100,
+    }));
+
+    // Cache the results
+    await cacheUtils.set(cacheKey, report, CACHE_TTLS.COMMISSION_REPORT);
+    
+    return report;
   } catch (error) {
-    logger.error(`Error generating commission report: ${error.message}`, {
-      error,
-    });
+    logger.error(`Error generating commission report: ${error.message}`, { error });
     throw new AppError("Failed to generate commission report", 500);
   }
 };
@@ -518,10 +640,22 @@ const deleteTempPDF = (filePath) => {
   }
 };
 
+// Function to invalidate report caches
+const invalidateReportCaches = async () => {
+  try {
+    // Delete all report caches
+    await cacheUtils.deleteByPattern('report:*');
+    logger.info('Successfully invalidated report caches');
+  } catch (error) {
+    logger.error(`Error invalidating report caches: ${error.message}`, { error });
+  }
+};
+
 module.exports = {
   generateFinancialReport,
   generateFinancialReportPDF,
   getEducatorEarningsReport,
   deleteTempPDF,
   generateCommissionReport,
+  invalidateReportCaches,
 };

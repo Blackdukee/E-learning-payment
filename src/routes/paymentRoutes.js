@@ -37,6 +37,14 @@ router.post(
   paymentController.processPayment
 );
 
+// check student enrollment status
+router.get(
+  "/enrollment-status/:courseId",
+  process.env.NODE_ENV === "development"
+    ? mockAuthMiddleware() : validateToken,
+  paymentController.checkStudentEnrollment
+);
+
 // Process refund
 router.post(
   "/refund",
