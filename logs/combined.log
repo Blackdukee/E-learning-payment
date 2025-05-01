@@ -6264,3 +6264,14 @@
 {"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-04-28 17:26:15"}
 {"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-04-28 17:26:15"}
 {"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-04-28 17:26:15"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-01 21:19:30"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-05-01 21:19:31"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-01 21:19:31"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-05-01 21:19:31"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-01 21:19:32"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-01 21:19:32"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-01 21:19:34"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-01 21:19:34"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-01 21:19:35"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-01 21:19:38"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-01 21:19:38"}

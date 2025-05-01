@@ -90,19 +90,19 @@ const requireRole = (roles) => {
 /**
  * Create middleware for testing without actual authentication
  */
-const mockAuthMiddleware = (role = "ADMIN") => {
+const mockAuthMiddleware = (role = "ADMIN" , id = "edu_123" , name = "E mock user") => {
   return (req, res, next) => {
     req.user = {
-      id: "mock-user-id",
+      id: id,
       email: "mock@example.com",
-      name: "Mock User",
+      name: name,
       role: role,
     };
     next();
   };
 };
 
-const mockEducatorAuthMiddleware = (req, res, next) => {
+const mockEducatorAuthMiddleware =  (req, res, next) => {
   req.user = {
     id: "edu_123",
     email: "mock@example.com",

@@ -1,28 +1,23 @@
 const router = require("express").Router();
 const {
-  mockEducatorAuthMiddleware,
+  mockAuthMiddleware,
   validateToken,
+  requireRole,
 } = require("../middleware/auth");
 const accountController = require("../controllers/accountController");
 
-router.get(
-  "/stripe-account",
-  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
-  accountController.stripeAccount
+router.use(
+  process.env.NODE_ENV === "development" ? mockAuthMiddleware() : validateToken,
+  requireRole("EDUCATOR")
 );
+
+// Get educator stripe account login link
+router.get("/stripe-account", accountController.stripeAccount);
+
 // Post create stripe account for educator
-router.post(
-  "/create-account",
-  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
-  accountController.createEducatorAccount
-);
+router.post("/create-account", accountController.createEducatorAccount);
 
 // Delete stripe account for educator
-router.delete(
-  "/delete-account",
-  process.env.NODE_ENV === 'development' ? mockEducatorAuthMiddleware : validateToken,
-  accountController.deleteEducatorAccount
-);
-
+router.delete("/delete-account", accountController.deleteEducatorAccount);
 
 module.exports = router;

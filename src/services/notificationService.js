@@ -36,5 +36,4 @@ const notifyService = async (serviceUrl, data) => {
 
 module.exports = {
   notifyService,
-
 };

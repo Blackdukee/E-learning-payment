@@ -20,7 +20,6 @@ const paymentSchema = {
   description: { type: "string", required: false },
 };
 
-// request json example
 
 // Schema validation for refund requests
 const refundSchema = {
