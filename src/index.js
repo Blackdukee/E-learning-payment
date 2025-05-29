@@ -77,6 +77,8 @@ app.use(
     },
     xssFilter: true,
     frameguard: { action: "sameorigin" }, // Important for iframe embedded content
+    crossOriginEmbedderPolicy: false, // Allow cross-origin resources
+    crossOriginOpenerPolicy: false, // Allow cross-origin opener policy
   })
 );
 
