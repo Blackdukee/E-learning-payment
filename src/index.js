@@ -77,8 +77,8 @@ app.use(
     },
     xssFilter: true,
     frameguard: { action: "sameorigin" }, // Important for iframe embedded content
-    crossOriginEmbedderPolicy: false, // Allow cross-origin resources
-    crossOriginOpenerPolicy: false, // Allow cross-origin opener policy
+    crossOriginOpenerPolicy: { policy: "same-origin" },
+    originAgentCluster: true,
   })
 );
 
@@ -86,7 +86,9 @@ app.use(
 app.use(
   cors({
     origin:
-      process.env.NODE_ENV === "development" ? "*" : ["http://localhost:3000","http://3.66.224.12:5002"],
+      process.env.NODE_ENV === "development"
+        ? "*"
+        : ["http://localhost:3000", "http://3.66.224.12:5002"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
