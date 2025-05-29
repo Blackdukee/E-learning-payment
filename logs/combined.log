@@ -6275,3 +6275,179 @@
 {"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-01 21:19:35"}
 {"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-01 21:19:38"}
 {"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-01 21:19:38"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 22:58:48"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 22:58:46"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 22:58:52"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:19:58:52 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 22:58:52"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 22:58:53"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 22:58:54"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 22:58:51"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 22:58:53"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:19:58:56 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:19:58:56 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:19:58:56 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"GET /api/statistics/educators/edu2/payment-analytics","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:19:58:56 +0000] \"GET /api/statistics/educators/edu2/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 22:58:56"}
+{"level":"info","message":"GET /api/statistics/educators/edu1/payment-analytics","service":"payment-service","timestamp":"2025-05-02 22:58:57"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:19:58:57 +0000] \"GET /api/statistics/educators/edu1/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 22:58:57"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 22:58:58"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 22:58:58"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 22:58:58"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 22:58:58"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 22:59:02"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 22:59:02"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 22:59:02"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 22:59:02"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 22:59:10"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 22:59:10"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 22:59:10"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 22:59:10"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 22:59:26"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 22:59:26"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 22:59:26"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 22:59:26"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:00:45"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:00:44"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:00:46"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:00:47"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:00:47 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:00:47"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 23:00:47"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:00:46"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 23:00:47"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 23:00:48"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 23:00:48"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:00:49 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:00:49 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:00:49 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"GET /api/statistics/educators/edu2/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:00:49"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:00:50 +0000] \"GET /api/statistics/educators/edu2/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:00:50"}
+{"level":"info","message":"GET /api/statistics/educators/edu1/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:00:50"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:00:50 +0000] \"GET /api/statistics/educators/edu1/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:00:50"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 23:00:52"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 23:00:52"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 23:00:52"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 23:00:52"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 23:00:52"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:00:59"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:00:59"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:00 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:00 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:00 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:00 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"GET /api/statistics/educators/edu2/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:00 +0000] \"GET /api/statistics/educators/edu2/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"GET /api/statistics/educators/edu1/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:00 +0000] \"GET /api/statistics/educators/edu1/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:00"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 23:01:01"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 23:01:01"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 23:01:01"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 23:01:01"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:01:10"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:01:09"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 23:01:11"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:11 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:11 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:11 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:11 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"GET /api/statistics/educators/edu2/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:11 +0000] \"GET /api/statistics/educators/edu2/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"GET /api/statistics/educators/edu1/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:01:11 +0000] \"GET /api/statistics/educators/edu1/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:01:11"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 23:01:12"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-02 23:01:12"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 23:01:12"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-02 23:01:12"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 23:01:14"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 23:01:14"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6380,"service":"payment-service","timeout":5000,"timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 23:01:15"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 23:01:19"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 23:01:19"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-05-02 23:01:19"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-05-02 23:01:19"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 23:01:23"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 23:01:23"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 23:01:23"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 23:01:23"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 23:01:27"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 23:01:39"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 23:01:39"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 23:01:39"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 23:01:39"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 23:01:43"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-05-02 23:01:43"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 23:01:43"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-05-02 23:01:43"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:02:06"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-02 23:02:05"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:02:07 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"GET /api/payments/user","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:02:07 +0000] \"GET /api/payments/user HTTP/1.1\" 404 156 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:02:07 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"GET /api/statistics/transaction-volumes","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:02:07 +0000] \"GET /api/statistics/transaction-volumes HTTP/1.1\" 404 173 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"GET /api/statistics/educators/edu2/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:02:07 +0000] \"GET /api/statistics/educators/edu2/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"GET /api/statistics/educators/edu1/payment-analytics","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [02/May/2025:20:02:07 +0000] \"GET /api/statistics/educators/edu1/payment-analytics HTTP/1.1\" 404 186 \"-\" \"-\"","service":"payment-service","timestamp":"2025-05-02 23:02:07"}
+{"level":"info","message":"Connecting to Redis at localhost:6380...","service":"payment-service","timestamp":"2025-05-28 16:50:07"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-05-28 16:50:07"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-05-28 16:50:08"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-05-28 16:50:09"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-05-28 16:50:09"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-28 16:50:11"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-28 16:50:11"}
+{"clientVersion":"6.4.1","errorCode":"P1001","level":"error","message":"Database connection error: Can't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.","name":"PrismaClientInitializationError","service":"payment-service","stack":"PrismaClientInitializationError: Can't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.\n    at r (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\agents\\payment-service\\node_modules\\@prisma\\client\\runtime\\library.js:112:2565)","timestamp":"2025-05-28 16:50:12"}

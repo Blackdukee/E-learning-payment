@@ -58,14 +58,21 @@ app.use(
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
+          "http://3.66.224.12:5002",
           "https://js.stripe.com", // Stripe.js
           "https://checkout.stripe.com",
         ], // For embedded learning content if needed
         styleSrc: ["'self'", "'unsafe-inline'"], // For dynamic styling
-        imgSrc: ["'self'", "data:", "blob:", "https://*"], // For course images
-        mediaSrc: ["'self'", "https://*"], // For video/audio learning content
-        connectSrc: ["'self'", "https://*"], // For API connections
-        fontSrc: ["'self'", "https://*"], // For custom fonts
+        imgSrc: [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://*",
+          "http://3.66.224.12:5002",
+        ], // For course images
+        mediaSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For video/audio learning content
+        connectSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For API connections
+        fontSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For custom fonts
       },
     },
     xssFilter: true,
@@ -77,7 +84,7 @@ app.use(
 app.use(
   cors({
     origin:
-      process.env.NODE_ENV === "development" ? "*" : "http://localhost:3000",
+      process.env.NODE_ENV === "development" ? "*" : ["http://localhost:3000","http://3.66.224.12:5002"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
@@ -115,7 +122,7 @@ if (!fs.existsSync(logsDir)) {
 }
 
 // Routes
-app.use("/api/v1", router);
+app.use("/api/v1/", router);
 
 // Serve Swagger UI
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
