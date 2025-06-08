@@ -13,7 +13,7 @@ This document outlines all available endpoints in the Payment Service API.
 
 ## Health Check
 
-### GET /api/health
+### GET /api/v1/health
 Returns the health status of the payment service.
 
 **Response:** 
@@ -26,7 +26,7 @@ Returns the health status of the payment service.
 
 ## Payment Endpoints
 
-### POST /api/payments
+### POST /api/v1/payments
 Process a payment.
 
 **Required Body Parameters:**
@@ -65,7 +65,7 @@ Process a payment.
 }
 ```
 
-### POST /api/payments/refund
+### POST /api/v1/payments/refund
 Process a refund.
 
 **Required Body Parameters:**
@@ -95,7 +95,7 @@ Process a refund.
 }
 ```
 
-### GET /api/payments/user
+### GET /api/v1/payments/user
 Get transactions for the current user.
 
 **Query Parameters:**
@@ -138,7 +138,7 @@ Get transactions for the current user.
 }
 ```
 
-### POST /api/payments/create-account
+### POST /api/v1/payments/create-account
 Create a Stripe account for an educator.
 
 **Request Body Example:**
@@ -166,7 +166,7 @@ Create a Stripe account for an educator.
 }
 ```
 
-### DELETE /api/payments/delete-account
+### DELETE /api/v1/payments/delete-account
 Delete an educator's Stripe account.
 
 **Response Example:**
@@ -178,7 +178,7 @@ Delete an educator's Stripe account.
 }
 ```
 
-### GET /api/payments/total-earnings
+### GET /api/v1/payments/total-earnings
 Get the total earnings for an educator.
 
 **Query Parameters:**
@@ -199,7 +199,7 @@ Get the total earnings for an educator.
 }
 ```
 
-### GET /api/payments/current-balance
+### GET /api/v1/payments/current-balance
 Get the current balance for an educator.
 
 **Response Example:**
@@ -215,7 +215,7 @@ Get the current balance for an educator.
 }
 ```
 
-### GET /api/payments/:transactionId
+### GET /api/v1/payments/:transactionId
 Get a transaction by ID.
 
 **Response Example:**
@@ -241,7 +241,7 @@ Get a transaction by ID.
 }
 ```
 
-### GET /api/payments/report/transactions
+### GET /api/v1/payments/report/transactions
 Generate a transaction report (admin only).
 
 **Query Parameters:**
@@ -281,7 +281,7 @@ Generate a transaction report (admin only).
 
 ## Refund Endpoints
 
-### POST /api/refunds
+### POST /api/v1/refunds
 Process a refund.
 
 **Required Body Parameters:**
@@ -313,7 +313,7 @@ Process a refund.
 }
 ```
 
-### GET /api/refunds/transaction/:transactionId
+### GET /api/v1/refunds/transaction/:transactionId
 Get refund information by transaction ID.
 
 **Response Example:**
@@ -342,7 +342,7 @@ Get refund information by transaction ID.
 
 ## Invoice Endpoints
 
-### GET /api/invoices/user
+### GET /api/v1/invoices/user
 Get invoices for the current user.
 
 **Query Parameters:**
@@ -367,7 +367,7 @@ Get invoices for the current user.
       "dueDate": "2023-11-15T09:32:01.000Z",
       "courseId": "course_123456",
       "courseName": "Advanced JavaScript Course",
-      "pdfUrl": "/api/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
+      "pdfUrl": "/api/v1/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
     },
     {
       "id": "inv_1K1NvVJs9ciOaJs9e",
@@ -379,7 +379,7 @@ Get invoices for the current user.
       "dueDate": "2023-11-10T14:22:33.000Z",
       "courseId": "course_789012",
       "courseName": "Introduction to Python Programming",
-      "pdfUrl": "/api/invoices/inv_1K1NvVJs9ciOaJs9e/pdf"
+      "pdfUrl": "/api/v1/invoices/inv_1K1NvVJs9ciOaJs9e/pdf"
     }
   ],
   "pagination": {
@@ -391,7 +391,7 @@ Get invoices for the current user.
 }
 ```
 
-### GET /api/invoices/:invoiceId
+### GET /api/v1/invoices/:invoiceId
 Get a specific invoice.
 
 **Response Example:**
@@ -425,12 +425,12 @@ Get a specific invoice.
     "total": 49.99,
     "notes": "Thank you for your purchase!",
     "paymentMethod": "Credit Card",
-    "pdfUrl": "/api/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
+    "pdfUrl": "/api/v1/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
   }
 }
 ```
 
-### GET /api/invoices/:invoiceId/pdf
+### GET /api/v1/invoices/:invoiceId/pdf
 Download a specific invoice as PDF.
 
 **Response:**
@@ -440,7 +440,7 @@ Binary PDF file with appropriate headers:
 
 ## Report Endpoints
 
-### GET /api/reports/financial
+### GET /api/v1/reports/financial
 Generate a financial report with optional filters.
 
 **Query Parameters:**
@@ -493,18 +493,18 @@ Generate a financial report with optional filters.
 }
 ```
 
-### GET /api/reports/financial/pdf
+### GET /api/v1/reports/financial/pdf
 Generate and download a financial report as PDF.
 
 **Query Parameters:**
-- Same as GET /api/reports/financial
+- Same as GET /api/v1/reports/financial
 
 **Response:**
 Binary PDF file with appropriate headers:
 - Content-Type: application/pdf
 - Content-Disposition: attachment; filename=financial-report-{date}.pdf
 
-### GET /api/reports/educators/:educatorId/earnings
+### GET /api/v1/reports/educators/:educatorId/earnings
 Get an earnings report for a specific educator.
 
 **Query Parameters:**
@@ -558,7 +558,7 @@ Get an earnings report for a specific educator.
 }
 ```
 
-### GET /api/reports/commission-analysis
+### GET /api/v1/reports/commission-analysis
 Get a commission analysis report.
 
 **Query Parameters:**
@@ -609,7 +609,7 @@ Get a commission analysis report.
 
 ## Statistics Endpoints
 
-### GET /api/statistics/transaction-volumes
+### GET /api/v1/statistics/transaction-volumes
 Get transaction volume metrics.
 
 **Query Parameters:**
@@ -658,7 +658,7 @@ Get transaction volume metrics.
 }
 ```
 
-### GET /api/statistics/performance-metrics
+### GET /api/v1/statistics/performance-metrics
 Get performance metrics.
 
 **Query Parameters:**
@@ -707,7 +707,7 @@ Get performance metrics.
 }
 ```
 
-### GET /api/statistics/financial-analysis
+### GET /api/v1/statistics/financial-analysis
 Get financial analysis.
 
 **Query Parameters:**
@@ -752,7 +752,7 @@ Get financial analysis.
 }
 ```
 
-### GET /api/statistics/payment-operations
+### GET /api/v1/statistics/payment-operations
 Get payment operations metrics.
 
 **Query Parameters:**
@@ -788,7 +788,7 @@ Get payment operations metrics.
 }
 ```
 
-### GET /api/statistics/dashboard
+### GET /api/v1/statistics/dashboard
 Get comprehensive dashboard statistics.
 
 **Query Parameters:**
@@ -854,7 +854,7 @@ Get comprehensive dashboard statistics.
 }
 ```
 
-### GET /api/statistics/educators/:educatorId/payment-analytics
+### GET /api/v1/statistics/educators/:educatorId/payment-analytics
 Get detailed payment analytics for an educator.
 
 **Query Parameters:**
@@ -925,7 +925,7 @@ Get detailed payment analytics for an educator.
 
 ## Webhook Endpoints
 
-### POST /api/webhooks/stripe
+### POST /api/v1/webhooks/stripe
 Handle Stripe webhook events.
 
 **Header Requirements:**
