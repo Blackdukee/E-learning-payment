@@ -18,32 +18,37 @@ const validateToken = async (req, res, next) => {
     // Typically, we would validate the token against the user service
     try {
       const userServiceUrl =
-        process.env.USER_SERVICE_URL || "http://localhost:5001";
+        process.env.USER_SERVICE_URL || "http://localhost:5003/api/v1/ums";
       const response = await axios.post(
-        `${userServiceUrl}/api/auth/validate`,
+        `${userServiceUrl}/auth/validate`,
         { token },
         {
           headers: {
             "Content-Type": "application/json",
-            "X-Service-Key":
-              process.env.INTERNAL_API_KEY || "payment-service-key",
+            "X-Service-Key": process.env.INTERNAL_API_KEY,
           },
           timeout: 5000,
         }
       );
 
       if (!response.data.valid) {
-        throw new AppError("Invalid or expired token", 401);
+        return next(new AppError("Invalid or expired token", 401));
       }
-
-      // Attach user info to request
+      response.data.user.id = response.data.user.id.toString();
       req.user = response.data.user;
       next();
+
     } catch (axiosError) {
       // Handle network errors or service unavailable scenarios
-      if (!axiosError.response) {
-        logger.error(`Auth service unavailable: ${axiosError.message}`);
+
+      if (axiosError.code === "ECONNREFUSED") {
+        logger.error(`Auth service connection refused: ${axiosError.message}`);
         return next(new AppError("Authentication service unavailable", 503));
+      } else if (!axiosError.message.includes("Invalid or expired token")) {
+        // log the device ip for this request
+        logger.error(`Auth service error: ${axiosError.message}`);
+        logger.error(`Request IP: ${req.ip}`);
+        return next(new AppError("Invalid Token", 401));
       }
 
       // Handle error response from auth service
@@ -90,7 +95,11 @@ const requireRole = (roles) => {
 /**
  * Create middleware for testing without actual authentication
  */
-const mockAuthMiddleware = (role = "ADMIN" , id = "edu_123" , name = "E mock user") => {
+const mockAuthMiddleware = (
+  role = "ADMIN",
+  id = "edu_123",
+  name = "E mock user"
+) => {
   return (req, res, next) => {
     req.user = {
       id: id,
@@ -102,12 +111,12 @@ const mockAuthMiddleware = (role = "ADMIN" , id = "edu_123" , name = "E mock use
   };
 };
 
-const mockEducatorAuthMiddleware =  (req, res, next) => {
+const mockEducatorAuthMiddleware = (req, res, next) => {
   req.user = {
     id: "edu_123",
     email: "mock@example.com",
-    role: "EDUCATOR", 
-    name : "Mock Educator",
+    role: "EDUCATOR",
+    name: "Mock Educator",
   };
   next();
 };
