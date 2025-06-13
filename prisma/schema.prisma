@@ -28,6 +28,7 @@ model Transaction {
   updatedAt          DateTime          @updatedAt
   invoice            Invoice?
   auditLogs          AuditLog[]
+
   @@index([userId], name: "transaction_userId_index")
 }
 
@@ -63,19 +64,28 @@ model AuditLog {
   createdAt     DateTime     @default(now())
 }
 
-
-model stripeAccount {
-  id  String @id @default(uuid())
-  educatorId String
-  email String
-  stripeAccountId String
+model enrollment {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  status    String   @default("ENROLLED")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  @@index([educatorId], name: "stripeAccount_educatorId_index")
-  @@unique([educatorId], name: "stripeAccount_educatorId_unique")
+  @@unique([userId, courseId], name: "enrollment_user_course_unique")
+  @@index([userId, courseId], name: "enrollment_user_course_index")
 }
 
+model stripeAccount {
+  id              String   @id @default(uuid())
+  educatorId      String
+  email           String
+  stripeAccountId String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
+  @@unique([educatorId], name: "stripeAccount_educatorId_unique")
+  @@index([educatorId], name: "stripeAccount_educatorId_index")
+}
 
 enum TransactionStatus {
   PENDING

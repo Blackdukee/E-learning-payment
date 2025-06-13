@@ -10,7 +10,7 @@ const { AppError } = require('../middleware/errorHandler');
 
 /**
  * @swagger
- * /invoices/{invoiceId}:
+ * payments/invoices/{invoiceId}:
  *   get:
  *     summary: Get a single invoice by ID
  *     tags: [Invoices]
@@ -57,7 +57,7 @@ const getInvoice = async (req, res, next) => {
 
 /**
  * @swagger
- * /invoices/user:
+ * payments/invoices/user:
  *   get:
  *     summary: Get a paginated list of invoices for the authenticated user
  *     tags:
@@ -127,7 +127,7 @@ const getUserInvoices = async (req, res, next) => {
 
 /**
  * @swagger
- * /invoices/{invoiceId}/download:
+ * payments/invoices/{invoiceId}/download:
  *   get:
  *     summary: Download invoice PDF by ID
  *     tags:
@@ -186,7 +186,7 @@ const downloadInvoicePdf = async (req, res, next) => {
 
 /**
  * @swagger
- * /invoices:
+ * payments/invoices:
  *   post:
  *     summary: Create a new invoice
  *     tags:
@@ -227,7 +227,7 @@ const createInvoice = async (req, res, next) => {
 
 /**
  * @swagger
- * /invoices/{transactionId}/status:
+ * payments/invoices/{transactionId}/status:
  *   patch:
  *     summary: Update an invoice's status
  *     tags:

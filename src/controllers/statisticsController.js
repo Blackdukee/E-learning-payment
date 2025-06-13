@@ -11,7 +11,7 @@ const { AppError } = require('../middleware/errorHandler');
 
 /**
  * @swagger
- * /statistics/transaction-volumes:
+ * /payments/statistics/transaction-volumes:
  *   get:
  *     summary: Get transaction volume metrics
  *     tags: [Statistics]
@@ -62,7 +62,7 @@ const getTransactionVolumes = async (req, res, next) => {
 
 /**
  * @swagger
- * /statistics/performance-metrics:
+ * /payments/statistics/performance-metrics:
  *   get:
  *     summary: Get performance metrics
  *     tags: [Statistics]
@@ -107,7 +107,7 @@ const getPerformanceMetrics = async (req, res, next) => {
 
 /**
  * @swagger
- * /statistics/financial-analysis:
+ * /payments/statistics/financial-analysis:
  *   get:
  *     summary: Get financial analysis metrics
  *     tags: [Statistics]
@@ -158,7 +158,7 @@ const getFinancialAnalysis = async (req, res, next) => {
 
 /**
  * @swagger
- * /statistics/payment-operations:
+ * /payments/statistics/payment-operations:
  *   get:
  *     summary: Get payment operations metrics
  *     tags: [Statistics]
@@ -203,7 +203,7 @@ const getPaymentOperations = async (req, res, next) => {
 
 /**
  * @swagger
- * /statistics/dashboard:
+ * /payments/statistics/dashboard:
  *   get:
  *     summary: Get comprehensive dashboard statistics
  *     tags: [Statistics]
@@ -254,7 +254,7 @@ const getDashboardStatistics = async (req, res, next) => {
 
 /**
  * @swagger
- * /statistics/educators/{educatorId}/payment-analytics:
+ * /payments/statistics/educators/{educatorId}/payment-analytics:
  *   get:
  *     summary: Get detailed payment analytics for an educator
  *     tags: [Statistics]

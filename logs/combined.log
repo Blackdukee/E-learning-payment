@@ -6451,3 +6451,719 @@
 {"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-05-28 16:50:11"}
 {"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-05-28 16:50:11"}
 {"clientVersion":"6.4.1","errorCode":"P1001","level":"error","message":"Database connection error: Can't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.","name":"PrismaClientInitializationError","service":"payment-service","stack":"PrismaClientInitializationError: Can't reach database server at `localhost:5432`\n\nPlease make sure your database server is running at `localhost:5432`.\n    at r (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\agents\\payment-service\\node_modules\\@prisma\\client\\runtime\\library.js:112:2565)","timestamp":"2025-05-28 16:50:12"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-10 17:13:54"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-10 17:13:55"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-10 17:13:55"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-10 17:13:57"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-10 17:13:57"}
+{"clientVersion":"6.6.0","errorCode":"P1001","level":"error","message":"Database connection error: Can't reach database server at `db:5432`\n\nPlease make sure your database server is running at `db:5432`.","name":"PrismaClientInitializationError","service":"payment-service","stack":"PrismaClientInitializationError: Can't reach database server at `db:5432`\n\nPlease make sure your database server is running at `db:5432`.\n    at r (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\agents\\payment-service\\node_modules\\@prisma\\client\\runtime\\library.js:112:2565)","timestamp":"2025-06-10 17:13:58"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-10 17:14:40"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-10 17:14:41"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-10 17:14:41"}
+{"clientVersion":"6.6.0","errorCode":"P1003","level":"error","message":"Database connection error: Database `payment_db` does not exist on the database server at `localhost:5432`.","name":"PrismaClientInitializationError","service":"payment-service","stack":"PrismaClientInitializationError: Database `payment_db` does not exist on the database server at `localhost:5432`.\n    at r (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\agents\\payment-service\\node_modules\\@prisma\\client\\runtime\\library.js:112:2565)","timestamp":"2025-06-10 17:14:42"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-10 17:17:40"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-10 17:17:40"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-10 17:17:40"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-10 17:17:40"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-10 17:17:41"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-10 17:17:41"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-10 17:17:43"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-06-10 17:17:43"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6379,"service":"payment-service","timeout":5000,"timestamp":"2025-06-10 17:17:45"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-06-10 17:17:47"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-06-10 17:17:47"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-10 17:22:10"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-10 17:22:11"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-10 17:22:11"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-10 17:22:11"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-10 17:22:12"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-10 17:22:12"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-10 17:22:14"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-06-10 17:22:14"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6379,"service":"payment-service","timeout":5000,"timestamp":"2025-06-10 17:22:15"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-06-10 17:22:18"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-06-10 17:22:18"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-06-10 17:22:26"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-06-10 17:22:26"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-10 17:22:40"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-10 17:22:41"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-10 17:22:41"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-10 17:22:41"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-10 17:22:42"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-10 17:22:42"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-10 17:22:44"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-06-10 17:22:44"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6379,"service":"payment-service","timeout":5000,"timestamp":"2025-06-10 17:22:45"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-06-10 17:22:48"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-06-10 17:22:48"}
+{"level":"info","message":"Redis client reconnecting... (attempt 4)","service":"payment-service","timestamp":"2025-06-10 17:22:56"}
+{"level":"info","message":"Redis reconnecting in 16000ms (attempt 5/5)","service":"payment-service","timestamp":"2025-06-10 17:22:56"}
+{"level":"info","message":"Redis client reconnecting... (attempt 5)","service":"payment-service","timestamp":"2025-06-10 17:23:12"}
+{"level":"warn","message":"Maximum Redis reconnection attempts (5) reached","service":"payment-service","timestamp":"2025-06-10 17:23:12"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-11 12:14:12"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:14:12"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-11 12:14:12"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:14:13"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-11 12:14:13"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-11 12:14:13"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-11 12:14:15"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-06-11 12:14:15"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-11 12:17:33"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:17:34"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-11 12:17:46"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6379,"service":"payment-service","timeout":5000,"timestamp":"2025-06-11 12:17:50"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:17:50"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-11 12:17:51"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-11 12:18:12"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-11 12:18:14"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-11 12:18:56"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:18:57"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-11 12:21:15"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6379,"service":"payment-service","timeout":5000,"timestamp":"2025-06-11 12:21:15"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:21:15"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-11 12:21:16"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-11 12:21:18"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-11 12:21:20"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-06-11 12:21:22"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-06-11 12:21:26"}
+{"level":"info","message":"Connecting to Redis at localhost:6379...","service":"payment-service","timestamp":"2025-06-11 12:21:53"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:21:53"}
+{"level":"info","message":"Redis reconnecting in 1000ms (attempt 1/5)","service":"payment-service","timestamp":"2025-06-11 12:21:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:21:53"}
+{"level":"info","message":"Redis client reconnecting... (attempt 1)","service":"payment-service","timestamp":"2025-06-11 12:21:54"}
+{"level":"info","message":"Redis reconnecting in 2000ms (attempt 2/5)","service":"payment-service","timestamp":"2025-06-11 12:21:54"}
+{"level":"info","message":"Redis client reconnecting... (attempt 2)","service":"payment-service","timestamp":"2025-06-11 12:21:56"}
+{"level":"info","message":"Redis reconnecting in 4000ms (attempt 3/5)","service":"payment-service","timestamp":"2025-06-11 12:21:56"}
+{"host":"localhost","level":"error","message":"Redis connection failed: Redis connection timeout","port":6379,"service":"payment-service","timeout":5000,"timestamp":"2025-06-11 12:21:58"}
+{"level":"info","message":"Redis client reconnecting... (attempt 3)","service":"payment-service","timestamp":"2025-06-11 12:22:00"}
+{"level":"info","message":"Redis reconnecting in 8000ms (attempt 4/5)","service":"payment-service","timestamp":"2025-06-11 12:22:00"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:23:30"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:23:30"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:23:30"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:23:30"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:23:30"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:23:30"}
+{"level":"info","message":"GET /api/v1/docs/","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:24:30 +0000] \"GET /api/v1/docs/ HTTP/1.1\" 200 3106 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:24:30 +0000] \"GET /api/v1/docs/swagger-ui-init.js HTTP/1.1\" 200 35598 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:24:30 +0000] \"GET /api/v1/docs/swagger-ui.css HTTP/1.1\" 200 154986 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:24:30 +0000] \"GET /api/v1/docs/swagger-ui-standalone-preset.js HTTP/1.1\" 200 229223 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:24:30 +0000] \"GET /api/v1/docs/swagger-ui-bundle.js HTTP/1.1\" 200 1468326 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:24:30"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png","service":"payment-service","timestamp":"2025-06-11 12:24:31"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:24:31 +0000] \"GET /api/v1/docs/favicon-32x32.png HTTP/1.1\" 200 628 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:24:31"}
+{"level":"info","message":"GET /api/v1/payments/enrollment/1","service":"payment-service","timestamp":"2025-06-11 12:25:06"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:25:06 +0000] \"GET /api/v1/payments/enrollment/1 HTTP/1.1\" 404 167 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:25:06"}
+{"level":"info","message":"GET /api/v1/payments/enrollment/1","service":"payment-service","timestamp":"2025-06-11 12:25:24"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:25:24 +0000] \"GET /api/v1/payments/enrollment/1 HTTP/1.1\" 404 167 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:25:24"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:28:47"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:28:47"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:28:47"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:28:47"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:28:47"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:28:48"}
+{"level":"info","message":"GET /api/v1/payments/enrollment/1","service":"payment-service","timestamp":"2025-06-11 12:28:56"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:28:56 +0000] \"GET /api/v1/payments/enrollment/1 HTTP/1.1\" 404 167 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:28:56"}
+{"level":"info","message":"GET /api/v1/docs/","service":"payment-service","timestamp":"2025-06-11 12:29:10"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:10 +0000] \"GET /api/v1/docs/ HTTP/1.1\" 200 3106 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:10"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css","service":"payment-service","timestamp":"2025-06-11 12:29:10"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:10 +0000] \"GET /api/v1/docs/swagger-ui.css HTTP/1.1\" 200 154986 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:10"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js","service":"payment-service","timestamp":"2025-06-11 12:29:10"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:11 +0000] \"GET /api/v1/docs/swagger-ui-init.js HTTP/1.1\" 200 35598 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:11 +0000] \"GET /api/v1/docs/swagger-ui-standalone-preset.js HTTP/1.1\" 200 229223 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:11 +0000] \"GET /api/v1/docs/swagger-ui-bundle.js HTTP/1.1\" 200 1468326 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:11 +0000] \"GET /api/v1/docs/favicon-32x32.png HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:11"}
+{"level":"info","message":"GET /api/v1/payments/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:29:27"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:29:27 +0000] \"GET /api/v1/payments/enrollment/2 HTTP/1.1\" 404 167 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:29:27"}
+{"level":"info","message":"GET /api/v1/payments/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:30:25"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:30:25 +0000] \"GET /api/v1/payments/enrollment/2 HTTP/1.1\" 404 167 \"-\" \"PostmanRuntime/7.39.1\"","service":"payment-service","timestamp":"2025-06-11 12:30:25"}
+{"level":"info","message":"GET /api/v1/payments/pay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:31:47"}
+{"level":"error","message":"Error checking enrollment: Cannot read properties of undefined (reading 'findFirst')","service":"payment-service","timestamp":"2025-06-11 12:31:47"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:31:47 +0000] \"GET /api/v1/payments/pay/enrollment/2 HTTP/1.1\" 500 1631 \"-\" \"PostmanRuntime/7.39.1\"","service":"payment-service","timestamp":"2025-06-11 12:31:47"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:33:06"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:33:07"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:33:07"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:33:07"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:33:07"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:33:07"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:33:19"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:33:19"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:33:19"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:33:19"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:33:19"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:33:19"}
+{"level":"info","message":"GET /api/v1/payments/pay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:33:43"}
+{"level":"error","message":"Error checking enrollment: Cannot read properties of undefined (reading 'findFirst')","service":"payment-service","timestamp":"2025-06-11 12:33:43"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:33:43 +0000] \"GET /api/v1/payments/pay/enrollment/2 HTTP/1.1\" 500 1631 \"-\" \"PostmanRuntime/7.39.1\"","service":"payment-service","timestamp":"2025-06-11 12:33:43"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:34:28"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:34:28"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:34:28"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:34:28"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:34:29"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:34:29"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:35:13"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:35:14"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:35:14"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:35:14"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:35:14"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:35:14"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:35:47"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:35:47"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:35:47"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:35:48"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:35:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:35:48"}
+{"level":"info","message":"GET /api/v1/payments/pay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:35:55"}
+{"level":"error","message":"Error checking enrollment: Cannot read properties of undefined (reading 'enrollment')","service":"payment-service","timestamp":"2025-06-11 12:35:55"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:35:55 +0000] \"GET /api/v1/payments/pay/enrollment/2 HTTP/1.1\" 500 1631 \"-\" \"PostmanRuntime/7.39.1\"","service":"payment-service","timestamp":"2025-06-11 12:35:55"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:36:07"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:36:07"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:36:07"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:36:07"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:36:07"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:36:07"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:36:25"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:36:26"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:36:26"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:36:26"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:36:26"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:36:26"}
+{"level":"info","message":"GET /api/v1/payments/%7Dpay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:39:04"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [11/Jun/2025:09:39:04 +0000] \"GET /api/v1/payments/%7Dpay/enrollment/2 HTTP/1.1\" 404 174 \"-\" \"PostmanRuntime/7.43.0\"","service":"payment-service","timestamp":"2025-06-11 12:39:04"}
+{"level":"info","message":"GET /api/v1/payments//pay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:39:16"}
+{"level":"error","message":"Error checking enrollment: Cannot read properties of undefined (reading 'find')","service":"payment-service","timestamp":"2025-06-11 12:39:16"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [11/Jun/2025:09:39:16 +0000] \"GET /api/v1/payments//pay/enrollment/2 HTTP/1.1\" 500 1631 \"-\" \"PostmanRuntime/7.43.0\"","service":"payment-service","timestamp":"2025-06-11 12:39:16"}
+{"level":"info","message":"Redis connection closed","service":"payment-service","timestamp":"2025-06-11 12:41:15"}
+{"level":"info","message":"Redis connection closed gracefully","service":"payment-service","timestamp":"2025-06-11 12:41:15"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:54:37"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:54:37"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:54:37"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:54:37"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:54:37"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:54:37"}
+{"level":"info","message":"GET /api/v1/payments//pay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:54:47"}
+{"level":"error","message":"Error checking enrollment: prisma.enrollment.find is not a function","service":"payment-service","timestamp":"2025-06-11 12:54:47"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [11/Jun/2025:09:54:47 +0000] \"GET /api/v1/payments//pay/enrollment/2 HTTP/1.1\" 500 1631 \"-\" \"PostmanRuntime/7.43.0\"","service":"payment-service","timestamp":"2025-06-11 12:54:47"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:55:13"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:55:14"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:55:14"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:55:14"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:55:14"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:55:14"}
+{"level":"info","message":"GET /api/v1/payments//pay/enrollment/2","service":"payment-service","timestamp":"2025-06-11 12:55:16"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [11/Jun/2025:09:55:16 +0000] \"GET /api/v1/payments//pay/enrollment/2 HTTP/1.1\" 403 65 \"-\" \"PostmanRuntime/7.43.0\"","service":"payment-service","timestamp":"2025-06-11 12:55:16"}
+{"level":"info","message":"GET /api/v1/docs/","service":"payment-service","timestamp":"2025-06-11 12:58:05"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:58:05 +0000] \"GET /api/v1/docs/ HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:58:05"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js","service":"payment-service","timestamp":"2025-06-11 12:58:05"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:58:06 +0000] \"GET /api/v1/docs/swagger-ui-init.js HTTP/1.1\" 200 37684 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:58:06 +0000] \"GET /api/v1/docs/swagger-ui-standalone-preset.js HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:58:06 +0000] \"GET /api/v1/docs/swagger-ui.css HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:58:06 +0000] \"GET /api/v1/docs/swagger-ui-bundle.js HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:58:06 +0000] \"GET /api/v1/docs/favicon-32x32.png HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:58:06"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-11 12:59:03"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-11 12:59:04"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-11 12:59:04"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-11 12:59:04"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-11 12:59:04"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-11 12:59:04"}
+{"level":"info","message":"GET /api/v1/docs/","service":"payment-service","timestamp":"2025-06-11 12:59:08"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:59:08 +0000] \"GET /api/v1/docs/ HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:59:08"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:59:09 +0000] \"GET /api/v1/docs/swagger-ui.css HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:59:09 +0000] \"GET /api/v1/docs/swagger-ui-bundle.js HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:59:09 +0000] \"GET /api/v1/docs/swagger-ui-init.js HTTP/1.1\" 200 37680 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:59:09 +0000] \"GET /api/v1/docs/swagger-ui-standalone-preset.js HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"::1 - - [11/Jun/2025:09:59:09 +0000] \"GET /api/v1/docs/favicon-32x32.png HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0\"","service":"payment-service","timestamp":"2025-06-11 12:59:09"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:20:13"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:20:13"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:20:13"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:20:13"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:20:13"}
+{"clientVersion":"6.6.0","errorCode":"P1001","level":"error","message":"Database connection error: Can't reach database server at `db:5432`\n\nPlease make sure your database server is running at `db:5432`.","name":"PrismaClientInitializationError","service":"payment-service","stack":"PrismaClientInitializationError: Can't reach database server at `db:5432`\n\nPlease make sure your database server is running at `db:5432`.\n    at r (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\agents\\payment-service\\node_modules\\@prisma\\client\\runtime\\library.js:112:2565)","timestamp":"2025-06-13 15:20:16"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:20:41"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:20:41"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:20:41"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:20:42"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:20:42"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:20:42"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:21:30"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:21:30"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:21:30"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:21:30"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:21:30"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:21:30"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:24:17"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:24:17 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 401 77 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:24:17"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:26:57"}
+{"level":"error","message":"Auth validation error: Request failed with status code 404","service":"payment-service","timestamp":"2025-06-13 15:26:58"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:26:58 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 404 67 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:26:58"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:28:36"}
+{"level":"error","message":"Auth validation error: Request failed with status code 404","service":"payment-service","timestamp":"2025-06-13 15:28:36"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:28:36 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 404 67 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:28:36"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:37:45"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:37:45"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:37:45"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:37:45"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:37:45"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:37:46"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:38:30"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:38:32"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:38:32"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:38:32"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:38:32"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:38:32"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:38:50"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Payment processing error: \nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.","service":"payment-service","timestamp":"2025-06-13 15:38:50"}
+{"level":"error","message":"Error processing payment: Payment processing failed: \nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.","service":"payment-service","timestamp":"2025-06-13 15:38:50"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:38:50 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 342 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:38:50"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Failed to log transaction failure: \nInvalid `prisma.transaction.create()` invocation:\n\n{\n  data: {\n    amount: 100,\n    currency: \"USD\",\n    status: \"FAILED\",\n    type: \"PAYMENT\",\n    platformCommission: 0,\n    educatorEarnings: 0,\n    userId: 2,\n            ~\n    courseId: \"5\",\n    educatorId: \"edu_123\",\n    description: \"Payment for course\",\n    metadata: {\n      error: \"\\nInvalid `prisma.transaction.findFirst()` invocation:\\n\\n{\\n  where: {\\n    courseId: \\\"5\\\",\\n    userId: 2,\\n            ~\\n    status: \\\"COMPLETED\\\"\\n  },\\n  select: {\\n    id: true\\n  }\\n}\\n\\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.\"\n    }\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected String, provided Int.","service":"payment-service","timestamp":"2025-06-13 15:38:50"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:42:12"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:42:13"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:42:13"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:42:13"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:42:13"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:42:13"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:43:21"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:43:22"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:43:22"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:43:22"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:43:22"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:43:22"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:43:26"}
+{"level":"error","message":"Auth service unavailable: Invalid or expired token","service":"payment-service","timestamp":"2025-06-13 15:43:26"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:43:26 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 503 81 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:43:26"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:43:44"}
+{"level":"error","message":"Auth service unavailable: Invalid or expired token","service":"payment-service","timestamp":"2025-06-13 15:43:44"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:43:44 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 503 81 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:43:44"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:49:53"}
+{"level":"error","message":"Auth service unavailable: Invalid or expired token","service":"payment-service","timestamp":"2025-06-13 15:49:54"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:49:54 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 503 81 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:49:54"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 15:51:00"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Payment processing error: \nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.","service":"payment-service","timestamp":"2025-06-13 15:51:00"}
+{"level":"error","message":"Error processing payment: Payment processing failed","service":"payment-service","timestamp":"2025-06-13 15:51:00"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:12:51:00 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 55 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 15:51:00"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Failed to log transaction failure: \nInvalid `prisma.transaction.create()` invocation:\n\n{\n  data: {\n    amount: 100,\n    currency: \"USD\",\n    status: \"FAILED\",\n    type: \"PAYMENT\",\n    platformCommission: 0,\n    educatorEarnings: 0,\n    userId: 2,\n            ~\n    courseId: \"5\",\n    educatorId: \"edu_123\",\n    description: \"Payment for course\",\n    metadata: {\n      error: \"\\nInvalid `prisma.transaction.findFirst()` invocation:\\n\\n{\\n  where: {\\n    courseId: \\\"5\\\",\\n    userId: 2,\\n            ~\\n    status: \\\"COMPLETED\\\"\\n  },\\n  select: {\\n    id: true\\n  }\\n}\\n\\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.\"\n    }\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected String, provided Int.","service":"payment-service","timestamp":"2025-06-13 15:51:00"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 15:52:02"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 15:52:03"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 15:52:03"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 15:52:03"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 15:52:03"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 15:52:03"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:03:34"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:03:34"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:03:34"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:03:34"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:03:34"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:03:34"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:03:41"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Payment processing error: \nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.","service":"payment-service","timestamp":"2025-06-13 16:03:42"}
+{"level":"error","message":"Error processing payment: Payment processing failed","service":"payment-service","timestamp":"2025-06-13 16:03:42"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:03:42 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 55 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:03:42"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Failed to log transaction failure: \nInvalid `prisma.transaction.create()` invocation:\n\n{\n  data: {\n    amount: 100,\n    currency: \"USD\",\n    status: \"FAILED\",\n    type: \"PAYMENT\",\n    platformCommission: 0,\n    educatorEarnings: 0,\n    userId: 2,\n            ~\n    courseId: \"5\",\n    educatorId: \"edu_123\",\n    description: \"Payment for course\",\n    metadata: {\n      error: \"\\nInvalid `prisma.transaction.findFirst()` invocation:\\n\\n{\\n  where: {\\n    courseId: \\\"5\\\",\\n    userId: 2,\\n            ~\\n    status: \\\"COMPLETED\\\"\\n  },\\n  select: {\\n    id: true\\n  }\\n}\\n\\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.\"\n    }\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected String, provided Int.","service":"payment-service","timestamp":"2025-06-13 16:03:42"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:03:49"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Payment processing error: \nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.","service":"payment-service","timestamp":"2025-06-13 16:03:49"}
+{"level":"error","message":"Error processing payment: Payment processing failed","service":"payment-service","timestamp":"2025-06-13 16:03:49"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:03:49 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 55 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:03:49"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Failed to log transaction failure: \nInvalid `prisma.transaction.create()` invocation:\n\n{\n  data: {\n    amount: 100,\n    currency: \"USD\",\n    status: \"FAILED\",\n    type: \"PAYMENT\",\n    platformCommission: 0,\n    educatorEarnings: 0,\n    userId: 2,\n            ~\n    courseId: \"5\",\n    educatorId: \"edu_123\",\n    description: \"Payment for course\",\n    metadata: {\n      error: \"\\nInvalid `prisma.transaction.findFirst()` invocation:\\n\\n{\\n  where: {\\n    courseId: \\\"5\\\",\\n    userId: 2,\\n            ~\\n    status: \\\"COMPLETED\\\"\\n  },\\n  select: {\\n    id: true\\n  }\\n}\\n\\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.\"\n    }\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected String, provided Int.","service":"payment-service","timestamp":"2025-06-13 16:03:50"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:06:13"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:06:14"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:06:14"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:06:14"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:06:14"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:06:14"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:06:49"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:06:51"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:06:52"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:06:52"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:06:52"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:06:52"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:07:40"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:07:42"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:07:42"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:07:42"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:07:42"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:08:58"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:08:58"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:08:58"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:08:58"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:08:58"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:08:59"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:09:20"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:09:21"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:09:21"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:09:21"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:09:21"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:09:21"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:09:26"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:09:26"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:09:26"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:09:26"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:09:26"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:09:26"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:09:48"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:09:48"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:09:48"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:09:48"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:09:48"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:09:48"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:10:04"}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Payment processing error: \nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.","service":"payment-service","timestamp":"2025-06-13 16:10:04"}
+{"level":"error","message":"Error processing payment: Payment processing failed","service":"payment-service","timestamp":"2025-06-13 16:10:04"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:10:04 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 55 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:10:04"}
+{"action":"PAYMENT_FAILED","actor":2,"level":"info","message":"AUDIT: PAYMENT_FAILED by 2 - Payment of 100 USD failed for course 5","metadata":{"error":"\nInvalid `prisma.transaction.findFirst()` invocation:\n\n{\n  where: {\n    courseId: \"5\",\n    userId: 2,\n            ~\n    status: \"COMPLETED\"\n  },\n  select: {\n    id: true\n  }\n}\n\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int."},"service":"payment-service","timestamp":"2025-06-13 16:10:04","transactionId":null}
+{"error":{"clientVersion":"6.6.0","name":"PrismaClientValidationError"},"level":"error","message":"Failed to create audit log: \nInvalid `prisma.auditLog.create()` invocation:\n\n{\n  data: {\n    action: \"PAYMENT_FAILED\",\n    actor: 2,\n           ~\n    details: \"Payment of 100 USD failed for course 5\",\n    transactionId: null,\n    metadata: {\n      error: \"\\nInvalid `prisma.transaction.findFirst()` invocation:\\n\\n{\\n  where: {\\n    courseId: \\\"5\\\",\\n    userId: 2,\\n            ~\\n    status: \\\"COMPLETED\\\"\\n  },\\n  select: {\\n    id: true\\n  }\\n}\\n\\nArgument `userId`: Invalid value provided. Expected StringFilter or String, provided Int.\"\n    },\n    ipAddress: null,\n    userAgent: null\n  }\n}\n\nArgument `actor`: Invalid value provided. Expected String, provided Int.","service":"payment-service","timestamp":"2025-06-13 16:10:04"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:10:50"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:10:51"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:10:51"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:10:51"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:10:51"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:10:51"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:11:09"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:11:09"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:11:09"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:11:09"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:11:09"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:11:10"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:11:17"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:11:17"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:11:17"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:11:17"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:11:17"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:11:17"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:11:24"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:11:25"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:11:25"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:11:25"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:11:25"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:11:32"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:11:32"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:11:32"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:11:32"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:11:32"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:11:32"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:11:43"}
+{"error":{"isOperational":true,"status":"fail","statusCode":400},"level":"error","message":"Payment processing error: Educator account not found","service":"payment-service","timestamp":"2025-06-13 16:11:44"}
+{"level":"error","message":"Error processing payment: Payment processing failed","service":"payment-service","timestamp":"2025-06-13 16:11:44"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:11:44 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 55 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:11:44"}
+{"action":"PAYMENT_FAILED","actor":"2","level":"info","message":"AUDIT: PAYMENT_FAILED by 2 - Payment of 100 USD failed for course 5","metadata":{"error":"Educator account not found"},"service":"payment-service","timestamp":"2025-06-13 16:11:44","transactionId":null}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:21:51"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:21:52"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:21:52 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:21:52"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:24:32"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:24:33"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:24:33 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:24:33"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:25:16"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:25:17"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:25:17"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:25:17"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:25:17"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:25:17"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:25:27"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:25:28"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:25:28"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:25:28"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:25:28"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:25:28"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:25:33"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:25:33"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:25:33 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:25:33"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:25:56"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:25:56"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:25:56"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:25:56"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:25:56"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:25:56"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:25:59"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:25:59"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:25:59 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:25:59"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:29:07"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:29:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:29:07 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:29:07"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:29:38"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:29:38"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:29:38"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:29:38"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:29:38"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:29:38"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:30:09"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:30:10"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:30:10"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:30:10"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:30:10"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:30:10"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:30:39"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:30:39"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:30:39"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:30:39"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:30:39"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:30:39"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:30:46"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:30:46"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:30:46 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:30:46"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:31:15"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:31:15"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:31:15"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:31:15"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:31:15"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:31:15"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:31:21"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:31:21"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:31:21 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:31:21"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:31:41"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:31:41"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:31:41"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:31:41"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:31:41"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:31:41"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:31:58"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:31:58"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:31:58"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:31:58"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:31:58"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:31:58"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:32:21"}
+{"level":"error","message":"Auth middleware error: Cannot read properties of undefined (reading 'data')","service":"payment-service","timestamp":"2025-06-13 16:32:21"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:32:21 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 500 88 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:32:21"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:33:08"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:33:08"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:33:08"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:33:08"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:33:08"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:33:08"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:33:15"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:33:15 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 401 70 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:33:15"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:33:41"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:33:41"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:33:41"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:33:41"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:33:41"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:33:41"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:33:52"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:33:53"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:33:53"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:33:53"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:33:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:33:53"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:34:04"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:34:04"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:34:04"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:34:04"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:34:04"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:34:05"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:34:15"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:34:16"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:34:16"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:34:16"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:34:16"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:34:16"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:34:23"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:34:23"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:34:23"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:34:24"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:34:24"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:34:24"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:34:27"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:34:27"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:34:27"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:34:28"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:34:28"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:34:28"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 16:35:00"}
+{"error":{"isOperational":true,"status":"fail","statusCode":400},"level":"error","message":"Payment processing error: Educator account not found","service":"payment-service","timestamp":"2025-06-13 16:35:01"}
+{"level":"error","message":"Error processing payment: Payment processing failed","service":"payment-service","timestamp":"2025-06-13 16:35:01"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:35:01 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 400 55 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:35:01"}
+{"action":"PAYMENT_FAILED","actor":"2","level":"info","message":"AUDIT: PAYMENT_FAILED by 2 - Payment of 100 USD failed for course 5","metadata":{"error":"Educator account not found"},"service":"payment-service","timestamp":"2025-06-13 16:35:01","transactionId":null}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:53:17"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:53:18"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:53:18"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:53:18"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:53:18"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:53:18"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:53:22"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:53:22"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:53:22"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:53:22"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:53:22"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:53:23"}
+{"level":"info","message":"POST /api/v1/paymentspayments/create-account","service":"payment-service","timestamp":"2025-06-13 16:54:53"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:54:53 +0000] \"POST /api/v1/paymentspayments/create-account HTTP/1.1\" 404 178 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:54:53"}
+{"level":"info","message":"POST /api/v1/payments/pay/create-account","service":"payment-service","timestamp":"2025-06-13 16:55:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:55:07 +0000] \"POST /api/v1/payments/pay/create-account HTTP/1.1\" 404 174 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:55:07"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 16:56:11"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 16:56:12"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 16:56:12"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 16:56:12"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 16:56:12"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 16:56:12"}
+{"level":"info","message":"POST /api/v1/payments/account/create-account","service":"payment-service","timestamp":"2025-06-13 16:56:49"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:56:49 +0000] \"POST /api/v1/payments/account/create-account HTTP/1.1\" 401 70 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:56:49"}
+{"level":"info","message":"POST /api/v1/payments/account/create-account","service":"payment-service","timestamp":"2025-06-13 16:57:29"}
+{"action":"STRIPE_ACCOUNT_CREATED","actor":"3","level":"info","message":"AUDIT: STRIPE_ACCOUNT_CREATED by 3 - Stripe Connect account created for educator 3","metadata":{"accountId":"acct_1RZY6nBLXQxKqEGo"},"service":"payment-service","timestamp":"2025-06-13 16:57:32","transactionId":null}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:13:57:32 +0000] \"POST /api/v1/payments/account/create-account HTTP/1.1\" 201 94 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 16:57:32"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:02:32"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:02:32"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:02:32"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:02:32"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:02:32"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:02:33"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:03:23"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:03:23"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:03:23"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:03:23"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:03:23"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:03:23"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:04:38"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:04:39"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:04:39"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:04:39"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:04:39"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:04:39"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 17:10:57"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:10:57 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 401 70 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:10:57"}
+{"level":"info","message":"POST /api/v1/payments/pay","service":"payment-service","timestamp":"2025-06-13 17:11:45"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:11:45 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 403 85 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:11:45"}
+{"level":"info","message":"POST /api/v1/payments/pay/report-transactions","service":"payment-service","timestamp":"2025-06-13 17:23:54"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:23:54 +0000] \"POST /api/v1/payments/pay/report-transactions HTTP/1.1\" 403 85 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:23:54"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:24:26"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:24:27"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:24:27"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:24:27"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:24:27"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:24:27"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:24:52"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:24:52"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:24:52"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:24:52"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:24:52"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:24:52"}
+{"level":"info","message":"POST /api/v1/payments/pay/report-transactions","service":"payment-service","timestamp":"2025-06-13 17:27:54"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:27:55 +0000] \"POST /api/v1/payments/pay/report-transactions HTTP/1.1\" 404 179 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:27:55"}
+{"level":"info","message":"POST /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 17:29:07"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:29:07 +0000] \"POST /api/v1/payments/pay/report/transactions HTTP/1.1\" 404 179 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:29:07"}
+{"level":"info","message":"POST /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 17:29:27"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:29:27 +0000] \"POST /api/v1/payments/pay/report/transactions HTTP/1.1\" 404 179 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:29:27"}
+{"level":"info","message":"POST /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 17:31:43"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:31:43 +0000] \"POST /api/v1/payments/pay/report/transactions HTTP/1.1\" 404 179 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:31:43"}
+{"level":"info","message":"POST /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 17:33:21"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:33:21 +0000] \"POST /api/v1/payments/pay/report/transactions HTTP/1.1\" 404 179 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:33:21"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 17:33:29"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:33:29 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 403 60 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:33:29"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:34:12"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:34:12"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:34:12"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:34:13"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:34:13"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:34:13"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:34:27"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:34:28"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:34:28"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:34:28"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:34:28"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:34:28"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 17:34:35"}
+{"level":"error","message":"Error generating transaction report: Error generating report: prisma.sql is not a function","service":"payment-service","timestamp":"2025-06-13 17:34:35"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:14:34:35 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 500 83 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 17:34:35"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:37:53"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:37:54"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:37:54"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:37:54"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:37:54"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:37:54"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:39:06"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:39:07"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:39:07"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:39:07"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:39:07"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:39:07"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 17:39:41"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 17:39:41"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 17:39:41"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 17:39:41"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 17:39:41"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 17:39:42"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:03:42"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:03:44"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:03:44"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:03:45"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:03:45"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:03:45"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:06:27"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:06:31 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 401 70 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:06:31"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:08:36"}
+{"level":"error","message":"Error generating transaction report: Do not know how to serialize a BigInt","service":"payment-service","timestamp":"2025-06-13 18:08:39"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:08:39 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 500 67 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:08:39"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:15:48"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:15:49"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:15:49"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:15:50"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:15:50"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:15:50"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:16:21"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:16:23"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:16:23"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:16:23"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:16:23"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:16:23"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:16:28"}
+{"level":"error","message":"Error generating transaction report: Error generating report","service":"payment-service","timestamp":"2025-06-13 18:16:28"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:16:28 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 500 53 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:16:28"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:17:35"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:17:36"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:17:36"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:17:37"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:17:37"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:17:37"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:20:51"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:20:53"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:20:53"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:20:53"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:20:53"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:20:54"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:23:02"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:23:03"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:23:03"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:23:03"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:23:03"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:23:04"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:23:09"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:23:09 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 401 70 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:23:09"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:23:45"}
+{"level":"error","message":"Error generating transaction report: Error generating report \nInvalid `prisma.$queryRaw()` invocation:\n\n\nRaw query failed. Code: `42601`. Message: `ERROR: syntax error at or near \"numeric\"`","service":"payment-service","timestamp":"2025-06-13 18:23:46"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:23:46 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 500 188 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:23:46"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:27:28"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:27:29"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:27:29"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:27:30"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:27:30"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:27:30"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:27:55"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:27:56"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:27:57"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:27:57"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:27:57"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:27:58"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:28:04"}
+{"level":"error","message":"Error generating transaction report: Do not know how to serialize a BigInt","service":"payment-service","timestamp":"2025-06-13 18:28:04"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:28:04 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 500 67 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:28:04"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-13 18:29:23"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-13 18:29:26"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-13 18:29:26"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-13 18:29:26"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-13 18:29:26"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-13 18:29:27"}
+{"level":"info","message":"GET /api/v1/payments/pay/report/transactions","service":"payment-service","timestamp":"2025-06-13 18:29:47"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [13/Jun/2025:15:29:51 +0000] \"GET /api/v1/payments/pay/report/transactions HTTP/1.1\" 200 1706 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-13 18:29:51"}

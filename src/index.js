@@ -77,8 +77,9 @@ app.use(
     },
     xssFilter: true,
     frameguard: { action: "sameorigin" }, // Important for iframe embedded content
-    crossOriginOpenerPolicy: { policy: "same-origin" },
-    originAgentCluster: true,
+    crossOriginEmbedderPolicy: false, // Allow cross-origin resources
+    crossOriginOpenerPolicy: false, // Allow cross-origin opener policy
+    
   })
 );
 
@@ -86,9 +87,7 @@ app.use(
 app.use(
   cors({
     origin:
-      process.env.NODE_ENV === "development"
-        ? "*"
-        : ["http://localhost:3000", "http://3.66.224.12:5002"],
+      process.env.NODE_ENV === "development" ? "*" : ["http://localhost:3000","http://3.66.224.12:5002"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
@@ -126,7 +125,7 @@ if (!fs.existsSync(logsDir)) {
 }
 
 // Routes
-app.use("/api/v1/", router);
+app.use("/api/v1/payments/", router);
 
 // Serve Swagger UI
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));

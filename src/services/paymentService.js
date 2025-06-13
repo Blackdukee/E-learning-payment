@@ -1,5 +1,6 @@
 const stripe = require("../config/stripe");
 const prisma = require("../config/db");
+const { Prisma } = require("@prisma/client");
 const { logger, auditLogger } = require("../utils/logger");
 const { AppError } = require("../middleware/errorHandler");
 const {
@@ -182,10 +183,7 @@ const processPayment = async (paymentData, user) => {
     // 6. Update course purchase stats
     await notifyCourseService({
       courseId,
-      action: "RECORD_PURCHASE",
-      userId: user.id,
-      amount,
-      educatorEarnings,
+      action: "ADD",
     });
 
     // Fetch total pending earnings before notifying
@@ -246,7 +244,7 @@ const processPayment = async (paymentData, user) => {
       }, 0);
     }
 
-    throw new AppError("Payment processing failed: " + error.message, 400);
+    throw new AppError("Payment processing failed", 400);
   }
 };
 /**
@@ -269,7 +267,7 @@ const getTotalEarningsForEducator = async (educatorId) => {
 
     return totalEarnings._sum?.educatorEarnings || 0;
   } catch (error) {
-    throw new AppError(`Error fetching total earnings: ${error.message}`, 500);
+    throw new AppError(`Error fetching total earnings`, 500);
   }
 };
 
@@ -438,10 +436,7 @@ const processRefund = async (refundData, user) => {
 
     await notifyCourseService({
       courseId: originalTransaction.courseId,
-      action: "RECORD_REFUND",
-      userId: originalTransaction.userId,
-      amount: refundAmount,
-      educatorEarnings: -refundedEarnings,
+      action: "REMOVE",
     });
 
     // Notify educator about refunded earnings
@@ -581,19 +576,25 @@ const getTransactionsReport = async (filters = {}, page = 1, limit = 50) => {
     // Calculate summary stats with fix for proper column names and SQL injection protection
     const summary = await prisma.$queryRaw`
       SELECT 
-        COALESCE(SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "amount" ELSE 0 END), 0) as "totalRevenue",
-        COALESCE(SUM(CASE WHEN "type" = 'REFUND' AND "status" = 'COMPLETED' THEN "amount" ELSE 0 END), 0) as "totalRefunded",
-        COALESCE(SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" ELSE 0 END), 0) as "totalCommission",
-        COALESCE(SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "educatorEarnings" ELSE 0 END), 0) as "totalEducatorEarnings",
+        COALESCE(SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "amount" ELSE 0 END)::numeric, 0) as "totalRevenue",
+        COALESCE(SUM(CASE WHEN "type" = 'REFUND' AND "status" = 'COMPLETED' THEN "amount" ELSE 0 END)::numeric, 0) as "totalRefunded",
+        COALESCE(SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "platformCommission" ELSE 0 END)::numeric, 0) as "totalCommission",
+        COALESCE(SUM(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN "educatorEarnings" ELSE 0 END)::numeric, 0) as "totalEducatorEarnings",
         COUNT(CASE WHEN "type" = 'PAYMENT' AND "status" = 'COMPLETED' THEN 1 END) as "successfulPayments",
         COUNT(CASE WHEN "type" = 'REFUND' AND "status" = 'COMPLETED' THEN 1 END) as "successfulRefunds"
       FROM "Transaction"
       ${
         Object.keys(where).length > 0
-          ? prisma.sql`WHERE ${prisma.sql(where)}`
-          : prisma.sql``
+          ? Prisma.sql`WHERE ${Prisma.sql(where)}`
+          : Prisma.sql``
       }
     `;
+
+    // Convert any BigInt values to Number to avoid JSON serialization issues
+    const formattedSummary = Object.entries(summary[0]).reduce((acc, [key, value]) => {
+      acc[key] = typeof value === 'bigint' ? Number(value) : value;
+      return acc;
+    }, {});
 
     return {
       transactions,
@@ -603,10 +604,10 @@ const getTransactionsReport = async (filters = {}, page = 1, limit = 50) => {
         page,
         limit,
       },
-      summary: summary[0],
+      summary: formattedSummary,
     };
   } catch (error) {
-    throw new AppError(`Error generating report: ${error.message}`, 500);
+    throw new AppError(`Error generating report ${error.message}`, 500);
   }
 };
 

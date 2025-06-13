@@ -3,6 +3,7 @@
 This document outlines all available endpoints in the Payment Service API.
 
 ## Table of Contents
+
 - [Health Check](#health-check)
 - [Payment Endpoints](#payment-endpoints)
 - [Refund Endpoints](#refund-endpoints)
@@ -13,10 +14,12 @@ This document outlines all available endpoints in the Payment Service API.
 
 ## Health Check
 
-### GET /api/v1/health
+### GET /api/v1/payments/health
+
 Returns the health status of the payment service.
 
-**Response:** 
+**Response:**
+
 ```json
 {
   "status": "ok",
@@ -26,10 +29,12 @@ Returns the health status of the payment service.
 
 ## Payment Endpoints
 
-### POST /api/v1/payments
+### POST /api/v1/payments/pay
+
 Process a payment.
 
 **Required Body Parameters:**
+
 - courseId: string
 - amount: number (min: 0.01)
 - currency: string (USD, EUR, or GBP)
@@ -38,6 +43,7 @@ Process a payment.
 - description: string (optional)
 
 **Request Body Example:**
+
 ```json
 {
   "courseId": "course_123456",
@@ -50,6 +56,7 @@ Process a payment.
 ```
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -65,14 +72,17 @@ Process a payment.
 }
 ```
 
-### POST /api/v1/payments/refund
+### POST /api/v1/payments/pay/refund
+
 Process a refund.
 
 **Required Body Parameters:**
+
 - transactionId: string
 - reason: string (optional)
 
 **Request Body Example:**
+
 ```json
 {
   "transactionId": "txn_1K2OvVJs9ciOaJs9c",
@@ -81,6 +91,7 @@ Process a refund.
 ```
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -95,10 +106,12 @@ Process a refund.
 }
 ```
 
-### GET /api/v1/payments/user
+### GET /api/v1/payments/pay/user
+
 Get transactions for the current user.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - status: string (optional, values: succeeded, pending, failed)
@@ -106,6 +119,7 @@ Get transactions for the current user.
 - limit: number (optional, default: 10)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -138,10 +152,55 @@ Get transactions for the current user.
 }
 ```
 
-### POST /api/v1/payments/create-account
+### GET /api/v1/payments/pay/enrollment/:courseId
+
+Get enrollment status for a course for the current user.
+**Response Example:**
+
+```json
+{
+  "success": true,
+  "status": true,
+  "courseId": "course_123456",
+  "message": "User is enrolled in the course"
+}
+```
+
+### GET /api/v1/payments/pay/enrollments
+
+Get all course enrollments for the current user.
+
+**Response Example:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "enrollments": ["course_123456", "course_789012"],
+    "count": 2
+  }
+}
+```
+
+### GET /api/v1/payments/account/stripe-account
+
+Get the Stripe account login link for an educator.
+
+**Response Example:**
+
+```json
+{
+  "success": true,
+  "url": "https://connect.stripe.com/setup/s/6Hm29OmZLiF7"
+}
+```
+
+### POST /api/v1/payments/account/create-account
+
 Create a Stripe account for an educator.
 
 **Request Body Example:**
+
 ```json
 {
   "email": "educator@example.com",
@@ -155,6 +214,7 @@ Create a Stripe account for an educator.
 ```
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -166,10 +226,12 @@ Create a Stripe account for an educator.
 }
 ```
 
-### DELETE /api/v1/payments/delete-account
+### DELETE /api/v1/payments/account/delete-account
+
 Delete an educator's Stripe account.
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -178,19 +240,22 @@ Delete an educator's Stripe account.
 }
 ```
 
-### GET /api/v1/payments/total-earnings
+### GET /api/v1/payments/pay/total-earnings
+
 Get the total earnings for an educator.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
   "totalEarnings": {
-    "gross": 1250.50,
+    "gross": 1250.5,
     "fees": 37.52,
     "net": 1212.98,
     "currency": "USD",
@@ -199,10 +264,12 @@ Get the total earnings for an educator.
 }
 ```
 
-### GET /api/v1/payments/current-balance
+### GET /api/v1/payments/pay/current-balance
+
 Get the current balance for an educator.
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -215,10 +282,12 @@ Get the current balance for an educator.
 }
 ```
 
-### GET /api/v1/payments/:transactionId
+### GET /api/v1/payments/pay/:transactionId
+
 Get a transaction by ID.
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -241,10 +310,12 @@ Get a transaction by ID.
 }
 ```
 
-### GET /api/v1/payments/report/transactions
+### GET /api/v1/payments/pay/report/transactions
+
 Generate a transaction report (admin only).
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - educatorId: string (optional)
@@ -252,6 +323,7 @@ Generate a transaction report (admin only).
 - format: string (optional, values: json, csv, default: json)
 
 **Response Example (JSON):**
+
 ```json
 {
   "success": true,
@@ -281,15 +353,18 @@ Generate a transaction report (admin only).
 
 ## Refund Endpoints
 
-### POST /api/v1/refunds
+### POST /api/v1/payments/refunds
+
 Process a refund.
 
 **Required Body Parameters:**
+
 - transactionId: string
 - amount: number (optional)
 - reason: string (optional)
 
 **Request Body Example:**
+
 ```json
 {
   "transactionId": "txn_1K2OvVJs9ciOaJs9c",
@@ -299,6 +374,7 @@ Process a refund.
 ```
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -313,10 +389,12 @@ Process a refund.
 }
 ```
 
-### GET /api/v1/refunds/transaction/:transactionId
+### GET /api/v1/payments/refunds/transaction/:transactionId
+
 Get refund information by transaction ID.
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -342,10 +420,12 @@ Get refund information by transaction ID.
 
 ## Invoice Endpoints
 
-### GET /api/v1/invoices/user
+### GET /api/v1/payments/invoices/user
+
 Get invoices for the current user.
 
 **Query Parameters:**
+
 - page: number (optional, default: 1)
 - limit: number (optional, between 1-50, default: 10)
 - status: string (optional, values: paid, pending, overdue)
@@ -353,6 +433,7 @@ Get invoices for the current user.
 - endDate: string (optional, format: YYYY-MM-DD)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -367,7 +448,7 @@ Get invoices for the current user.
       "dueDate": "2023-11-15T09:32:01.000Z",
       "courseId": "course_123456",
       "courseName": "Advanced JavaScript Course",
-      "pdfUrl": "/api/v1/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
+      "pdfUrl": "/api/v1/payments/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
     },
     {
       "id": "inv_1K1NvVJs9ciOaJs9e",
@@ -379,7 +460,7 @@ Get invoices for the current user.
       "dueDate": "2023-11-10T14:22:33.000Z",
       "courseId": "course_789012",
       "courseName": "Introduction to Python Programming",
-      "pdfUrl": "/api/v1/invoices/inv_1K1NvVJs9ciOaJs9e/pdf"
+      "pdfUrl": "/api/v1/payments/invoices/inv_1K1NvVJs9ciOaJs9e/pdf"
     }
   ],
   "pagination": {
@@ -391,10 +472,12 @@ Get invoices for the current user.
 }
 ```
 
-### GET /api/v1/invoices/:invoiceId
+### GET /api/v1/payments/invoices/:invoiceId
+
 Get a specific invoice.
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -425,31 +508,36 @@ Get a specific invoice.
     "total": 49.99,
     "notes": "Thank you for your purchase!",
     "paymentMethod": "Credit Card",
-    "pdfUrl": "/api/v1/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
+    "pdfUrl": "/api/v1/payments/invoices/inv_1K2PxYJs9ciOaJs9d/pdf"
   }
 }
 ```
 
-### GET /api/v1/invoices/:invoiceId/pdf
+### GET /api/v1/payments/invoices/:invoiceId/pdf
+
 Download a specific invoice as PDF.
 
 **Response:**
 Binary PDF file with appropriate headers:
+
 - Content-Type: application/pdf
 - Content-Disposition: attachment; filename=invoice-{invoiceId}.pdf
 
 ## Report Endpoints
 
-### GET /api/v1/reports/financial
+### GET /api/v1/payments/reports/financial
+
 Generate a financial report with optional filters.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - educatorId: string (optional) - Admin can query any educator, educator can only query own data
 - groupBy: string (optional, values: day, week, month)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -459,7 +547,7 @@ Generate a financial report with optional filters.
       "platformFees": 875.04,
       "educatorPayouts": 7875.41,
       "transactionCount": 175,
-      "averageTransactionValue": 50.00,
+      "averageTransactionValue": 50.0,
       "refundRate": 1.7
     },
     "timeSeriesData": [
@@ -470,7 +558,7 @@ Generate a financial report with optional filters.
       },
       {
         "period": "2023-11-02",
-        "revenue": 975.50,
+        "revenue": 975.5,
         "transactionCount": 19
       }
     ],
@@ -478,13 +566,13 @@ Generate a financial report with optional filters.
       {
         "courseId": "course_123456",
         "courseName": "Advanced JavaScript Course",
-        "revenue": 2499.50,
+        "revenue": 2499.5,
         "enrollments": 50
       },
       {
         "courseId": "course_789012",
         "courseName": "Introduction to Python Programming",
-        "revenue": 1799.40,
+        "revenue": 1799.4,
         "enrollments": 60
       }
     ],
@@ -493,26 +581,32 @@ Generate a financial report with optional filters.
 }
 ```
 
-### GET /api/v1/reports/financial/pdf
+### GET /api/v1/payments/reports/financial/pdf
+
 Generate and download a financial report as PDF.
 
 **Query Parameters:**
-- Same as GET /api/v1/reports/financial
+
+- Same as GET /api/v1/payments/reports/financial
 
 **Response:**
 Binary PDF file with appropriate headers:
+
 - Content-Type: application/pdf
 - Content-Disposition: attachment; filename=financial-report-{date}.pdf
 
-### GET /api/v1/reports/educators/:educatorId/earnings
+### GET /api/v1/payments/reports/educators/:educatorId/earnings
+
 Get an earnings report for a specific educator.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - groupBy: string (optional, values: day, week, month)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -534,7 +628,7 @@ Get an earnings report for a specific educator.
       },
       {
         "period": "2023-11-02",
-        "earnings": 600.50,
+        "earnings": 600.5,
         "coursesSold": 12
       }
     ],
@@ -542,7 +636,7 @@ Get an earnings report for a specific educator.
       {
         "courseId": "course_123456",
         "courseName": "Advanced JavaScript Course",
-        "earnings": 2499.50,
+        "earnings": 2499.5,
         "enrollments": 50
       },
       {
@@ -558,15 +652,18 @@ Get an earnings report for a specific educator.
 }
 ```
 
-### GET /api/v1/reports/commission-analysis
+### GET /api/v1/payments/reports/commission-analysis
+
 Get a commission analysis report.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - educatorId: string (optional) - Admin can query any educator, educator can only query own data
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -597,7 +694,7 @@ Get a commission analysis report.
       },
       {
         "period": "2023-11-02",
-        "revenue": 975.50,
+        "revenue": 975.5,
         "commission": 97.55
       }
     ],
@@ -609,15 +706,18 @@ Get a commission analysis report.
 
 ## Statistics Endpoints
 
-### GET /api/v1/statistics/transaction-volumes
+### GET /api/v1/payments/statistics/transaction-volumes
+
 Get transaction volume metrics.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - groupBy: string (optional, values: day, week, month)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -632,7 +732,7 @@ Get transaction volume metrics.
       {
         "period": "2023-11-01",
         "transactions": 42,
-        "volume": 2102.50
+        "volume": 2102.5
       },
       {
         "period": "2023-11-02",
@@ -658,14 +758,17 @@ Get transaction volume metrics.
 }
 ```
 
-### GET /api/v1/statistics/performance-metrics
+### GET /api/v1/payments/statistics/performance-metrics
+
 Get performance metrics.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -707,15 +810,18 @@ Get performance metrics.
 }
 ```
 
-### GET /api/v1/statistics/financial-analysis
+### GET /api/v1/payments/statistics/financial-analysis
+
 Get financial analysis.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - groupBy: string (optional, values: day, week, month)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -727,7 +833,7 @@ Get financial analysis.
       "trends": [
         {
           "period": "2023-11-01",
-          "revenue": 2102.50,
+          "revenue": 2102.5,
           "commission": 210.25
         },
         {
@@ -752,22 +858,25 @@ Get financial analysis.
 }
 ```
 
-### GET /api/v1/statistics/payment-operations
+### GET /api/v1/payments/statistics/payment-operations
+
 Get payment operations metrics.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
   "data": {
     "payouts": {
-      "total": 42000.00,
+      "total": 42000.0,
       "count": 150,
-      "averageAmount": 280.00,
+      "averageAmount": 280.0,
       "successRate": 99.3
     },
     "disputes": {
@@ -788,14 +897,17 @@ Get payment operations metrics.
 }
 ```
 
-### GET /api/v1/statistics/dashboard
+### GET /api/v1/payments/statistics/dashboard
+
 Get comprehensive dashboard statistics.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -810,7 +922,7 @@ Get comprehensive dashboard statistics.
     },
     "trends": {
       "revenue": [
-        { "period": "2023-11-01", "value": 2102.50 },
+        { "period": "2023-11-01", "value": 2102.5 },
         { "period": "2023-11-02", "value": 1901.75 }
       ],
       "transactions": [
@@ -840,13 +952,13 @@ Get comprehensive dashboard statistics.
       {
         "courseId": "course_123456",
         "name": "Advanced JavaScript Course",
-        "revenue": 7499.50,
+        "revenue": 7499.5,
         "enrollments": 150
       },
       {
         "courseId": "course_234567",
         "name": "Web Development Bootcamp",
-        "revenue": 6000.00,
+        "revenue": 6000.0,
         "enrollments": 120
       }
     ]
@@ -854,15 +966,18 @@ Get comprehensive dashboard statistics.
 }
 ```
 
-### GET /api/v1/statistics/educators/:educatorId/payment-analytics
+### GET /api/v1/payments/statistics/educators/:educatorId/payment-analytics
+
 Get detailed payment analytics for an educator.
 
 **Query Parameters:**
+
 - startDate: string (optional, format: YYYY-MM-DD)
 - endDate: string (optional, format: YYYY-MM-DD)
 - groupBy: string (optional, values: day, week, month)
 
 **Response Example:**
+
 ```json
 {
   "success": true,
@@ -874,18 +989,18 @@ Get detailed payment analytics for an educator.
       "platformCommission": 1525.08,
       "netEarnings": 13725.67,
       "coursesSold": 305,
-      "averageRevenuePerCourse": 50.00,
+      "averageRevenuePerCourse": 50.0,
       "refundRate": 1.5
     },
     "revenueOverTime": [
       {
         "period": "2023-11-01",
-        "revenue": 525.00,
+        "revenue": 525.0,
         "coursesSold": 10
       },
       {
         "period": "2023-11-02",
-        "revenue": 475.00,
+        "revenue": 475.0,
         "coursesSold": 9
       }
     ],
@@ -893,14 +1008,14 @@ Get detailed payment analytics for an educator.
       {
         "courseId": "course_123456",
         "courseName": "Advanced JavaScript Course",
-        "revenue": 7499.50,
+        "revenue": 7499.5,
         "enrollments": 150,
         "refunds": 2
       },
       {
         "courseId": "course_234567",
         "courseName": "Web Development Bootcamp",
-        "revenue": 5000.00,
+        "revenue": 5000.0,
         "enrollments": 100,
         "refunds": 3
       }
@@ -925,10 +1040,12 @@ Get detailed payment analytics for an educator.
 
 ## Webhook Endpoints
 
-### POST /api/v1/webhooks/stripe
+### POST /api/v1/payments/webhooks/stripe
+
 Handle Stripe webhook events.
 
 **Header Requirements:**
+
 - stripe-signature: Stripe signature for webhook verification
 
 **Note:** This endpoint expects the raw body to be preserved for signature verification.
@@ -937,9 +1054,9 @@ Handle Stripe webhook events.
 The request body is the raw event data sent by Stripe, which varies by event type.
 
 **Response Example:**
+
 ```json
 {
   "received": true
 }
 ```
-

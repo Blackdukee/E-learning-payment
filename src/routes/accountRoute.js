@@ -8,7 +8,7 @@ const accountController = require("../controllers/accountController");
 
 router.use(
   process.env.NODE_ENV === "development" ? mockAuthMiddleware() : validateToken,
-  requireRole("EDUCATOR")
+  requireRole("Educator")
 );
 
 // Get educator stripe account login link

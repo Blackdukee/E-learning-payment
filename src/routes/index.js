@@ -44,7 +44,7 @@ router.get('/health', async (req, res) => {
 });
 
 // Mount routes
-router.use('/payments', paymentRoutes);
+router.use('/pay', paymentRoutes);
 router.use('/refunds', refundRoutes);
 router.use('/webhook', webhookRoutes);
 router.use('/invoices', invoiceRoutes);
@@ -53,3 +53,4 @@ router.use('/reports', reportRoutes);
 router.use('/account', accountRoute);
 
 module.exports = router;
+

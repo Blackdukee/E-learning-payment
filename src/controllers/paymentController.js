@@ -12,7 +12,7 @@ const { logger } = require("../utils/logger");
 
 /**
  * @swagger
- * /payments/enrollment/{courseId}:
+ * /payments/pay/enrollment/{courseId}:
  *   get:
  *     summary: Check if a student is enrolled in a course
  *     tags: [Payments]
@@ -63,7 +63,6 @@ const checkStudentEnrollment = async (req, res, next) => {
   try {
     const { courseId } = req.params;
     const userId = req.user.id;
-
     // Check if the user is enrolled in the course
     const enrollment = await prisma.enrollment.findFirst({
       where: {
@@ -81,11 +80,72 @@ const checkStudentEnrollment = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
+      status: true,
+      courseId: enrollment.courseId,
       message: "User is enrolled in this course",
     });
   } catch (error) {
     logger.error(`Error checking enrollment: ${error.message}`);
     return next(new AppError("Failed to check enrollment", 500));
+  }
+};
+
+/**
+ * @swagger
+ * /payments/pay/enrollments:
+ *   get:
+ *     summary: Get current student's enrollments
+ *     tags: [Payments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: List of student enrollments
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       courseId:
+ *                         type: string
+ *           
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+const getStudentEnrollments = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const enrollments = await prisma.enrollment.findMany({
+      where: { userId },
+    });
+
+    // Get course details for each enrollment
+    const enrollmentsList = enrollments.map((enrollment) => ({
+      courseId: enrollment.courseId,
+    }));
+
+    return res.status(200).json({
+      success: true,
+      data: {
+      enrollments: enrollmentsList,
+      count: enrollmentsList.length
+      }
+    });
+  } catch (error) {
+    logger.error(`Error fetching student enrollments: ${error.message}`);
+    return next(new AppError("Failed to fetch enrollments", 500));
   }
 };
 
@@ -131,7 +191,7 @@ const processPayment = async (req, res, next) => {
 
 /**
  * @swagger
- * /payments/refund:
+ * /payments/pay/refund:
  *   post:
  *     summary: Process a refund
  *     tags: [Payments]
@@ -171,7 +231,7 @@ const processRefund = async (req, res) => {
 
 /**
  * @swagger
- * /payments/user:
+ * /payments/pay/user:
  *   get:
  *     summary: Get user's transactions
  *     tags: [Payments]
@@ -220,7 +280,7 @@ const getUserTransactions = async (req, res) => {
 
 /**
  * @swagger
- * /payments/{transactionId}:
+ * /payments/pay/{transactionId}:
  *   get:
  *     summary: Get transaction by ID
  *     tags: [Payments]
@@ -268,7 +328,7 @@ const getTransactionById = async (req, res) => {
 
 /**
  * @swagger
- * /payments/report/transactions:
+ * /payments/pay/report/transactions:
  *   get:
  *     summary: Generate transaction report (admin only)
  *     tags: [Payments]
@@ -308,7 +368,7 @@ const getTransactionById = async (req, res) => {
 const generateTransactionReport = async (req, res) => {
   try {
     // Only admins can access this endpoint
-    if (req.user.role !== "ADMIN") {
+    if (req.user.role !== "Admin") {
       return res.status(403).json({
         success: false,
         message: "Unauthorized to access reports",
@@ -350,7 +410,7 @@ const generateTransactionReport = async (req, res) => {
 
 /**
  * @swagger
- * /payments/total-earnings:
+ * /payments/pay/total-earnings:
  *   get:
  *     summary: Get total earnings for educator
  *     tags: [Payments]
@@ -377,7 +437,7 @@ const getTotalEarningsForEducator = async (req, res, next) => {
 
 /**
  * @swagger
- * /payments/current-balance:
+ * /payments/pay/current-balance:
  *   get:
  *     summary: Get current balance for educator
  *     tags: [Payments]
@@ -414,4 +474,5 @@ module.exports = {
   getTotalEarningsForEducator,
   generateTransactionReport,
   checkStudentEnrollment,
+  getStudentEnrollments,
 };

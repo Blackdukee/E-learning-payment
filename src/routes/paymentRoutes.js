@@ -27,6 +27,12 @@ const refundSchema = {
   reason: { type: "string", required: false },
 };
 
+router.use(
+  process.env.NODE_ENV === "development"
+    ? mockAuthMiddleware() : validateToken,
+  requireRole( ["Student","Admin"])
+);
+
 // Process payment
 router.post(
   "/",
@@ -38,12 +44,19 @@ router.post(
 
 // check student enrollment status
 router.get(
-  "/enrollment-status/:courseId",
+  "/enrollment/:courseId",
   process.env.NODE_ENV === "development"
     ? mockAuthMiddleware() : validateToken,
   paymentController.checkStudentEnrollment
 );
 
+router.get(
+
+  "/enrollments",
+  process.env.NODE_ENV === "development"
+    ? mockAuthMiddleware() : validateToken,
+  paymentController.getStudentEnrollments
+)
 // Process refund
 router.post(
   "/refund",
@@ -90,7 +103,7 @@ router.get(
   "/report/transactions",
   process.env.NODE_ENV === "development"
     ? mockAuthMiddleware() : validateToken,
-  requireRole("ADMIN"),
+  requireRole("Admin"),
   paymentController.generateTransactionReport
 );
 

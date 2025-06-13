@@ -11,7 +11,7 @@ const notifyUserService = async (data) => {
       return;
     }
     
-    await axios.post(`${process.env.USER_SERVICE_URL}/api/notifications`, data, {
+    await axios.post(`${process.env.USER_SERVICE_URL}/api/v1/ums/notifications`, data, {
       headers: {
         'Content-Type': 'application/json',
         'X-Service-Auth': process.env.INTERNAL_API_KEY
@@ -38,7 +38,7 @@ const notifyCourseService = async (data) => {
       return;
     }
     
-    await axios.post(`${process.env.COURSE_SERVICE_URL}/api/notifications`, data, {
+    await axios.post(`${process.env.COURSE_SERVICE_URL}/api/v1/cms/course/notifications`, data, {
       headers: {
         'Content-Type': 'application/json',
         'X-Service-Auth': process.env.INTERNAL_API_KEY
@@ -55,35 +55,8 @@ const notifyCourseService = async (data) => {
   }
 };
 
-/**
- * Send notification to educator dashboard
- */
-const notifyEducatorDashboard = async (data) => {
-  try {
-    if (!process.env.EDUCATOR_DASHBOARD_URL) {
-      logger.warn('EDUCATOR_DASHBOARD_URL not set. Notification not sent.');
-      return;
-    }
-    
-    await axios.post(`${process.env.EDUCATOR_DASHBOARD_URL}/api/notifications`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Service-Auth': process.env.INTERNAL_API_KEY
-      }
-    });
-    
-    logger.info(`Educator dashboard notified: ${data.action} for educator ${data.educatorId}`);
-  } catch (error) {
-    logger.error(`Failed to notify educator dashboard: ${error.message}`, { 
-      error, 
-      data 
-    });
-    // Fail silently - don't break the main flow
-  }
-};
 
 module.exports = {
   notifyUserService,
   notifyCourseService,
-  notifyEducatorDashboard
 };
