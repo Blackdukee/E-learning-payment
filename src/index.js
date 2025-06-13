@@ -25,11 +25,15 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API documentation for the Payment Service",
     },
-    servers: [{ url: `http://localhost:${process.env.PORT || 5002}/api/v1` }],
+    servers: [
+      { url: `http://localhost:${process.env.PORT || 5002}/api/v1` },
+      { url: `https://localhost:${process.env.PORT || 5002}/api/v1` },
+      { url: `https://3.66.224.12/` },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: "http",
+          type: "https",
           scheme: "bearer",
           bearerFormat: "JWT",
         },
@@ -59,6 +63,7 @@ app.use(
           "'self'",
           "'unsafe-inline'",
           "http://3.66.224.12:5002",
+          "https://3.66.224.12",
           "https://js.stripe.com", // Stripe.js
           "https://checkout.stripe.com",
         ], // For embedded learning content if needed
@@ -79,7 +84,6 @@ app.use(
     frameguard: { action: "sameorigin" }, // Important for iframe embedded content
     crossOriginEmbedderPolicy: false, // Allow cross-origin resources
     crossOriginOpenerPolicy: false, // Allow cross-origin opener policy
-    
   })
 );
 
@@ -87,7 +91,9 @@ app.use(
 app.use(
   cors({
     origin:
-      process.env.NODE_ENV === "development" ? "*" : ["http://localhost:3000","http://3.66.224.12:5002"],
+      process.env.NODE_ENV === "development"
+        ? "*"
+        : ["http://localhost:3000", "http://3.66.224.12:5002"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
