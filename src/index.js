@@ -25,7 +25,7 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API documentation for the Payment Service",
     },
-    servers: [{ url: `https://3.66.224.12:${process.env.PORT}/api/v1` }],
+    servers: [{ url: `http://3.66.224.12:${process.env.PORT}/api/v1` }],
     components: {
       securitySchemes: {
         bearerAuth: {
