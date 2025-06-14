@@ -111,14 +111,16 @@ const mockAuthMiddleware = (
   };
 };
 
-const mockEducatorAuthMiddleware = (req, res, next) => {
-  req.user = {
-    id: "edu_123",
-    email: "mock@example.com",
-    role: "ُEducator",
-    name: "Mock Educator",
+const mockEducatorAuthMiddleware = () => {
+  return (req, res, next) => {
+    req.user = {
+      id: "edu_123",
+      email: "mock@example.com",
+      role: "Educator",
+      name: "Mock Educator",
+    };
+    next();
   };
-  next();
 };
 
 module.exports = {
