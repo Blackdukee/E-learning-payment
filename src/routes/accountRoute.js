@@ -3,11 +3,12 @@ const {
   mockAuthMiddleware,
   validateToken,
   requireRole,
+  mockEducatorAuthMiddleware,
 } = require("../middleware/auth");
 const accountController = require("../controllers/accountController");
 
 router.use(
-  process.env.NODE_ENV === "development" ? mockAuthMiddleware() : validateToken,
+  process.env.NODE_ENV === "development" ? mockEducatorAuthMiddleware() : validateToken,
   requireRole("Educator")
 );
 

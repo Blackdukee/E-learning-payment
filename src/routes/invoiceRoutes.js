@@ -15,7 +15,7 @@ router.get(
     query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit must be between 1 and 50'),
   ],
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   invoiceController.getUserInvoices
 );
 
@@ -26,7 +26,7 @@ router.get(
     param('invoiceId').notEmpty().withMessage('Invoice ID is required'),
   ],
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   invoiceController.getInvoice
 );
 

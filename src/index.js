@@ -64,6 +64,7 @@ app.use(
           "'unsafe-inline'",
           "http://3.66.224.12:5002",
           "https://3.66.224.12",
+          "http://localhost:5002",
           "https://js.stripe.com", // Stripe.js
           "https://checkout.stripe.com",
         ], // For embedded learning content if needed
@@ -76,7 +77,7 @@ app.use(
           "http://3.66.224.12:5002",
         ], // For course images
         mediaSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For video/audio learning content
-        connectSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For API connections
+        connectSrc: ["'self'", "https://*", "http://3.66.224.12:5002", "http://localhost:5002"], // For API connections
         fontSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For custom fonts
       },
     },

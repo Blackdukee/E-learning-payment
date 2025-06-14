@@ -29,7 +29,7 @@ const refundSchema = {
 
 router.use(
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   requireRole( ["Student","Admin"])
 );
 
@@ -37,7 +37,7 @@ router.use(
 router.post(
   "/",
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   validate(paymentSchema),
   paymentController.processPayment
 );
@@ -46,7 +46,7 @@ router.post(
 router.get(
   "/enrollment/:courseId",
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   paymentController.checkStudentEnrollment
 );
 
@@ -54,14 +54,14 @@ router.get(
 
   "/enrollments",
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   paymentController.getStudentEnrollments
 )
 // Process refund
 router.post(
   "/refund",
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   validate(refundSchema),
   paymentController.processRefund
 );
@@ -71,7 +71,7 @@ router.post(
 router.get(
   "/user",
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   paymentController.getUserTransactions
 );
 
@@ -94,7 +94,7 @@ router.get(
 router.get(
   "/:transactionId",
   process.env.NODE_ENV === "development"
-    ? mockAuthMiddleware() : validateToken,
+    ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
   paymentController.getTransactionById
 );
 
