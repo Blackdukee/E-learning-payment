@@ -34,7 +34,7 @@ const checkStudentEnrollment = async (courseId, userId) => {
     logger.error(`Error checking student enrollment: ${error.message}`, {
       error,
     });
-    throw new AppError("Error checking student enrollment", 500);
+    throw new AppError("enrollment_check_err","Error checking student enrollment", 500);
   }
 };
 
@@ -65,10 +65,10 @@ const processPayment = async (paymentData, user) => {
     ]);
 
     if (!educatorAccount) {
-      throw new AppError("Educator account not found", 400);
+      throw new AppError("edu_not_found_err","Educator account not found", 400);
     }
     if (duplicateCheck) {
-      throw new AppError("User already enrolled in this course", 400);
+      throw new AppError("already_enrolled_err","User already enrolled in this course", 400);
     }
     const m1 = Date.now() - t1;
 
@@ -249,9 +249,9 @@ const processPayment = async (paymentData, user) => {
           );
         }
       }, 0);
-    }
 
-    throw new AppError("Payment processing failed", 400);
+    }
+    throw error 
   }
 };
 /**
@@ -274,7 +274,7 @@ const getTotalEarningsForEducator = async (educatorId) => {
 
     return totalEarnings._sum?.educatorEarnings || 0;
   } catch (error) {
-    throw new AppError(`Error fetching total earnings`, 500);
+    throw new AppError("fetching_err",`Error fetching total earnings`, 500);
   }
 };
 
@@ -297,7 +297,7 @@ const getCurrentBalanceForEducator = async (educatorId) => {
 
     return earnings.pending[0];
   } catch (error) {
-    throw new AppError(`Error fetching current balance: ${error.message}`, 500);
+    throw new AppError("fetching_err",`Error fetching current balance: ${error.message}`, 500);
   }
 };
 
@@ -341,11 +341,11 @@ const processRefund = async (refundData, user) => {
     });
 
     if (!originalTransaction) {
-      throw new AppError("Transaction not found", 404);
+      throw new AppError("transaction_err","Transaction not found", 404);
     }
 
     if (originalTransaction.status === "REFUNDED") {
-      throw new AppError("Transaction already refunded", 400);
+      throw new AppError("transaction_err","Transaction already refunded", 400);
     }
 
     // 2. Process the refund with Stripe
@@ -479,7 +479,7 @@ const processRefund = async (refundData, user) => {
     };
   } catch (error) {
     logger.error(`Refund processing error: ${error.message}`, { error });
-    throw new AppError("Refund processing failed: " + error.message, 400);
+    throw new AppError("refund_err","Refund processing failed: " + error.message, 400);
   }
 };
 
@@ -496,13 +496,13 @@ const getTransactionById = async (transactionId) => {
     });
 
     if (!transaction) {
-      throw new AppError("Transaction not found", 404);
+      throw new AppError("transaction_err","Transaction not found", 404);
     }
 
     return transaction;
   } catch (error) {
     if (error instanceof AppError) throw error;
-    throw new AppError(`Error retrieving transaction: ${error.message}`, 500);
+    throw new AppError("fetching_err", `Error retrieving transaction: ${error.message}`, 500);
   }
 };
 
@@ -539,7 +539,7 @@ const getTransactionsByUser = async (userId, page = 1, limit = 10) => {
       },
     };
   } catch (error) {
-    throw new AppError(`Error retrieving transactions: ${error.message}`, 500);
+    throw new AppError("fetching_err",`Error retrieving transactions: ${error.message}`, 500);
   }
 };
 
@@ -614,7 +614,7 @@ const getTransactionsReport = async (filters = {}, page = 1, limit = 50) => {
       summary: formattedSummary,
     };
   } catch (error) {
-    throw new AppError(`Error generating report ${error.message}`, 500);
+    throw new AppError("report_err",`Error generating report ${error.message}`, 500);
   }
 };
 

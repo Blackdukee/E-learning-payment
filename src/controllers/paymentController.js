@@ -151,7 +151,7 @@ const getStudentEnrollments = async (req, res, next) => {
 
 /**
  * @swagger
- * /payments:
+ * /payments/pay:
  *   post:
  *     summary: Process a payment
  *     tags: [Payments]
@@ -182,10 +182,7 @@ const processPayment = async (req, res, next) => {
     });
   } catch (error) {
     logger.error(`Error processing payment: ${error.message}`);
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to process payment",
-    });
+    return next(error)
   }
 };
 
@@ -222,10 +219,7 @@ const processRefund = async (req, res) => {
     });
   } catch (error) {
     logger.error(`Error processing refund: ${error.message}`);
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to process refund",
-    });
+    return next(error);
   }
 };
 
@@ -271,10 +265,7 @@ const getUserTransactions = async (req, res) => {
     });
   } catch (error) {
     logger.error(`Error fetching user transactions: ${error.message}`);
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to fetch transactions",
-    });
+    return next(error);
   }
 };
 
@@ -319,10 +310,7 @@ const getTransactionById = async (req, res) => {
     });
   } catch (error) {
     logger.error(`Error fetching transaction: ${error.message}`);
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to fetch transaction",
-    });
+    return next(error);
   }
 };
 
@@ -401,10 +389,7 @@ const generateTransactionReport = async (req, res) => {
     });
   } catch (error) {
     logger.error(`Error generating transaction report: ${error.message}`);
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Failed to generate report",
-    });
+    return next(error);
   }
 };
 
