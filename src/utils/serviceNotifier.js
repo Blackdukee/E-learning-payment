@@ -11,7 +11,7 @@ const notifyUserService = async (data) => {
       return;
     }
     
-    await axios.post(`${process.env.USER_SERVICE_URL}/api/v1/ums/notifications`, data, {
+    await axios.post(`${process.env.USER_SERVICE_URL}/notifications`, data, {
       headers: {
         'Content-Type': 'application/json',
         'X-Service-Auth': process.env.INTERNAL_API_KEY
@@ -38,7 +38,7 @@ const notifyCourseService = async (data) => {
       return;
     }
     
-    await axios.post(`${process.env.COURSE_SERVICE_URL}/api/v1/cms/course/notifications`, data, {
+    await axios.post(`${process.env.COURSE_SERVICE_URL}/course/notifications`, data, {
       headers: {
         'Content-Type': 'application/json',
         'X-Service-Auth': process.env.INTERNAL_API_KEY
@@ -55,8 +55,31 @@ const notifyCourseService = async (data) => {
   }
 };
 
+const notifyProgressService = async (data) => {
+  try {
+    if (!process.env.PROGRESS_SERVICE_URL) {
+      logger.warn('PROGRESS_SERVICE_URL not set. Notification not sent.');
+      return;
+    }
+    
+    await axios.post(`${process.env.PROGRESS_SERVICE_URL}/progress/webhook/enrollment-updated`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Service-Auth': process.env.INTERNAL_API_KEY
+      }
+    });
+    
+    logger.info(`Progress service notified: ${data.action} for user ${data.userId}`);
+  } catch (error) {
+    logger.error(`Failed to notify progress service: ${error.message}`, { 
+      error, 
+      data 
+    });
+  }
+};
 
 module.exports = {
   notifyUserService,
   notifyCourseService,
+  notifyProgressService,
 };

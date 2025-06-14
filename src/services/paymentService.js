@@ -6,6 +6,7 @@ const { AppError } = require("../middleware/errorHandler");
 const {
   notifyUserService,
   notifyCourseService,
+  notifyProgressService,
 } = require("../utils/serviceNotifier");
 const invoiceService = require("./invoiceService");
 const { invalidateTransactionCaches } = require("./statisticsService");
@@ -178,6 +179,12 @@ const processPayment = async (paymentData, user) => {
       action: "ENROLL_USER",
       courseId,
       transactionId: transaction.id,
+    });
+
+    await notifyProgressService({
+      UserId: user.id,
+      CourseId: courseId,
+      Action: "enroll",
     });
 
     // 6. Update course purchase stats
