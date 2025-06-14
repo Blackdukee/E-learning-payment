@@ -77,6 +77,7 @@ app.use(
           "'self'",
           "https://*",
           "http://3.66.224.12:5002",
+          "https://3.66.224.12:5002",
           "http://localhost:5002",
         ], // For API connections
         fontSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For custom fonts
