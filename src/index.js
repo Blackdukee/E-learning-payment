@@ -25,7 +25,7 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API documentation for the Payment Service",
     },
-    servers: [{ url: `http://3.66.224.12:${process.env.PORT}/api/v1` }],
+    servers: [{ url: `https://3.66.224.12/api/v1` }],
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -71,16 +71,27 @@ app.use(
           "blob:",
           "https://*",
           "http://3.66.224.12:5002",
+          "https://3.66.224.12",
         ], // For course images
-        mediaSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For video/audio learning content
+        mediaSrc: [
+          "'self'",
+          "https://*",
+          "http://3.66.224.12:5002",
+          "https://3.66.224.12",
+        ], // For video/audio learning content
         connectSrc: [
           "'self'",
           "https://*",
           "http://3.66.224.12:5002",
-          "https://3.66.224.12:5002",
+          "https://3.66.224.12",
           "http://localhost:5002",
         ], // For API connections
-        fontSrc: ["'self'", "https://*", "http://3.66.224.12:5002"], // For custom fonts
+        fontSrc: [
+          "'self'",
+          "https://*",
+          "http://3.66.224.12:5002",
+          "https://3.66.224.12",
+        ], // For custom fonts
       },
     },
     xssFilter: true,
