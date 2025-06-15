@@ -39,7 +39,7 @@ const errorHandler = (err, req, res, next) => {
     }
   );
 
-  // Handle specific error types
+  // Generic validation/auth errors
   if (err.name === "ValidationError") {
     statusCode = 400;
     message = err.message;
@@ -52,27 +52,105 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.code === "P2002") {
     statusCode = 400;
     message = "A record with that value already exists.";
-  } else if (err.name === "enrollment_check_err") {
+  }
+
+  // ─────────────── AccountService Errors ───────────────
+  else if (err.name === "acc_not_found_err") {
+    statusCode = 404;
+    message = "Account not found.";
+  } else if (err.name === "acc_create_err") {
+    statusCode = 500;
+    message = "Failed to create account.";
+  } else if (err.name === "acc_found_err") {
+    statusCode = 409;
+    message = "Account already exists.";
+  } else if (err.name === "acc_connect_err") {
+    statusCode = 500;
+    message = "Failed to connect to account service.";
+  } else if (err.name === "acc_delete_err") {
+    statusCode = 500;
+    message = "Failed to delete account.";
+  }
+
+  // ─────────────── InvoiceService Errors ───────────────
+  else if (err.name === "invoice_create_err") {
+    statusCode = 400;
+    message = "Failed to create invoice.";
+  } else if (err.name === "invoice_generate_err") {
+    statusCode = 500;
+    message = "Failed to generate invoice.";
+  } else if (err.name === "invoice_not_found_err") {
+    statusCode = 404;
+    message = "Invoice not found.";
+  } else if (err.name === "invoice_fetching_err") {
+    statusCode = 404;
+    message = "Unable to fetch invoice data.";
+  } else if (err.name === "invoice_update_err") {
+    statusCode = 400;
+    message = "Failed to update invoice.";
+  }
+
+  // ───────────── NotificationService Errors ─────────────
+  // (none to re-throw; logging in-service is sufficient)
+
+  // ────────────── PaymentService Errors ──────────────
+  else if (err.name === "enrollment_check_err") {
     statusCode = 400;
     message = "Failed to verify enrollment status.";
+  } else if (err.name === "edu_not_found_err") {
+    statusCode = 404;
+    message = "Education resource not found.";
+  } else if (err.name === "already_enrolled_err") {
+    statusCode = 409;
+    message = "User is already enrolled in this course.";
+  } else if (err.name === "fetching_err") {
+    statusCode = 404;
+    message = "Unable to fetch requested data.";
+  } else if (err.name === "transaction_err") {
+    statusCode = 400;
+    message = "Transaction could not be completed.";
   } else if (err.name === "refund_err") {
     statusCode = 400;
     message = "Unable to process refund request.";
   } else if (err.name === "report_err") {
     statusCode = 500;
     message = "Failed to generate or process report.";
-  } else if (err.name === "transaction_err") {
+  }
+
+  // ───────────── ReportingService Errors ─────────────
+  else if (err.name === "report_invalid_date_err") {
     statusCode = 400;
-    message = "Transaction could not be completed.";
-  } else if (err.name === "fetching_err") {
-    statusCode = 404;
-    message = "Unable to fetch requested data.";
-  } else if (err.name === "already_enrolled_err") {
-    statusCode = 409;
-    message = "User is already enrolled in this course.";
-  } else if (err.name === "edu_not_found_err") {
-    statusCode = 404;
-    message = "Education resource not found.";
+    message = "Invalid date provided for report.";
+  } else if (err.name === "report_generation_err") {
+    statusCode = 500;
+    message = "Failed to generate report.";
+  } else if (err.name === "report_pdf_generation_err") {
+    statusCode = 500;
+    message = "Failed to generate PDF for report.";
+  } else if (err.name === "report_earning_err") {
+    statusCode = 500;
+    message = "Failed to retrieve earnings data.";
+  } else if (err.name === "report_generate_err") {
+    statusCode = 500;
+    message = "Failed to generate report.";
+  }
+
+  // ──────────── StatisticsService Errors ────────────
+  else if (err.name === "stats_invalid_date_err") {
+    statusCode = 400;
+    message = "Invalid date provided for statistics.";
+  } else if (err.name === "stats_transaction_err") {
+    statusCode = 500;
+    message = "Failed to retrieve transaction statistics.";
+  } else if (err.name === "stats_financial_err") {
+    statusCode = 500;
+    message = "Failed to retrieve financial statistics.";
+  } else if (err.name === "stats_payment_operations_err") {
+    statusCode = 500;
+    message = "Failed to retrieve payment operations statistics.";
+  } else if (err.name === "stats_educator_analytics_err") {
+    statusCode = 500;
+    message = "Failed to retrieve educator analytics.";
   }
 
   // Return error response

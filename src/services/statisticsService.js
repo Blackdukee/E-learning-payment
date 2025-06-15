@@ -24,23 +24,31 @@ const buildDateFilter = (startDate, endDate) => {
     
     // Validate dates
     if (isNaN(from.getTime())) {
-      throw new AppError(`Invalid startDate: ${startDate}`, 400);
+      throw new AppError(
+        "stats_invalid_date_err",
+        `Invalid startDate: ${startDate}`, 400);
     }
     if (isNaN(to.getTime())) {
-      throw new AppError(`Invalid endDate: ${endDate}`, 400);
+      throw new AppError(
+        "stats_invalid_date_err",
+        `Invalid endDate: ${endDate}`, 400);
     }
     
     return Prisma.sql`"createdAt" BETWEEN ${from.toISOString()} AND ${to.toISOString()}`;
   } else if (startDate) {
     const from = new Date(startDate);
     if (isNaN(from.getTime())) {
-      throw new AppError(`Invalid startDate: ${startDate}`, 400);
+      throw new AppError(
+        `stats_invalid_date_err`,
+        `Invalid startDate: ${startDate}`, 400);
     }
     return Prisma.sql`"createdAt" >= ${from.toISOString()}`;
   } else if (endDate) {
     const to = new Date(endDate);
     if (isNaN(to.getTime())) {
-      throw new AppError(`Invalid endDate: ${endDate}`, 400);
+      throw new AppError(
+        `stats_invalid_date_err`,
+        `Invalid endDate: ${endDate}`, 400);
     }
     return Prisma.sql`"createdAt" <= ${to.toISOString()}`;
   }
@@ -141,7 +149,9 @@ const getTransactionVolumes = async (filters = {}) => {
     logger.error(`Error fetching transaction volumes: ${error.message}`, {
       error,
     });
-    throw new AppError("Failed to fetch transaction volumes", 500);
+    throw new AppError(
+      "stats_transaction_err",
+      "Failed to fetch transaction volumes", 500);
   }
 };
 
@@ -234,7 +244,9 @@ const getPerformanceMetrics = async (filters = {}) => {
     logger.error(`Error fetching performance metrics: ${error.message}`, {
       error,
     });
-    throw new AppError("Failed to fetch performance metrics", 500);
+    throw new AppError(
+      "stats_performance_err",
+      "Failed to fetch performance metrics", 500);
   }
 };
 
@@ -337,7 +349,9 @@ const getFinancialAnalysis = async (filters = {}) => {
     logger.error(`Error fetching financial analysis: ${error.message}`, {
       error,
     });
-    throw new AppError("Failed to fetch financial analysis", 500);
+    throw new AppError(
+      "stats_financial_err",
+      "Failed to fetch financial analysis", 500);
   }
 };
 
@@ -418,7 +432,9 @@ const getPaymentOperations = async (filters = {}) => {
     logger.error(`Error fetching payment operations: ${error.message}`, {
       error,
     });
-    throw new AppError("Failed to fetch payment operations", 500);
+    throw new AppError(
+      "stats_payment_operations_err",
+      "Failed to fetch payment operations", 500);
   }
 };
 
@@ -463,7 +479,9 @@ const getDashboardStatistics = async (filters = {}) => {
     logger.error(`Error generating dashboard statistics: ${error.message}`, {
       error,
     });
-    throw new AppError("Failed to generate dashboard statistics", 500);
+    throw new AppError(
+      "stats_dashboard_err",
+      "Failed to generate dashboard statistics", 500);
   }
 };
 
@@ -604,7 +622,9 @@ const getEducatorPaymentAnalytics = async (educatorId, filters = {}) => {
       `Error fetching educator payment analytics: ${error.message}`,
       { error }
     );
-    throw new AppError("Failed to fetch educator payment analytics", 500);
+    throw new AppError(
+      "stats_educator_analytics_err",
+      "Failed to fetch educator payment analytics", 500);
   }
 };
 

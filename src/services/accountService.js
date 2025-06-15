@@ -11,7 +11,11 @@ const stripeAccount = async (req) => {
     });
 
     if (!educatorStripeAccount) {
-      throw new AppError("Educator Stripe account not found", 404);
+      throw new AppError(
+        "acc_not_found_err",
+        "Educator Stripe account not found",
+        404
+      );
     }
 
     // Create a login link for the educator to access their Stripe dashboard
@@ -28,6 +32,7 @@ const stripeAccount = async (req) => {
       error,
     });
     throw new AppError(
+      "acc_create_err",
       `Error creating Stripe account link: ${error.message}`,
       400
     );
@@ -41,7 +46,11 @@ const createEducatorStripeAccount = async (req) => {
       where: { educatorId: req.user.id },
     });
     if (existingAccount) {
-      throw new AppError("Educator already has a Stripe account", 400);
+      throw new AppError(
+        "acc_found_err",
+        "Educator already has a Stripe account",
+        400
+      );
     }
 
     // Create the Stripe Connect Custom account
@@ -123,7 +132,7 @@ const createEducatorStripeAccount = async (req) => {
     //     stripeBankAccount: bank_account.id,
     //   },
     // });
-    
+
     // create a new Stripe account in the database
     await prisma.stripeAccount.create({
       data: {
@@ -132,7 +141,7 @@ const createEducatorStripeAccount = async (req) => {
         stripeAccountId: account.id,
       },
     });
-    
+
     auditLogger.log(
       "STRIPE_ACCOUNT_CREATED",
       req.user.id,
@@ -154,11 +163,14 @@ const createEducatorStripeAccount = async (req) => {
       error.message.includes("Connect")
     ) {
       throw new AppError(
+        "acc_connect_err",
         "To create Stripe Connect accounts, you need to sign up for Stripe Connect first. Learn more: https://stripe.com/docs/connect",
         400
       );
     }
-    throw new AppError(`Error creating Stripe account: ${error.message}`, 400);
+    throw new AppError(
+      "acc_create_err",
+      `Error creating Stripe account: ${error.message}`, 400);
   }
 };
 
@@ -170,7 +182,9 @@ const deleteEducatorStripeAccount = async (req, account) => {
     });
 
     if (!educatorStripeAccount) {
-      throw new AppError("Educator Stripe account not found", 404);
+      throw new AppError(
+       "acc_not_found_err",
+        "Educator Stripe account not found", 404);
     }
 
     // Delete the Stripe account
@@ -193,6 +207,7 @@ const deleteEducatorStripeAccount = async (req, account) => {
       error,
     });
     throw new AppError(
+      "acc_delete_err",
       `Error deleting educator account: ${error.message}`,
       400
     );

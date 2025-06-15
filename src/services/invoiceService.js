@@ -51,7 +51,7 @@ const createInvoice = async (invoiceData) => {
     return invoice;
   } catch (error) {
     logger.error(`Invoice creation error: ${error.message}`, { error });
-    throw new AppError(`Failed to create invoice: ${error.message}`, 500);
+    throw new AppError('invoice_create_err',`Failed to create invoice: ${error.message}`, 500);
   }
 };
 
@@ -68,13 +68,13 @@ const getInvoiceById = async (invoiceId) => {
     });
     
     if (!invoice) {
-      throw new AppError('Invoice not found', 404);
+      throw new AppError('invoice_not_found_err','Invoice not found', 404);
     }
     
     return invoice;
   } catch (error) {
     if (error instanceof AppError) throw error;
-    throw new AppError(`Error retrieving invoice: ${error.message}`, 500);
+    throw new AppError('invoice_fetching_err',`Error retrieving invoice: ${error.message}`, 500);
   }
 };
 
@@ -120,7 +120,7 @@ const getInvoicesByUser = async (userId, page = 1, limit = 10) => {
       },
     };
   } catch (error) {
-    throw new AppError(`Error retrieving invoices: ${error.message}`, 500);
+    throw new AppError('invoice_fetching_err',`Error retrieving invoices: ${error.message}`, 500);
   }
 };
 
@@ -134,7 +134,7 @@ const updateInvoiceStatus = async (transactionId, status, notes = null) => {
     });
     
     if (!invoice) {
-      throw new AppError('Invoice not found for this transaction', 404);
+      throw new AppError('invoice_not_found_err','Invoice not found for this transaction', 404);
     }
     
     const updateData = {
@@ -155,7 +155,7 @@ const updateInvoiceStatus = async (transactionId, status, notes = null) => {
     });
   } catch (error) {
     if (error instanceof AppError) throw error;
-    throw new AppError(`Error updating invoice: ${error.message}`, 500);
+    throw new AppError('invoice_update_err',`Error updating invoice: ${error.message}`, 500);
   }
 };
 
@@ -167,7 +167,7 @@ const generateInvoicePDF = async (invoiceId) => {
     const invoice = await getInvoiceById(invoiceId);
     
     if (!invoice) {
-      throw new AppError('Invoice not found', 404);
+      throw new AppError('invoice_not_found_err','Invoice not found', 404);
     }
 
     // Create a folder for temporary PDFs if it doesn't exist
@@ -285,12 +285,12 @@ const generateInvoicePDF = async (invoiceId) => {
       });
       
       stream.on('error', (error) => {
-        reject(new AppError(`Error generating PDF: ${error.message}`, 500));
+        reject(new AppError('invoice_generate_err',`Error generating PDF: ${error.message}`, 500));
       });
     });
   } catch (error) {
     if (error instanceof AppError) throw error;
-    throw new AppError(`Error generating invoice PDF: ${error.message}`, 500);
+    throw AppError('invoice_generate_err',`Error generating invoice PDF: ${error.message}`, 500);
   }
 };
 

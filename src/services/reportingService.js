@@ -10,9 +10,9 @@ const { cacheUtils } = require("../config/cache");
 
 // Cache TTLs in seconds
 const CACHE_TTLS = {
-  FINANCIAL_REPORT: 1800,    // 30 minutes
-  EARNINGS_REPORT: 1800,     // 30 minutes
-  COMMISSION_REPORT: 1800,   // 30 minutes
+  FINANCIAL_REPORT: 1800, // 30 minutes
+  EARNINGS_REPORT: 1800, // 30 minutes
+  COMMISSION_REPORT: 1800, // 30 minutes
 };
 
 /**
@@ -23,9 +23,9 @@ const generateReportCacheKey = (prefix, filters = {}) => {
     .filter(([_, value]) => value !== undefined)
     .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
     .map(([key, value]) => `${key}=${value}`)
-    .join('&');
-  
-  return `report:${prefix}:${filterString || 'default'}`;
+    .join("&");
+
+  return `report:${prefix}:${filterString || "default"}`;
 };
 
 /**
@@ -33,17 +33,17 @@ const generateReportCacheKey = (prefix, filters = {}) => {
  */
 const generateFinancialReport = async (filters = {}) => {
   try {
-    const cacheKey = generateReportCacheKey('financial', filters);
-    
+    const cacheKey = generateReportCacheKey("financial", filters);
+
     // Try to get from cache first
     const cachedData = await cacheUtils.get(cacheKey);
     if (cachedData) {
       logger.debug(`Cache hit for financial report: ${cacheKey}`);
       return cachedData;
     }
-    
+
     logger.debug(`Cache miss for financial report: ${cacheKey}`);
-    
+
     // Extract filters
     const { startDate, endDate, educatorId } = filters;
 
@@ -52,26 +52,42 @@ const generateFinancialReport = async (filters = {}) => {
     if (startDate && endDate) {
       const startDateObj = new Date(startDate);
       const endDateObj = new Date(endDate);
-      
+
       // Validate dates to prevent "Invalid time value" errors
       if (isNaN(startDateObj.getTime())) {
-        throw new AppError(`Invalid startDate: ${startDate}`, 400);
+        throw new AppError(
+          "report_invalid_date_err",
+          `Invalid startDate: ${startDate}`,
+          400
+        );
       }
       if (isNaN(endDateObj.getTime())) {
-        throw new AppError(`Invalid endDate: ${endDate}`, 400);
+        throw new AppError(
+          "report_invalid_date_err",
+          `Invalid endDate: ${endDate}`,
+          400
+        );
       }
-      
+
       dateCondition = Prisma.sql`AND t."createdAt" BETWEEN ${startDateObj} AND ${endDateObj}`;
     } else if (startDate) {
       const startDateObj = new Date(startDate);
       if (isNaN(startDateObj.getTime())) {
-        throw new AppError(`Invalid startDate: ${startDate}`, 400);
+        throw new AppError(
+          "report_invalid_date_err",
+          `Invalid startDate: ${startDate}`,
+          400
+        );
       }
       dateCondition = Prisma.sql`AND t."createdAt" >= ${startDateObj}`;
     } else if (endDate) {
       const endDateObj = new Date(endDate);
       if (isNaN(endDateObj.getTime())) {
-        throw new AppError(`Invalid endDate: ${endDate}`, 400);
+        throw new AppError(
+          "report_invalid_date_err",
+          `Invalid endDate: ${endDate}`,
+          400
+        );
       }
       dateCondition = Prisma.sql`AND t."createdAt" <= ${endDateObj}`;
     }
@@ -83,9 +99,10 @@ const generateFinancialReport = async (filters = {}) => {
     }
 
     // Generate the report SQL queries
-    const [summary, dailyStats, topCourses, paymentMethods] = await Promise.all([
-      // Summary statistics
-      prisma.$queryRaw`
+    const [summary, dailyStats, topCourses, paymentMethods] = await Promise.all(
+      [
+        // Summary statistics
+        prisma.$queryRaw`
         SELECT 
           COALESCE(SUM(CASE WHEN t."type" = 'PAYMENT' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "totalRevenue",
           COALESCE(SUM(CASE WHEN t."type" = 'REFUND' AND t."status" = 'COMPLETED' THEN t."amount" ELSE 0 END), 0) AS "totalRefunds",
@@ -100,8 +117,8 @@ const generateFinancialReport = async (filters = {}) => {
         WHERE 1=1 ${dateCondition} ${educatorFilter}
       `,
 
-      // Daily statistics
-      prisma.$queryRaw`
+        // Daily statistics
+        prisma.$queryRaw`
         SELECT 
           TO_CHAR(t."createdAt", 'YYYY-MM-DD') AS "date",
           COUNT(CASE WHEN t."type" = 'PAYMENT' THEN 1 END) AS "transactions",
@@ -116,8 +133,8 @@ const generateFinancialReport = async (filters = {}) => {
         LIMIT 30
       `,
 
-      // Top courses by revenue
-      prisma.$queryRaw`
+        // Top courses by revenue
+        prisma.$queryRaw`
         SELECT 
           t."courseId",
           COUNT(CASE WHEN t."type" = 'PAYMENT' THEN 1 END) AS "sales",
@@ -132,8 +149,8 @@ const generateFinancialReport = async (filters = {}) => {
         LIMIT 10
       `,
 
-      // Payment methods
-      prisma.$queryRaw`
+        // Payment methods
+        prisma.$queryRaw`
         SELECT 
           COALESCE(t.metadata->>'paymentMethod', 'unknown') AS "paymentMethod",
           COUNT(*) AS "count",
@@ -143,16 +160,17 @@ const generateFinancialReport = async (filters = {}) => {
         GROUP BY t.metadata->>'paymentMethod'
         ORDER BY "count" DESC
       `,
-    ]);
+      ]
+    );
 
     // Format and sanitize the report data
     const report = {
       metadata: {
         generatedAt: new Date(),
         filters: {
-          startDate: startDate || 'All time',
-          endDate: endDate || 'Current date',
-          educatorId: educatorId || 'All educators',
+          startDate: startDate || "All time",
+          endDate: endDate || "Current date",
+          educatorId: educatorId || "All educators",
         },
       },
       summary: {
@@ -165,7 +183,7 @@ const generateFinancialReport = async (filters = {}) => {
         totalRefundCount: Number(summary[0]?.totalRefundCount) || 0,
         uniqueCustomers: Number(summary[0]?.uniqueCustomers) || 0,
       },
-      dailyStats: dailyStats.map(day => ({
+      dailyStats: dailyStats.map((day) => ({
         date: day.date,
         transactions: Number(day.transactions) || 0,
         revenue: Number(day.revenue) || 0,
@@ -173,7 +191,7 @@ const generateFinancialReport = async (filters = {}) => {
         platformCommission: Number(day.platformCommission) || 0,
         educatorEarnings: Number(day.educatorEarnings) || 0,
       })),
-      topCourses: topCourses.map(course => ({
+      topCourses: topCourses.map((course) => ({
         courseId: course.courseId,
         sales: Number(course.sales) || 0,
         revenue: Number(course.revenue) || 0,
@@ -181,23 +199,33 @@ const generateFinancialReport = async (filters = {}) => {
         platformCommission: Number(course.platformCommission) || 0,
         educatorEarnings: Number(course.educatorEarnings) || 0,
       })),
-      paymentMethods: paymentMethods.map(pm => ({
+      paymentMethods: paymentMethods.map((pm) => ({
         paymentMethod: pm.paymentMethod,
         count: Number(pm.count) || 0,
         volume: Number(pm.volume) || 0,
-        percentage: summary[0]?.totalTransactions > 0 
-          ? ((Number(pm.count) / Number(summary[0].totalTransactions)) * 100).toFixed(2)
-          : 0,
+        percentage:
+          summary[0]?.totalTransactions > 0
+            ? (
+                (Number(pm.count) / Number(summary[0].totalTransactions)) *
+                100
+              ).toFixed(2)
+            : 0,
       })),
     };
 
     // Cache the results
     await cacheUtils.set(cacheKey, report, CACHE_TTLS.FINANCIAL_REPORT);
-    
+
     return report;
   } catch (error) {
-    logger.error(`Error generating financial report: ${error.message}`, { error });
-    throw new AppError(`Failed to generate financial report: ${error.message}`, error.statusCode || 500);
+    logger.error(`Error generating financial report: ${error.message}`, {
+      error,
+    });
+    throw new AppError(
+      "report_generation_err",
+      `Failed to generate financial report: ${error.message}`,
+      error.statusCode || 500
+    );
   }
 };
 
@@ -241,11 +269,23 @@ const generateFinancialReportPDF = async (reportData) => {
       });
 
       stream.on("error", (err) => {
-        reject(new AppError(`Error generating PDF: ${err.message}`, 500));
+        reject(
+          new AppError(
+            "report_pdf_generation_err",
+            `Error generating PDF: ${err.message}`,
+            500
+          )
+        );
       });
     } catch (error) {
       logger.error(`Error generating financial report PDF: ${error.message}`);
-      reject(new AppError("Failed to generate financial report PDF", 500));
+      reject(
+        new AppError(
+          "report_pdf_generation_err",
+          "Failed to generate financial report PDF",
+          500
+        )
+      );
     }
   });
 };
@@ -322,7 +362,6 @@ const generateFinancialPDFContent = (doc, reportData) => {
         (educatorStats.totalEarnings || 0) -
           (educatorStats.totalRefundedEarnings || 0)
       )}`
-
     );
 
     doc.moveDown();
@@ -431,16 +470,16 @@ const generateFinancialPDFContent = (doc, reportData) => {
 const getEducatorEarningsReport = async (educatorId, filters = {}) => {
   try {
     const cacheKey = generateReportCacheKey(`earnings:${educatorId}`, filters);
-    
+
     // Try to get from cache first
     const cachedData = await cacheUtils.get(cacheKey);
     if (cachedData) {
       logger.debug(`Cache hit for earnings report: ${cacheKey}`);
       return cachedData;
     }
-    
+
     logger.debug(`Cache miss for earnings report: ${cacheKey}`);
-    
+
     // Build date filter condition for SQL queries
     let dateCondition = Prisma.empty;
     if (filters.startDate && filters.endDate) {
@@ -448,9 +487,13 @@ const getEducatorEarningsReport = async (educatorId, filters = {}) => {
         filters.startDate
       )} AND ${new Date(filters.endDate)}`;
     } else if (filters.startDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(filters.startDate)}`;
+      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(
+        filters.startDate
+      )}`;
     } else if (filters.endDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(filters.endDate)}`;
+      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(
+        filters.endDate
+      )}`;
     }
 
     // Query for educator's transactions
@@ -483,7 +526,9 @@ const getEducatorEarningsReport = async (educatorId, filters = {}) => {
     const report = {
       educatorId: transactionsResults[0].educatorId,
       totalEarnings: Number(transactionsResults[0].totalEarnings),
-      totalRefundedEarnings: Number(transactionsResults[0].totalRefundedEarnings),
+      totalRefundedEarnings: Number(
+        transactionsResults[0].totalRefundedEarnings
+      ),
       totalSales: Number(transactionsResults[0].totalSales),
       totalActiveCourses: Number(transactionsResults[0].totalActiveCourses),
       reportGenerated: new Date(),
@@ -495,11 +540,17 @@ const getEducatorEarningsReport = async (educatorId, filters = {}) => {
 
     // Cache the results
     await cacheUtils.set(cacheKey, report, CACHE_TTLS.EARNINGS_REPORT);
-    
+
     return report;
   } catch (error) {
-    logger.error(`Error getting educator earnings report: ${error.message}`, { error });
-    throw new AppError("Failed to get educator earnings report", 500);
+    logger.error(`Error getting educator earnings report: ${error.message}`, {
+      error,
+    });
+    throw new AppError(
+      "report_earning_err",
+      "Failed to get educator earnings report",
+      500
+    );
   }
 };
 
@@ -508,17 +559,17 @@ const getEducatorEarningsReport = async (educatorId, filters = {}) => {
  */
 const generateCommissionReport = async (filters = {}) => {
   try {
-    const cacheKey = generateReportCacheKey('commission', filters);
-    
+    const cacheKey = generateReportCacheKey("commission", filters);
+
     // Try to get from cache first
     const cachedData = await cacheUtils.get(cacheKey);
     if (cachedData) {
       logger.debug(`Cache hit for commission report: ${cacheKey}`);
       return cachedData;
     }
-    
+
     logger.debug(`Cache miss for commission report: ${cacheKey}`);
-    
+
     // Build date filter condition for SQL queries
     let dateCondition = Prisma.empty;
     if (filters.startDate && filters.endDate) {
@@ -526,9 +577,13 @@ const generateCommissionReport = async (filters = {}) => {
         filters.startDate
       )} AND ${new Date(filters.endDate)}`;
     } else if (filters.startDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(filters.startDate)}`;
+      dateCondition = Prisma.sql`AND t."createdAt" >= ${new Date(
+        filters.startDate
+      )}`;
     } else if (filters.endDate) {
-      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(filters.endDate)}`;
+      dateCondition = Prisma.sql`AND t."createdAt" <= ${new Date(
+        filters.endDate
+      )}`;
     }
 
     // Query for commission statistics
@@ -587,7 +642,7 @@ const generateCommissionReport = async (filters = {}) => {
     const trendResults = await prisma.$queryRaw(trendQuery);
 
     // Format monthly trend data
-    report.monthlyTrend = trendResults.map(item => ({
+    report.monthlyTrend = trendResults.map((item) => ({
       month: item.month,
       platformCommission: Number(item.platformCommission),
       educatorEarnings: Number(item.educatorEarnings),
@@ -600,11 +655,15 @@ const generateCommissionReport = async (filters = {}) => {
 
     // Cache the results
     await cacheUtils.set(cacheKey, report, CACHE_TTLS.COMMISSION_REPORT);
-    
+
     return report;
   } catch (error) {
-    logger.error(`Error generating commission report: ${error.message}`, { error });
-    throw new AppError("Failed to generate commission report", 500);
+    logger.error(`Error generating commission report: ${error.message}`, {
+      error,
+    });
+    throw new AppError(
+      "report_generate_err",
+      "Failed to generate commission report", 500);
   }
 };
 
@@ -644,10 +703,12 @@ const deleteTempPDF = (filePath) => {
 const invalidateReportCaches = async () => {
   try {
     // Delete all report caches
-    await cacheUtils.deleteByPattern('report:*');
-    logger.info('Successfully invalidated report caches');
+    await cacheUtils.deleteByPattern("report:*");
+    logger.info("Successfully invalidated report caches");
   } catch (error) {
-    logger.error(`Error invalidating report caches: ${error.message}`, { error });
+    logger.error(`Error invalidating report caches: ${error.message}`, {
+      error,
+    });
   }
 };
 
