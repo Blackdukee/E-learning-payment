@@ -49,4 +49,5 @@ volumes:
 
 networks:
   e-learning-network:
-    driver: bridge
+    external: true # Ensure this network exists or create it with `docker network create e-learning-network`
+      
