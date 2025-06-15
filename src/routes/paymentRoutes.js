@@ -7,25 +7,9 @@ const {
   validateToken,
   requireRole,
 } = require("../middleware/auth");
-const { validate } = require("../middleware/validators");
+const { validate,refundValidation,paymentValidation} = require("../middleware/validators");
 const paymentController = require("../controllers/paymentController");
 
-// Schema validation for payment requests
-const paymentSchema = {
-  courseId: { type: "string", required: true },
-  amount: { type: "number", required: true, min: 0.01 },
-  currency: { type: "string", required: true, enum: ["USD", "EUR", "GBP"] },
-  source: { type: "string", required: true },
-  educatorId: { type: "string", required: true },
-  description: { type: "string", required: false },
-};
-
-
-// Schema validation for refund requests
-const refundSchema = {
-  transactionId: { type: "string", required: true },
-  reason: { type: "string", required: false },
-};
 
 router.use(
   process.env.NODE_ENV === "development"
@@ -38,7 +22,7 @@ router.post(
   "/",
   process.env.NODE_ENV === "development"
     ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
-  validate(paymentSchema),
+  validate(paymentValidation),
   paymentController.processPayment
 );
 
@@ -62,7 +46,7 @@ router.post(
   "/refund",
   process.env.NODE_ENV === "development"
     ? mockAuthMiddleware(role="Student","std_123","ali") : validateToken,
-  validate(refundSchema),
+  validate(refundValidation),
   paymentController.processRefund
 );
 // refund json example

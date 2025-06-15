@@ -186,7 +186,7 @@ const downloadInvoicePdf = async (req, res, next) => {
 
 /**
  * @swagger
- * /payments/invoices:
+ * /payments/invoices/create:
  *   post:
  *     summary: Create a new invoice
  *     tags:
@@ -213,6 +213,8 @@ const downloadInvoicePdf = async (req, res, next) => {
  */
 const createInvoice = async (req, res, next) => {
   try {
+
+    console.log("Creating invoice with data:", req.body);
     const invoiceData = req.body;
     const newInvoice = await invoiceService.createInvoice(invoiceData);
     
