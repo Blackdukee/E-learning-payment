@@ -2,7 +2,7 @@ const prisma = require("../config/db");
 const { Prisma } = require("@prisma/client");
 const { logger } = require("../utils/logger");
 const { AppError } = require("../middleware/errorHandler");
-const { cacheUtils } = require("../config/cache");
+const redisCache  = require("../config/cache");
 
 // Cache TTLs in seconds
 const CACHE_TTLS = {
@@ -612,7 +612,7 @@ const getEducatorPaymentAnalytics = async (educatorId, filters = {}) => {
 const invalidateTransactionCaches = async () => {
   try {
     // Delete all statistics caches - we could be more granular but this is simpler
-    await cacheUtils.deleteByPattern('stats:*');
+    await redisCache.deleteByPattern('stats:*');
     logger.info('Successfully invalidated transaction-related caches');
   } catch (error) {
     logger.error(`Error invalidating transaction caches: ${error.message}`, { error });

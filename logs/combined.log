@@ -7461,3 +7461,15 @@
 {"error":{},"level":"error","message":"Error invalidating transaction caches: Cannot read properties of undefined (reading 'deleteByPattern')","service":"payment-service","timestamp":"2025-06-14 17:10:44"}
 {"level":"info","message":"Skipping user service notification in development mode: NEW_EARNINGS for user edu_123","service":"payment-service","timestamp":"2025-06-14 17:10:44"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [14/Jun/2025:14:10:44 +0000] \"POST /api/v1/payments/pay HTTP/1.1\" 200 150 \"-\" \"PostmanRuntime/7.44.0\"","service":"payment-service","timestamp":"2025-06-14 17:10:44"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-15 15:19:25"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-15 15:19:26"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-15 15:19:26"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-15 15:19:26"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-15 15:19:26"}
+{"clientVersion":"6.6.0","errorCode":"P1001","level":"error","message":"Database connection error: Can't reach database server at `db:5432`\n\nPlease make sure your database server is running at `db:5432`.","name":"PrismaClientInitializationError","service":"payment-service","stack":"PrismaClientInitializationError: Can't reach database server at `db:5432`\n\nPlease make sure your database server is running at `db:5432`.\n    at r (C:\\Users\\Brilliant\\Desktop\\Nodejs\\FinalProject\\agents\\payment-service\\node_modules\\@prisma\\client\\runtime\\library.js:112:2565)","timestamp":"2025-06-15 15:19:28"}
+{"level":"info","message":"Connecting to Redis at 127.0.0.1:6379...","service":"payment-service","timestamp":"2025-06-15 15:20:27"}
+{"level":"info","message":"Payment service running on port 5002","service":"payment-service","timestamp":"2025-06-15 15:20:30"}
+{"level":"info","message":"Redis client connecting...","service":"payment-service","timestamp":"2025-06-15 15:20:30"}
+{"level":"info","message":"Redis client connected and ready","service":"payment-service","timestamp":"2025-06-15 15:20:30"}
+{"level":"info","message":"Successfully connected to Redis","service":"payment-service","timestamp":"2025-06-15 15:20:30"}
+{"level":"info","message":"Database connection established","service":"payment-service","timestamp":"2025-06-15 15:20:30"}

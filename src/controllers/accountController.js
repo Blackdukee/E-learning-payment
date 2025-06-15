@@ -7,7 +7,7 @@ const stripe = require("../config/stripe");
 
 /**
  * @swagger
- * payments/educator/stripe-account:
+ * /payments/educator/stripe-account:
  *   get:
  *     summary: Retrieve Stripe dashboard login link for educator
  *     tags: [Educators]
@@ -57,7 +57,7 @@ const stripeAccount = async (req, res, next) => {
 
 /**
  * @swagger
- * payments/educator/create-account:
+ * /payments/educator/create-account:
  *   post:
  *     summary: Create Stripe account for educator
  *     tags: [Educators]
@@ -87,7 +87,7 @@ const createEducatorAccount = async (req, res, next) => {
 
 /**
  * @swagger
- * payments/educator/delete-account:
+ * /payments/educator/delete-account:
  *   delete:
  *     summary: Delete Stripe account for educator
  *     tags: [Educators]

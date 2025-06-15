@@ -11,7 +11,7 @@ const { logger } = require('../utils/logger');
 
 /**
  * @swagger
- * payments/reports/financial:
+ * /payments/reports/financial:
  *   get:
  *     summary: Generate financial report with optional filters
  *     tags: [Reports]
@@ -85,7 +85,7 @@ const generateFinancialReport = async (req, res, next) => {
 
 /**
  * @swagger
- * payments/reports/financial/pdf:
+ * /payments/reports/financial/pdf:
  *   get:
  *     summary: Download financial report as PDF
  *     tags: [Reports]
@@ -161,7 +161,7 @@ const downloadFinancialReportPDF = async (req, res, next) => {
 
 /**
  * @swagger
- * payments/reports/educators/{educatorId}/earnings:
+ * /payments/reports/educators/{educatorId}/earnings:
  *   get:
  *     summary: Get earnings report for a specific educator
  *     tags: [Reports]
@@ -208,7 +208,7 @@ const getEducatorEarningsReport = async (req, res, next) => {
 
 /**
  * @swagger
- * payments/reports/commission-analysis:
+ * /payments/reports/commission-analysis:
  *   get:
  *     summary: Generate commission analysis report
  *     tags: [Reports]
