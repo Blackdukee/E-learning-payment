@@ -148,7 +148,7 @@ if (!fs.existsSync(logsDir)) {
 app.use("/api/v1/payments/", router);
 
 // Serve Swagger UI
-app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use("/api/v1/payments/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Health check endpoint
 app.get("/api/v1/health", (req, res) => {
