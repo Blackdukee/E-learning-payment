@@ -25,17 +25,26 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API documentation for the Payment Service",
     },
-    servers: [{ url: `https://3.66.224.12/api/v1` } , { url: `http://localhost:5002/api/v1` }],
+    servers: [
+      { url: `https://3.66.224.12/api/v1` },
+      { url: `http://localhost:5002/api/v1` },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: "https",
+          type: "http",
           scheme: "bearer",
           bearerFormat: "JWT",
         },
       },
       schemas: { ...swagger_schemas },
     },
+    // <–– Add this block to enable the "Authorize" button
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ["./src/routes/*.js", "./src/controllers/*.js"],
 };
@@ -148,7 +157,11 @@ if (!fs.existsSync(logsDir)) {
 app.use("/api/v1/payments/", router);
 
 // Serve Swagger UI
-app.use("/api/v1/payments/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use(
+  "/api/v1/payments/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpecs)
+);
 
 // Health check endpoint
 app.get("/api/v1/health", (req, res) => {
