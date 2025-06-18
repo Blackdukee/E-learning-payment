@@ -10,7 +10,7 @@ const validateToken = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      throw new AppError("Authentication token is missing", 401);
+      throw new AppError("ValidationError","Authentication token is missing", 401);
     }
 
     const token = authHeader.split(" ")[1];
@@ -32,7 +32,7 @@ const validateToken = async (req, res, next) => {
       );
 
       if (!response.data.valid) {
-        return next(new AppError("Invalid or expired token", 401));
+        return next(new AppError("JsonWebTokenError","Invalid or expired token", 401));
       }
       response.data.user.id = response.data.user.id.toString();
       req.user = response.data.user;
@@ -43,12 +43,12 @@ const validateToken = async (req, res, next) => {
 
       if (axiosError.code === "ECONNREFUSED") {
         logger.error(`Auth service connection refused: ${axiosError.message}`);
-        return next(new AppError("Authentication service unavailable", 503));
+        return next(new AppError("ECONNREFUSED","Authentication service unavailable", 503));
       } else if (!axiosError.message.includes("Invalid or expired token")) {
         // log the device ip for this request
         logger.error(`Auth service error: ${axiosError.message}`);
         logger.error(`Request IP: ${req.ip}`);
-        return next(new AppError("Invalid Token", 401));
+        return next(new AppError("JsonWebTokenError","Invalid Token", 401));
       }
 
       // Handle error response from auth service
@@ -58,7 +58,7 @@ const validateToken = async (req, res, next) => {
         }`
       );
       return next(
-        new AppError("Authentication failed", axiosError.response.status || 401)
+        new AppError("ValidationError","Authentication failed", axiosError.response.status || 401)
       );
     }
   } catch (error) {
@@ -67,7 +67,7 @@ const validateToken = async (req, res, next) => {
     } else {
       // Network error or internal error
       logger.error(`Auth middleware error: ${error.message}`);
-      next(new AppError("Authentication failed due to server issue", 500));
+      next(new AppError("ValidationError","Authentication failed due to server issue", 500));
     }
   }
 };
@@ -81,11 +81,11 @@ const requireRole = (roles) => {
     const requiredRoles = Array.isArray(roles) ? roles : [roles];
 
     if (!req.user) {
-      return next(new AppError("User not authenticated", 401));
+      return next(new AppError("ValidationError","User not authenticated", 401));
     }
 
     if (!requiredRoles.includes(req.user.role)) {
-      return next(new AppError("Access denied: insufficient permissions", 403));
+      return next(new AppError("ValidationError","Access denied: insufficient permissions", 403));
     }
 
     next();
