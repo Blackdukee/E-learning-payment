@@ -2,22 +2,25 @@ version: "3.8"
 
 services:
   payment-service:
-    container_name: e-learning_backend-payment-service
+    container_name: payment-service
     build: .
     ports:
       - "5002:5002"
+    environment:
+      - REDIS_HOST=payment-redis
+      - REDIS_PORT=6379
     env_file:
       - .env
     command: sh -c "npx prisma migrate deploy && npm run start"
     depends_on:
-      db:
-        condition: service_healthy
+      - payment-redis
+      - payment-db
     networks:
       - e-learning-network
     restart: unless-stopped
 
-  db:
-    container_name: e-learning_backend-payment-db
+  payment-db:
+    container_name: payment-db
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
@@ -35,8 +38,8 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
-  redis: 
-    container_name: e-learning_backend-payment-redis
+  payment-redis: 
+    container_name: payment-redis
     image: redis:latest
     ports:
       - "6379:6379"
