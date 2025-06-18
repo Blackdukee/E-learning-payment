@@ -20,7 +20,7 @@ const notifyUserService = async (data) => {
     await axios.post(`${process.env.USER_SERVICE_URL}/notifications`, data, {
       headers: {
         "Content-Type": "application/json",
-        "X-Service-Auth": process.env.INTERNAL_API_KEY,
+        "X-Service-Key": process.env.INTERNAL_API_KEY,
       },
     });
 
@@ -52,13 +52,13 @@ const notifyCourseService = async (data) => {
       return;
     }
 
-    await axios.post(
+    await axios.put(
       `${process.env.COURSE_SERVICE_URL}/course/notifications`,
       data,
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Service-Auth": process.env.INTERNAL_API_KEY,
+          "X-Service-Key": process.env.INTERNAL_API_KEY,
         },
       }
     );
@@ -94,7 +94,7 @@ const notifyProgressService = async (data) => {
       {
         headers: {
           "Content-Type": "application/json",
-          "X-Service-Auth": process.env.INTERNAL_API_KEY,
+          "X-Service-Key": process.env.INTERNAL_API_KEY,
         },
       }
     );
