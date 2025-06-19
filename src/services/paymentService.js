@@ -14,33 +14,7 @@ const { invalidateTransactionCaches } = require("./statisticsService");
 const PLATFORM_COMMISSION_PERCENTAGE =
   parseFloat(process.env.PLATFORM_COMMISSION_PERCENTAGE) || 20;
 
-const checkStudentEnrollment = async (courseId, userId) => {
-  try {
-    const enrollment = await prisma.transaction.findFirst({
-      where: {
-        courseId,
-        userId,
-        status: "COMPLETED",
-      },
-    });
 
-    logger.debug(
-      `Enrollment check for user ${userId} in course ${courseId}: ${
-        enrollment ? "Enrolled" : "Not Enrolled"
-      }`
-    );
-    return !!enrollment; // Return true if enrollment exists, false otherwise
-  } catch (error) {
-    logger.error(`Error checking student enrollment: ${error.message}`, {
-      error,
-    });
-    throw new AppError(
-      "enrollment_check_err",
-      "Error checking student enrollment",
-      500
-    );
-  }
-};
 
 const processPayment = async (paymentData, user) => {
   const startTime = Date.now();
@@ -206,6 +180,7 @@ const processPayment = async (paymentData, user) => {
     // 6. Update course purchase stats
     setTimeout(async () => {
       await notifyCourseService({
+        userId: user.id,
         courseId,
         action: "ADD",
       });
@@ -465,6 +440,7 @@ const processRefund = async (refundData, user) => {
     });
 
     await notifyCourseService({
+      userId: originalTransaction.userId,
       courseId: originalTransaction.courseId,
       action: "REMOVE",
     });
@@ -667,5 +643,4 @@ module.exports = {
   getTransactionsByUser,
   getTransactionsReport,
   getTotalEarningsForEducator,
-  checkStudentEnrollment,
 };
