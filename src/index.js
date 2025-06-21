@@ -67,8 +67,8 @@ app.use(
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
-          "http://3.66.224.12:5002",
-          "https://3.66.224.12",
+          "http://18.184.52.10:5002",
+          "https://18.184.52.10",
           "http://localhost:5002",
           "https://js.stripe.com", // Stripe.js
           "https://checkout.stripe.com",
@@ -79,27 +79,27 @@ app.use(
           "data:",
           "blob:",
           "https://*",
-          "http://3.66.224.12:5002",
-          "https://3.66.224.12",
+          "http://18.184.52.10:5002",
+          "https://18.184.52.10",
         ], // For course images
         mediaSrc: [
           "'self'",
           "https://*",
-          "http://3.66.224.12:5002",
-          "https://3.66.224.12",
+          "http://18.184.52.10:5002",
+          "https://18.184.52.10",
         ], // For video/audio learning content
         connectSrc: [
           "'self'",
           "https://*",
-          "http://3.66.224.12:5002",
-          "https://3.66.224.12",
+          "http://18.184.52.10:5002",
+          "https://18.184.52.10",
           "http://localhost:5002",
         ], // For API connections
         fontSrc: [
           "'self'",
           "https://*",
-          "http://3.66.224.12:5002",
-          "https://3.66.224.12",
+          "http://18.184.52.10:5002",
+          "https://18.184.52.10",
         ], // For custom fonts
       },
     },
@@ -110,19 +110,19 @@ app.use(
   })
 );
 
+const whitelist = process.env.ALLOWED_ORIGINS.split(", ").map((origin) => origin.trim());
+
 // Configure CORS for e-learning platform
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "development"
-        ? "*"
-        : ["http://localhost:3000", "http://3.66.224.12:5002"],
+    origin: process.env.NODE_ENV === "development" ? "*" : whitelist,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
     maxAge: 86400, // 24 hours
   })
 );
+logger.info(`CORS enabled for origins: ${whitelist.join(", ")}`);
 
 app.use(
   express.json({

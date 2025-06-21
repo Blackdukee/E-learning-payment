@@ -75,13 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const courseSelect = document.getElementById('course');
       const currencySelect = document.getElementById('currency');
-      
+      const accessToken = document.getElementById('access-token').value;
       const courseId = courseSelect.value;
       const currency = currencySelect.value;
       
       // Make sure a course is selected
       if (!courseId) {
         document.getElementById('card-errors').textContent = 'Please select a course';
+        submitButton.disabled = false;
+        spinner.style.display = 'none';
+        return;
+      }
+
+      if (!accessToken) {
+        document.getElementById('card-errors').textContent = 'Access token is required';
         submitButton.disabled = false;
         spinner.style.display = 'none';
         return;
@@ -102,12 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Step 2: Send the payment information to your server
-        const response = await fetch('http://localhost:5002/api/v1/payments', {
+        const response = await fetch('http://localhost:5002/api/v1/payments/pay', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             // Add auth token if required
-            'Authorization': 'Bearer mock-auth-token'
+            'Authorization': `Bearer ${accessToken}`
           },
           body: JSON.stringify({
             courseId: course.id,
