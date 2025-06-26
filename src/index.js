@@ -110,12 +110,14 @@ app.use(
   })
 );
 
-const whitelist = process.env.ALLOWED_ORIGINS.split(", ").map((origin) => origin.trim());
+const whitelist = process.env.ALLOWED_ORIGINS.split(", ").map((origin) =>
+  origin.trim()
+);
 
 // Configure CORS for e-learning platform
 app.use(
   cors({
-    origin: "*" ,
+    origin: process.env.NODE_ENV === "development" ? "*" : whitelist,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
